@@ -1,0 +1,55 @@
+\hyphenation{Post-Script}
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Flandrin}{Flandrin}{1999}]{Flandrin:1999}
+Flandrin, P. (1999).
+\newblock {\em Time-Frequency/Time-scale Analysis}.
+\newblock Academic Press.
+
+\bibitem[\protect\citeauthoryear{Gribonval, Depalle, Rodet, Bacry, and
+  Mallat}{Gribonval et~al.}{1996}]{Gribonval:1996}
+Gribonval, R., P.~Depalle, X.~Rodet, E.~Bacry, and S.~Mallat (1996).
+\newblock Sound signal decomposition using a high resolution matching pursuit.
+\newblock In {\em Proceedings of the International Computer Music Conference}.
+  International Computer Music Association.
+
+\bibitem[\protect\citeauthoryear{Helmholtz}{Helmholtz}{1877}]{Helmholtz:1877}
+Helmholtz, H. (1877).
+\newblock {\em On the Senstations of Tone}.
+\newblock New York, NY: Dover.
+
+\bibitem[\protect\citeauthoryear{Mallat}{Mallat}{1998}]{Mallat:1998}
+Mallat, S. (1998).
+\newblock {\em A Wavelet Tour of Signal Processing}.
+\newblock Academic Press.
+
+\bibitem[\protect\citeauthoryear{Mallat and Zhang}{Mallat and
+  Zhang}{1993}]{Mallat:1993}
+Mallat, S. and Z.~Zhang (1993).
+\newblock Matching pursuits with time-frequency dictionaries.
+\newblock {\em IEEE Transactions on Signal Processing\/}~{\em 41}, 3397--3415.
+
+\bibitem[\protect\citeauthoryear{Plomp and Levelt}{Plomp and
+  Levelt}{1965}]{Plomp:1965}
+Plomp, R. and W.~J.~M. Levelt (1965).
+\newblock Tonal consonance and critical bandwidth.
+\newblock {\em Journal of the Acoustical Society of America\/}~{\em 38},
+  548--560.
+
+\bibitem[\protect\citeauthoryear{Sethares}{Sethares}{1997}]{Sethares:1997}
+Sethares, W. (1997).
+\newblock {\em Tuning, Timbre, Spectrum, Scale}.
+\newblock New York, NY: Springer-Verlag.
+
+\bibitem[\protect\citeauthoryear{Tenney}{Tenney}{1988}]{Tenney:1988}
+Tenney, J. (1988).
+\newblock {\em A History of 'Consonance' and 'Dissonance'}.
+\newblock Excelsior Music.
+
+\bibitem[\protect\citeauthoryear{Tolimieri and An}{Tolimieri and
+  An}{1998}]{Tolimieri:1998}
+Tolimieri, R. and M.~An (1998).
+\newblock {\em Time-Frequency Representations}.
+\newblock Boston, MA: Birkh\"{a}user.
+
+\end{thebibliography}

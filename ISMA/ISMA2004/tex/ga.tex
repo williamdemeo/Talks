@@ -1,0 +1,69 @@
+%-----------------------------------------------------------------------
+\ismasubsec{The Group Algebra $\CG$}
+%-----------------------------------------------------------------------
+\label{sec:groupalgebra}
+The \emph{group algebra} $\CG$ is the space of all formal sums
+\begin{equation}
+f = \sum_{x\in G} f(x) x, \quad f(x) \in \C,
+\end{equation}
+with the following operations for $f, g \in \CG$:
+\begin{equation}
+f+g = \sum_{x\in G} (f(x) + g(x))x,
+\end{equation}
+\begin{equation}
+\alpha f = \sum_{x\in G} (\alpha f(x)) x, 
+           \quad \alpha \in \C,
+\end{equation}
+\begin{equation}
+fg = \sum_{x\in G}\left(\sum_{y\in G} f(y)g(y^{-1}x)\right)x. 
+\end{equation}
+
+The mapping $\lt{L}(g)$ of $\CG$ defined by 
+$\lt{L}(g)f = gf$
+is a linear operator on the space $\CG$ called 
+\emph{left multiplication by} $g$.  
+Since $y\in G$ can be identified with the formal
+sum $e_y \in \CG$ consisting of a single nonzero term,
+\begin{equation}\label{eq:leftmult}
+yf = \lt{L}(e_y)f = \sum_{x\in G}f(y^{-1}x) x.
+\end{equation}
+In relation to translation of $\LG$, (\ref{eq:leftmult}) is the
+$\CG$ analog. 
+
+The mapping $\varTheta: \LG \to \CG$ defined by
+\begin{equation}\label{eq:iso}
+\varTheta(f) = \sum_{x\in G} f(x) x, \quad f\in \LG,
+\end{equation}
+is an algebra isomorphism of the convolution algebra $\LG$
+onto the group algebra $\CG$.  
+Thus we can identify
+$\varTheta(f)$ with $f$, using  context to decide whether
+$f$ refers to the function in $\LG$ or the formal sum in
+$\CG$.  
+
+An important aspect of the foregoing isomorphism is the
+correspondence between the translations of the spaces.
+Translation of $\LG$ by $y\in G$ %$\T(y)$ 
+corresponds to left multiplication of $\CG$ by $y\in G$.
+%$\lt{L}(y)$ 
+Convolution of $\LG$ by $f\in \LG$ corresponds to
+left multiplication of $\CG$ by $f\in \CG$. 
+%We state 
+%these relations symbolically as follows:
+%\begin{center}
+%\begin{tabular}{ccc}
+%  $\LG$ & $\simeq$ & $\CG$ \\
+%  $\lt{T}(y)$ & $\leftrightarrow$ & $\lt{L}(y)$\\
+%  $\lt{C}(f)$ & $\leftrightarrow$ & $\lt{L}(f)$
+%\end{tabular}
+%\end{center}
+
+\begin{figure}
+  \centerline{\epsfig{figure=figures/t_cyclicshift,width=70mm, height=50mm}}
+  \caption{{\small {\it An impulse
+      $f\in \CA$ and a few abelian group translates, $x^2f, x^9f,
+      x^{-7}f$. }}}
+  \label{fig:cyclicshift}
+\end{figure}
+
+

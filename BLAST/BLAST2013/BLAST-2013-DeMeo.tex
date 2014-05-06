@@ -1,0 +1,535 @@
+%\documentclass[xcolor=dvipsnames,9pt]{beamer} 
+\documentclass[xcolor=dvipsnames,9pt,hide notes,mathserif]{beamer}
+
+\usepackage{pgfpages}
+\usepackage{listings}
+%\usepackage{enumitem}
+
+%% For creating a handout:
+%\pgfpagesuselayout{4 on 1}[border shrink=5mm]
+%\mode<handout>{\setbeamercolor{background canvas}{bg=black!5}}
+
+%% For creating notes for the speaker:
+%\setbeameroption{notes on second screen}
+%\setbeameroption{show notes}
+
+\setbeamerfont{structure}{family=\rmfamily,shape=\scshape} 
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{scalefnt}
+\usepackage{amsmath}%
+\usepackage{amsfonts}%
+\usepackage{amssymb}%
+%(wjd) added stmaryrd and enumerate packages
+\usepackage{stmaryrd,enumerate}
+\usepackage{graphicx}
+\usepackage{comment}
+\usetikzlibrary{matrix,arrows}
+
+\usepackage{mathrsfs,textcomp}
+\setbeamertemplate{navigation symbols}{}
+\usepackage{verbatim}
+\usepackage[mathcal]{euscript}
+
+% This changes the color of alerted text to blue:
+\definecolor{MyDarkBlue}{rgb}{0.2,0.2,0.7}
+\definecolor{olivegreen}{cmyk}{0.64,0,0.95,0.40} % PANTONE 582
+\setbeamercolor{alerted text}{fg=blue}
+\newcommand{\emphcyan}[1]{\textcolor{MyDarkBlue}{\textbf{#1}}}
+%\renewcommand{\alert}[1]{\textcolor{olivegreen}{\emph{#1}}}
+\renewcommand{\alert}[1]{\textcolor{olivegreen}{#1}}
+%\renewcommand{\alert}[1]{\textbf{{\emph{#1}}}}
+% (default is red, but my slides are green and I don't like red and green together)
+
+%\usecolortheme[named=OliveGreen]{structure} 
+\usecolortheme[named=olivegreen]{structure} 
+\setbeamertemplate{items}[ball] 
+\setbeamertemplate{blocks}[rounded][shadow=true] 
+
+
+% Commands for creating the ROTATING RECTANGLE
+% Pass in a number which will be used to calculate the rotation angle.
+% Example: Inside a tikzpicture environment, I would call 
+%          \foreach \i in {0,...,11} { \eImageOfBZero{\i}  }
+\newcommand{\eImageOfBZero}[1]{
+  \pgfmathtruncatemacro{\r}{15*#1}
+  \foreach \j in {1,2} {
+    \draw[rotate around={\r:(-1,0.5)}] (\j -1, 0.5) node {$\j$};
+    \pgfmathtruncatemacro{\x}{\j+3}
+    \draw[rotate around={\r:(-1,0.5)}] (\j -1, -0.5) node {$\x$};
+  }
+  \draw[rotate around={\r:(-1,0.5)}] (-1, -0.5) node {$3$};
+  \draw[rounded corners, dotted, rotate around={\r:(-1,0.5)}] (-1.5,-1) rectangle (1.5,1);
+}
+
+\newcommand{\eImageOfBOne}[1]{
+  \pgfmathtruncatemacro{\r}{-15*#1}
+  \foreach \j in {0,1,2} {
+    \pgfmathtruncatemacro{\x}{10-\j}
+    \draw[rotate around={\r:(-1,0.5)}] (\j -3, 1.5) node {$\x$};
+  }
+  \draw[rotate around={\r:(-1,0.5)}] (-3, .5) node {$7$} (-2, .5) node {$6$};
+  \draw[rounded corners, dotted, rotate around={\r:(-1,0.5)}] (-3.5,0) rectangle (-0.5,2);
+}
+
+\newcommand{\eImageOfBTwo}[1]{
+  \pgfmathtruncatemacro{\r}{15*#1}
+  \foreach \j in {0,1,2} {
+    \pgfmathtruncatemacro{\x}{15-\j}
+    \draw[rotate around={\r:(1,0.5)}] (\j+1,1.5) node {$\x$};
+  }
+  \draw[rotate around={\r:(1,0.5)}] (3, .5) node {$11$} (2, .5) node {$12$};
+  \draw[rounded corners, dotted,rotate around={\r:(1,0.5)}] (3.5,0) rectangle (0.5,2);
+}
+
+
+\input{wjd.def}
+
+\mode<presentation>{\usetheme{boxes}}  %boxes,Pittsburgh JuanLesPins, PaloAlto, Singapore, Szeged, Warsaw, Boadilla
+%\usetheme{Madrid}}
+%\usetheme{boxes}  %boxes,Pittsburgh JuanLesPins, PaloAlto, Singapore, Szeged, Warsaw, Boadilla
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+\title{Small Congruence Lattices}
+
+\author[William DeMeo]{William DeMeo\\
+{\footnotesize \url{williamdemeo@gmail.com}}\\
+{\small University of South Carolina}\\[4pt]
+  {\footnotesize joint work with}\\[4pt] 
+  Ralph Freese, Peter Jipsen, Bill Lampe, J.B. Nation
+}
+%\institute[]{
+
+\date[BLAST 2013]{ % (optional, should be abbreviation of conference name)
+  B\textcolor{olivegreen}{{\bf LA}}ST Conference\\{\small Chapman University}\\
+  {\small August 5--9, 2013}}
+
+\subject{Universal Algebra; Lattice Theory.}% (optional) inserted into PDF info catalog.
+
+% TOC pops up at the beginning of each subsection:
+\AtBeginSubsection[]{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+% If you wish to uncover everything in a step-wise fashion, uncomment the following command: 
+% \beamerdefaultoverlayspecification{<+->}
+
+\begin{document}
+\thicklines
+
+%% \includeonlyframes{titlepage,problem,milestones,methods,knownresults,filterideal,MO,freese,OA,OAcong,OAEx2,PAP1,OAresults,OAextension,Limitations,OAextension2,conclusion,MO,Conclusion}
+
+
+\frame[label=titlepage]{
+  \titlepage
+}
+\input{inputs/ProblemStatement.tex}
+\input{inputs/ImportantTheorems.tex}
+\begin{frame}[label=part1]{Part 1: methods}
+  \begin{center} Given a finite lattice $\bL$, find a finite algebra $\bA$ with $\Con \bA \cong \bL$.\end{center}
+\end{frame}
+\input{inputs/Methods.tex}
+\input{inputs/GsetIsomorphism.tex}
+\input{inputs/FilterIdeal.tex}
+\begin{frame}[label=part2]{Part 2: atlas}
+  \begin{center} Which finite lattices are known to be representable? \end{center}
+\end{frame}
+\input{inputs/SixElementLattices.tex}
+\input{inputs/SevenElementLattices.tex}
+\input{inputs/Overalgebras.tex}
+\input{inputs/SevenElementLatticesSummary.tex}
+\input{inputs/IEProps.tex}
+\input{inputs/OpenProblems.tex}
+\input{inputs/Advert.tex}
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}[fragile,label=freeseOLD,shrink=5]{Contruction of an algebra $\bA$ with $\Con \bA \cong L_9$.}
+
+  \begin{columns}
+    \begin{column}{0.2\textwidth}
+
+      \centering
+      \begin{tikzpicture}[scale=.7]
+        \input{M4.tex}
+        \uncover<2->{
+          \draw[font=\footnotesize] 
+          (0.7,1.5) node {$\alpha$} (1.7,1.5) node {$\beta$}
+          (3.3,1.5) node {$\gamma$} (4.3,1.5) node {$\delta$}
+          (2.8,3.15) node {$1_B$} (2.83,-.15) node {$0_B$};
+        }
+        \visible<1>{
+          \draw  (1,0) node {$M_4$};}
+        \visible<2->{
+          \draw  (1,0) node {$\Con \bB$};}
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.8\textwidth}
+      \begin{enumerate}[Step 1]
+      \item<2-> 
+        Take a permutational algebra $\bB = \<B, F\>$ with congruence lattice $\Con\bB \cong M_4$.
+
+        \vskip6pt
+        
+        \note{There are infinitely many, but apart from those involving 
+          $S_3$, $C_3 \times C_3$, and $(C_3 \times C_3) \rtimes C_3$, they are quite
+          large.  The next smallest G-set with $M_4$ congruence lattice that we
+          know of comes from the group 
+          $G = [ ( (C_3 \times C_3) \rtimes C_2 ) \times ( (C_3 \times C_3) \rtimes C_2 ) ] \rtimes C_2$
+          acting on right cosets of $H \cong D_8$.  The index in this case is $|G:H| = 81$.
+          (In \GAP, {\tt G:=SmallGroup(648,725)}.)}
+
+        {\small
+          \onslide<4->{\underline{Example:}}
+          \vskip4pt
+%          \begin{itemize}
+          \begin{itemize}[label=$\cdot$]
+          \item<4->
+            Let $B = \{0, 1, \dots, 5\}$ index the elements of $S_3$ and
+            consider the right regular action of $S_3$ on itself.
+            \vskip5pt
+          \item<4->
+            $g_0 = (0,4)(1,3)(2,5)$ and $g_1 = (0,1,2)(3,4,5)$ generate this
+            action group, the image of $S_3 \hookrightarrow S_6$.
+            \vskip5pt
+          \item<4-> $\Con \<B , \{g_0, g_1\}\> \cong M_4$ with congruences
+\vskip1pt
+\[
+\hskip-3mm            \alpha = | 0 1 2 | 3 4 5|, \; \beta = | 0 3 | 1 4 | 2 5 |, 
+            \gamma = | 0 4|1 5| 2 3| , \; \delta = | 0 5|1 3| 2 4| .
+            \]
+          \end{itemize}
+        }
+      \end{enumerate}
+
+
+    \end{column}
+  \end{columns}
+
+  \vskip-2mm
+
+  \begin{columns}
+
+    \begin{column}{0.2\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[scale=.7]
+
+          \input{L9Freese.tex}
+          \visible<1,2>{\draw  (5,0) node {$L_{9}$};}
+          \visible<3->{\draw  (5,0) node {$\Con \bA$};}
+          \visible<3->{\draw[font=\footnotesize] (4.7,2) node {$\widehat{\alpha}$} (4.7,1) node {$\alpha^*$};}
+
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.75\textwidth}
+
+      \begin{itemize}
+      \item<3-> {\rmfamily \emph{Goal: expand $\bB$ to an algebra $\bA$ that has
+          $\alpha$ ``doubled'' in $\Con\bA$.}}
+        \vskip4pt
+%            {\small
+              \onslide<5->{\underline{Example:}\hskip8pt $\alpha = \Cg^\bB(0,2)$. }
+              \vskip4pt
+%              \begin{itemize}[label=$*$]
+%                \begin{enumerate}
+            \item<5->[Step 2] Let $A = B_0 \cup B_1 \cup B_2$ where
+              \vskip-6pt
+              \begin{align*}
+                B_0 &= \{ {\color<5>{blue}0}, 1, {\color<5>{green}2}, 3, 4, 5\} = B\\
+                B_1 &= \{{\color<5>{blue}0}, 6, 7, 8, 9, 10\}\\
+                B_2 &= \{ 11, 12, {\color<5>{green}2}, 13, 14, 15\}.
+              \end{align*}
+            \item<5->[Step 3] Define unary operations $e_0, e_1, e_2,\, s, \,g_0 e_0$, and $g_1 e_0$.
+%                \end{enumerate}
+%              \end{itemize}
+%            }
+      \end{itemize}
+    \end{column}
+
+  \end{columns}
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}[fragile,label=OAopOLD,shrink=5]{Why does it work?}
+
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{center}
+        $\Con \< B,\{g_0, g_1\}\>$
+
+        \vskip-2pt
+        \begin{align*}
+          \alpha &= |0, 1, 2 | 3, 4, 5|\\[4pt]
+          \beta &= |0, 3 | 1, 4 |2, 5 | \\[3pt]
+          \gamma &= |0, 4| 1, 5|2, 3| \\[3pt]
+          \delta &= |0, 5|1, 3|2, 4| 
+        \end{align*}
+      \end{center}
+    \end{column}
+
+    \begin{column}{0.3\textwidth}
+      \begin{tikzpicture}[scale=.7]
+
+        %% B0 %%
+        \visible<1-13>{
+          \foreach \j in {0,1,2} {
+            \draw (\j -1, 0.5) node {$\j$};
+            \pgfmathtruncatemacro{\x}{\j+3}
+            \draw (\j -1, -0.5) node {$\x$};
+          }
+          \draw (0,-1.5) node {$B_0$};
+          \draw[rounded corners,dotted] (-1.5,-1) rectangle (1.5,1);
+        }
+        \visible<12->{\draw (-1, 0.5) node {$0$};}
+
+        %% B1 %%
+        \foreach \j in {0,1,2} {
+          \pgfmathtruncatemacro{\x}{10-\j}
+          \draw (\j -3, 1.5) node {$\x$};
+        }
+        \draw (-3, .5) node {$7$} (-2, .5) node {$6$}; 
+        \draw[rounded corners,blue] (-3.5,0) rectangle (-0.5,2);
+        \draw  (-2,2.5) node {$B_1$};
+
+        %% B2 %%
+        \visible<1>{ 
+          \foreach \j in {0,1,2} {
+            \pgfmathtruncatemacro{\y}{15-\j}
+            \draw (\j +1, 1.5) node {$\y$};
+          }
+          \draw (3, .5) node {$11$} (2, .5) node {$12$};
+          \draw  (2,2.5) node {$B_2$};
+          \draw[rounded corners,dotted] (3.5,0) rectangle (0.5,2);
+        }
+
+        %% Rotate B2 onto B0 %%
+        \foreach \i in {0,1,...,11}{   
+          \pgfmathtruncatemacro{\v}{\i+1}
+          \visible<\v>{ 
+            {\color<11-12>{gray}
+              \eImageOfBTwo{\i} 
+            }
+          }
+        }
+
+        %% Rotate B0 onto B1 %%
+        \foreach \i in {0,1,...,11}{
+          \pgfmathtruncatemacro{\v}{\i+13}
+          \visible<\v>{ 
+            {\color<22-24>{gray}
+              \eImageOfBZero{\i}       %% use -\i for clockwise rotation
+            }
+          }
+        }
+
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{itemize}
+      \item $A = B_0 \cup B_1 \cup B_2$
+        \vskip4pt
+      \item Unary operations 
+        \begin{align*}
+          {\color{gray} e_0} & {\color{gray} : A \twoheadrightarrow B_0 } \\
+          {\color{blue} e_1} &{\color{blue} : A \twoheadrightarrow B_1}\\
+          {\color{gray} e_2} &{\color{gray} : A \twoheadrightarrow B_2}\\
+          {\color{gray} s} &{\color{gray} : A \twoheadrightarrow B_0}
+        \end{align*}
+        \[
+          {\color{gray} g e_0} {\color{gray} : A \stackrel{e_0}{\twoheadrightarrow} B_0 \stackrel{g}{\rightarrow} B_0}
+          \]
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{tikzpicture}[scale=.7]
+
+        %%% B_0 %%%
+        \draw (-1,0) node {$B_0 = \{$};
+        \foreach \i in { 0, 1, 2, 3, 4, 5}{ 
+          \draw (\i,0) node {$\i$}; 
+          \visible<14-16,19-21,24-26>{ \draw [|->] (\i,0.5) -- (\i,1.1) ; }
+          \visible<2-4,7-9,12>{ \draw [|->] (\i,-1.1) -- (\i,-0.5); }
+        }
+        \draw (5.5,0) node {$\}$};
+
+        %%% B_1 %%%
+        \draw (-1,1.5) node {$B_1 =\{$} (0,1.5) node {$0$};
+        \foreach \i in { 6, 7, 8, 9, 10}{ \draw (\i-5,1.5) node {$\i$}; }
+        \draw (5.5,1.5) node {$\}$};
+        
+        %%% B_2 %%%
+        \draw (-1,-1.5) node {$B_2 =\{$} (0,-1.5) node {$11$} (1,-1.5) node {$12$} (2,-1.5) node {$2$};
+        \foreach \i in { 13, 14, 15}{ \draw (\i-10,-1.5) node {$\i$}; }
+        \draw (5.5,-1.5) node {$\}$};
+
+
+      \end{tikzpicture}
+    \end{column}
+
+  \end{columns}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}[fragile,label=OAop4,shrink=5]{Why does it work?}
+
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{center}
+        $\Con \< B,\{g_0, g_1\}\>$
+
+        \vskip-2pt
+        \begin{align*}
+          \alpha &= |0, 1, 2 | 3, 4, 5|\\[4pt]
+          \beta &= |0, 3 | 1, 4 |2, 5 | \\[3pt]
+          \gamma &= |0, 4| 1, 5|2, 3| \\[3pt]
+          \delta &= |0, 5|1, 3|2, 4| 
+        \end{align*}
+      \end{center}
+    \end{column}
+
+    \begin{column}{0.3\textwidth}
+      \begin{tikzpicture}[scale=.7]
+
+        %% B0 %%
+        \foreach \j in {0,1,2} {
+          \draw (\j -1, 0.5) node {$\j$};
+          \pgfmathtruncatemacro{\x}{\j+3}
+          \draw (\j -1, -0.5) node {$\x$};
+        }
+        \draw (0,-1.5) node {$B_0$};
+        \draw[rounded corners,dotted] (-1.5,-1) rectangle (1.5,1);
+
+        %% B1 %%
+        \foreach \j in {0,1,2} {
+          \pgfmathtruncatemacro{\x}{10-\j}
+          \draw (\j -3, 1.5) node {$\x$};
+        }
+        \draw (-3, .5) node {$7$} (-2, .5) node {$6$}; 
+        \draw[rounded corners,dotted] (-3.5,0) rectangle (-0.5,2);
+        \draw  (-2,2.5) node {$B_1$};
+
+        %% B2 %%
+        \foreach \j in {0,1,2} {
+          \pgfmathtruncatemacro{\y}{15-\j}
+          \draw (\j +1, 1.5) node {$\y$};
+        }
+        \draw (3, .5) node {$11$} (2, .5) node {$12$};
+        \draw  (2,2.5) node {$B_2$};
+        \draw[rounded corners,dotted] (3.5,0) rectangle (0.5,2);
+
+
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{itemize}
+      \item $A = B_0 \cup B_1 \cup B_2$
+        \vskip4pt
+      \item Unary operations 
+        \begin{align*}
+          {\color{gray} e_0} & {\color{gray} : A \twoheadrightarrow B_0 } \\
+          {\color{gray} e_1} &{\color{gray} : A \twoheadrightarrow B_1}\\
+          {\color{gray} e_2} &{\color{gray} : A \twoheadrightarrow B_2}\\
+          {\color{gray} s} &{\color{gray} : A \twoheadrightarrow B_0}
+        \end{align*}
+        \[
+          {\color{blue} g e_0} {\color{blue} : A \stackrel{e_0}{\twoheadrightarrow} B_0 \stackrel{g}{\rightarrow} B_0}
+          \]
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{tikzpicture}[scale=.7]
+
+        %%% B_0 %%%
+        \draw (-1,0) node {$B_0 = \{$};
+        \foreach \i in { 0, 1, 2, 3, 4, 5}{ 
+          \draw (\i,0) node {$\i$}; 
+        }
+        \draw (5.5,0) node {$\}$};
+
+        %%% B_1 %%%
+        \draw (-1,1.5) node {$B_1 =\{$} (0,1.5) node {$0$};
+        \foreach \i in { 6, 7, 8, 9, 10}{ \draw (\i-5,1.5) node {$\i$}; }
+        \draw (5.5,1.5) node {$\}$};
+        
+        %%% B_2 %%%
+        \draw (-1,-1.5) node {$B_2 =\{$} (0,-1.5) node {$11$} (1,-1.5) node {$12$} (2,-1.5) node {$2$};
+        \foreach \i in { 13, 14, 15}{ \draw (\i-10,-1.5) node {$\i$}; }
+        \draw (5.5,-1.5) node {$\}$};
+
+
+      \end{tikzpicture}
+    \end{column}
+
+  \end{columns}
+\end{frame}
+

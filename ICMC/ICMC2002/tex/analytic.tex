@@ -1,0 +1,38 @@
+% -*- mode: LaTeX; tex-main-file: "ICMC.tex"; -*-
+\section{Analytic Interference}
+\label{sec:analytic}
+Reconsider the composite signal $x(t) = x_\a(t) + x_\b(t)$, where
+\[
+x_\a(t)
+      =e^{i2\pi(\nu_m-\halfDnu)t},\;
+x_\b(t)
+      = e^{i2\pi(\nu_m+\halfDnu)t}
+\]
+%The \WT\ of $x(t)$ is 
+%\[  \W_{x_\a+x_\b}(t,\nu) = \W_{x_\a}(t,\nu)+\W_{x_\b}(t,\nu) + I_{x_\a x_\b}(t,\nu)\]\[ =\delta(\nu-(\nu_m-\halfDnu))+\delta(\nu-(\nu_m+\halfDnu))\]\[+ \delta(\nu-\nu_m)\,2\cos(2\pi \Delta\nu t)\]
+%Therefore, t
+The interference energy is %given by
+\[
+I_x(t,\nu) = \delta(\nu-\nu_m)\,2\cos(2\pi \Delta\nu t)
+\]
+Integrating,
+\begin{align*}
+%\I_x(t) &= \int \delta(\nu-\nu_m)\,2\cos(2\pi \Delta\nu t) \,d\nu\\
+\I_x(t)   &= 2\cos(2\pi \Delta\nu t) \int \delta(\nu-\nu_m)\,d\nu\\
+           &= 2\cos(2\pi \Delta\nu t)
+\end{align*}
+
+To simplify notation, let an atom in the dictionary be  denoted $g_n$.
+Recall that, for an arbitrary linear combination of atoms, 
+\[
+x(t) = \sum_{n=0}^\infty \alpha_n g_n
+\]
+the interference energy is given by 
+\[
+I_x(t,\nu) = \sum_{n=0}^\infty \sum_{m=0}^\infty \alpha_n\alpha_m^*W_{g_ng_m}(t,\nu)
+\]
+and, under suitable conditions which permit interchanging the summation and integration,
+\begin{align*}
+\I_x(t) &= \sum_{n=0}^\infty \sum_{m=0}^\infty \alpha_n\alpha_m^*\int W_{g_ng_m}(t,\nu) \, d\nu\\
+&= \sum_{n=0}^\infty \sum_{m=0}^\infty \alpha_ng_n(t)\overline{\alpha_m g_m}(t)
+\end{align*}

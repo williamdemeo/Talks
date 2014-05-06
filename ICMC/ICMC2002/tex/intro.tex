@@ -1,0 +1,99 @@
+% -*- mode: LaTeX; tex-main-file: "../notes.tex"; -*-
+%\begin{itemize}
+%\item Synthesis -- Sethares (p.15), comp book (00.07.17), beige book (00.07.27)
+%\item Tonal Fusion -- comp book (00.07.10)
+%\item Spectral Dominance -- Hartmann (p.298) and beige book (00.07.11)
+%\item Tonal Dissonance -- comp book (00.07.21)
+%\item Wavelet Theory -- beige book (00.07.31, 00.08.01, 00.08.02)
+%\end{itemize}
+%\input{\HOME/intro/quote.tex}
+\section{Introduction}
+\subsection{DSP for Perception Analysis}
+We begin by stating the two main objectives of this work.  Given a musical
+signal, $x(t)$, we wish to:
+\begin{enumerate}
+\item \label{item:spectral} find useful time-frequency representations for
+  analyzing the information content of $x(t)$, with the goal of characterizing
+  perceptual properties of the signal;
+\item \label{item:dissonance} %using the results of~\ref{item:spectral},
+  find measures of qualities related to human perception of the signal;
+  in particular derive a ``dissonance signature'' of $x(t)$. 
+\end{enumerate}
+
+In addressing (\ref{item:spectral}), we use the \emph{matching pursuit}
+algorithm \cite{Mallat:1993}
+to perform an atomic decomposition of the signal.  We then use this
+decomposition as the basis for an energy characterization of the signal, given
+by the \emph{Wigner-Ville distribution}.  This approach is not new.  However,
+the literature employing this strategy ignores the interference structure of
+the Wigner-Ville distribution.  We retain these interference terms as they are
+the focus of our approach to the second objective stated above.
+
+The novel contribution of this paper is consideration of how the interference
+terms of the Wigner-Ville decomposition can be used as the basis for a
+dissonance measure of a musical signal.  For a simple composition of two pure
+tones, there is a well known relation between the interference terms and
+the sensory notion of ``beating'' -- i.e.~the effect caused by amplitude
+modulations resulting from the composition of tones.  Since some measures of
+sensory dissonance are motivated by the rate of such beating, this
+suggests basing our dissonance characterization on the interference structure
+of a musical signal.
+
+\subsection{Sensory Dissonance}
+The concept of \emph{sensory dissonance} was originally proposed
+by Helmholtz~\citeyear{Helmholtz:1877}, and further developed by Plomp and 
+Levelt~\citeyear{Plomp:1965}, and Sethares~\citeyear{Sethares:1997}.
+%Though we consider these studies in greater detail in
+%sections~\ref{sec:consonance} and~\ref{sec:disscurves}, 
+What follows is a %description that motivates our alternative treatment of
+description of dissonance that motivates our alternative treatment of
+this concept.
+
+In order to assess the intrinsic dissonance of a musical signal over a
+small time interval, the aforementioned studies employ a function of
+the signal's estimated frequency components over that interval.
+This often provides a useful quantitative measure.  However, such a
+function makes no attempt to account for other widely accepted notions
+of dissonance.   
+Perhaps the most obvious short-coming results from the point-wise
+nature of this dissonance function.  That is, because it is
+well localized in time, there is no way for the dissonance function to account
+for \emph{melodic dissonance} of the signal.  The melodic
+dissonance of a given segment of music depends on that 
+segment's relation to its context.  In our present work, we
+consider signal analysis methods that provide for
+%estimates of
+%instantaneous frequencies and analytic amplitudes of a signal, and use 
+%these estimates to measure the dissonance properties of the
+%signal.  A primary objective is the development of methods providing
+more dynamic dissonance measures.  In particular, we wish to simultaneously
+account for local, point-wise dissonance, as well as dissonance resulting from
+the melodic contour of the signal.  
+
+%\subsection{Spectral Analysis of Musical Signals}
+%There is a vast literature on the spectral analysis of musical signals. The
+%broad class of analysis methods that we consider here 
+%consists of {\it time-frequency representations}.  The type of signal
+%which concerns us is a {\it time series}, $x(t)$.  Usually we assume that
+%periodicities play an important role in the structure of $x(t)$.  To study the
+%signal from this point of view, we decompose it as a function of both time and
+%frequency. Such a decomposition is what we mean by a time-frequency
+%representation (TFR). 
+%
+%The two broad classes of TFR's which we consider are {\it atomic
+%decompositions} and {\it energy distributions}.  The first decomposes a
+%signal by ``projecting'' it onto the time-frequency space, thereby equating
+%it with a weighted sum of basic elements in that space.
+%Some more detailed discussion of atomic decompositions appears is
+%section~\ref{sec:atomic}. 
+%The second class of TFR's are the energy distributions, the primary
+%objective of which is to represent a distribution of the signal's energy
+%across the time-frequency plane.  We consider the energy distributions in
+%section~\ref{sec:energy}. 
+%
+%Though atomic decompositions, such as wavelet and windowed Fourier techniques,
+%can be effectively applied to non-stationary signals, they suffer from the
+%adverse consequences of Heisenberg's uncertainty principle, manifested in a
+%time-frequency resolution trade-off.  The more general distributions of
+%section~\ref{sec:energy} can help us overcome this limitation.
+%

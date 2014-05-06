@@ -1,0 +1,62 @@
+% This is the file named 'ISMA2004-demeo.tex'
+% @LaTeX-file{
+% author = {William DeMeo},
+% filename = {'ISMA2004-demeo.tex'}
+% date = {2004/01/08},
+% text = {main latex file for ISMA2004 conference paper}
+% }
+
+% -- ISMA2004 customizations -------------------------------------------------
+\documentclass{article}
+\usepackage{isma2004,epsfig}
+\setcounter{page}{1}
+\sloppy         % better line breaks
+%\tenpt
+%SM below a registered trademark definition
+\newcommand\reg{{\rm\ooalign{\hfil
+     \raise.07ex\hbox{\scriptsize R}\hfil\crcr\mathhexbox20D}}}
+% \newcommand{\reg}{\textsuperscript{\textcircled{\textsc r}}}
+%-----------------------------------------------------------------------------
+
+
+\usepackage{amsmath,amssymb, wasysym}
+\usepackage{color,boxedminipage,acronym,times}
+%\usepackage{boxedminipage, acronym}
+%\usepackage[pdftex]{color}
+
+\input{wjd.def}
+\input{wjdthms.def}
+%\smartqed
+%%-------------------------------------------------------------
+
+\input{isma2004-title}
+\begin{document}
+% -- ISMA2004 customizations -------------------------------------------------
+  \thispagestyle{isma}
+  \maketitle
+%-----------------------------------------------------------------------------
+
+\begin{abstract}
+\input{DSP/isma2004-abstract-short}
+%\input{DSP/isma2004-abstract-long}
+\end{abstract}
+%\input{DSP/isma2004-intro}
+%\input{intro-long}
+\input{isma2004}
+\input{isma2004/summary}
+%\input{DSP/summary-long}
+%\input{isma2004-acknowledgments}
+%\input{isma2004-notation}
+
+%\vspace{2cm}
+
+%-----------------------------------------------------------------------------
+\bibliographystyle{IEEEtran}
+%\bibliographystyle{ieeetr}
+%\begin{thebibliography}{10}
+\bibliography{wjd}
+%\bibitem[1]{An:2003} An, M. and Tolimieri, R, ``Group Filters and Image
+%Processing,'' Psypher Press, 2003. $<$http://www.psypher.net$>$.
+%\end{thebibliography}
+%-----------------------------------------------------------------------------
+\end{document}

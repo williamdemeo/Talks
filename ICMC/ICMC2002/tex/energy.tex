@@ -1,0 +1,414 @@
+% -*- mode: LaTeX; tex-main-file: "../notes.tex"; -*-
+% (begin: insert file ambiguity.tex)
+%\subsection{Quadratic Time-Frequency Energy\protect\footnotemark}
+%\footnotetext{Mallat~\cite{Mallat:1998} (p.107),
+%Mertins~\cite{Mertins:1999} (p.265)} 
+\section{Energy Distributions}
+\label{sec:energy}
+Wavelet and windowed Fourier transforms are computed by
+correlating the signal with families of time-frequency atoms.  The
+time and frequency resolution of these transforms is thus limited by
+the time-frequency resolution of the corresponding atoms.  Ideally,
+one would like to define a density of energy in a time-frequency
+plane with no loss of resolution.  This section presents a
+different class of time-frequency representation (TFR) which is not
+restricted by the uncertainty principle.  
+
+%\footnotetext{Mertins~\cite{Mertins:1999} (p.265)}
+The \emph{Wigner-Ville TFR} is computed by
+correlating $x$ with a time and frequency translation of itself.
+(Below we refer to the Wigner-Ville TFR simply as 
+% the ``\WV'' and, sometimes, as 
+the ``\WT.'')  Though it yields some remarkable
+properties, the quadratic from of this representation is also 
+considered a drawback which limits its application because of the inevitable
+cross terms that appear in quadratic forms.  An attempt is usually made to 
+attenuate these so-called
+``interference terms'' by performing a time-frequency averaging, but this 
+procedure results in a loss of resolution. It is not hard to show
+that the spectrogram, the scalogram, and all squared time-frequency
+decompositions can be written as time-frequency averagings of the
+\WT; see, e.g., Mallat~\citeyear{Mallat:1998}.
+
+%Although the \WT\ does not yield positive distributions, it allows extremely
+%good insight into signal properties within certain applications.
+
+\subsection{Wigner Transform}
+%\ifthenelse{\boolean{nofootnotes}}{\subsection{Wigner Transform}}
+%{\subsection{Wigner Transform\protect\footnotemark}
+%\footnotetext{Mertins~\cite{Mertins:1999} (p.265)}}
+%The ambiguity function represents the signal energy %of the signal 
+%in the {\it frequency-time} plane.  We now transform this
+%representation into the {\it time-frequency} plane.
+\label{sec:wigner}
+The quadratic form\footnote{Integrals are over the entire real line unless
+  otherwise noted.}
+\begin{equation*} %\label{eqn:WignerVille}
+\W_x(t,\nu) = 
+%\integral 
+\int \xtpull \xtpushconj e^{-i2\pi \tau\nu}\,d\tau
+\end{equation*}
+is known as the \emph{Wigner-Ville distribution}, or \emph{\WT}.
+It is the one-dimensional \FT\ of
+$\phi_x(t,\tau) = \xtpushconj \xtpull$, with respect to $\tau$.
+The function $\phi_x$ has a Hermitian symmetry in $\tau$, so the 
+\WT\ is real valued. 
+Also, as the two-dimensional \FT\ of the so called \emph{ambiguity function},  
+\[
+\A_{x}(\xi,\tau) = \int \xtpull \xtpushconj e^{i2\pi \xi t}\,dt
+\]
+the \WT\ satisfies
+\begin{equation}\label{eq:ambig-ft}
+\W_x(t,\nu) = %  \iint\limits_{\R^2} 
+\int \A_x(\xi,\tau) e^{-i2\pi(\xi t + \nu\tau)}\,d\xi\,d\tau
+\end{equation}
+
+The \WT\ localizes the time-frequency structures of $x$.  If
+the energy of $x$ is well concentrated in time around $t_0$ and in
+frequency around $\nu_0$ then $\W_x$ has its energy centered at
+$(t_0,\nu_0)$, with a spread equal to the time and frequency spread of
+$x$. 
+%\end{define}
+
+\subsection{Interference Structure}% of Bilinear Transforms}
+Because the \WV\ transform is a sesquilinear form of the signal, it
+does not submit to the principle of linear superposition.  Instead, as in the
+quadratic equation, $(a+b)^2 = a^2 + b^2 + ab + ba$, it is easy to verify that
+\begin{align}
+  \W_{x+y}(t,\nu) &= \W_x(t,\nu) + \W_y(t,\nu)\nonumber \\
+      &+ \W_{xy}(t,\nu) +\W_{yx}(t,\nu) \label{eqn:Wignersum} 
+\end{align}
+where $\W_{xy}$ is the \emph{cross \WT\ } of the signals $x$ and $y$, which is
+defined by 
+%\begin{eqnarray*}
+\begin{equation}
+\label{eqn:crossWigner}
+\W_{xy}(t,\nu) = \int \xtpull \ytpushconj e^{-i2\pi\nu\tau}\,d\tau 
+\end{equation}
+%\begin{align}\label{eqn:crossWigner}
+%  \W_{xy}(t,\nu) &= \\
+%& \integral \xtpull \ytpushconj e^{-i2\pi\nu\tau}\,d\tau \nonumber%\\
+%  &=& \integral \Xtpush \Ytpullconj e^{-i2\pi\xi t}\,d\xi\nonumber
+%\end{eqnarray*}\end{align}
+
+%%It can also be shown that~(\ref{eqn:crossWigner}) is the
+%%two-dimensional \FT\ of the \emph{cross ambiguity function},
+%%which is defined by 
+%%%\begin{eqnarray}\label{eqn:crossAmbiguity}
+%%\[  \A_{xy}(\xi,\tau) = \integral \xtpull \ytpushconj e^{i2\pi \xi t}\,dt\]%\\
+%%%   &=& \integral \Xtpush \Ytpullconj e^{i2\pi \xi t}\,dt\nonumber \\
+%%%\end{eqnarray}
+
+We define the \emph{interference term} of
+equation~(\ref{eqn:Wignersum}) by
+%\begin{eqnarray*}
+%  I_{xy}(t,\nu) &=& \W_{xy}(t,\nu) + \W_{yx}(t,\nu) \\
+%                 &=& 2\,\Real\left[\W_{xy}(t,\nu)\right]
+%\end{eqnarray*}
+\begin{align*}
+  I_{xy}(t,\nu) &= \W_{xy}(t,\nu) + \W_{yx}(t,\nu)\\
+ &= 2\,\Real\left[\W_{xy}(t,\nu)\right]
+\end{align*}
+This real valued function creates non-zero values at
+interesting locations of the time-frequency %$(t,\nu)$ 
+plane. 
+
+More generally, for any linear combination of signal components,
+\[
+  x(t) = \sum_{n=1}^N a_n x_n(t)
+\]
+the \WT\ is
+%\begin{equation}
+\begin{align}
+  \W_{x} &= \sum_{n=1}^N|a_n|^2 \W_{x_n}(t,\nu) \label{eq:WignerSum} \\
+ &+ 2\sum_{n=1}^{N-1}\sum_{k=n+1}^N\,
+                 \Real\left[a_n a_k^* \W_{x_nx_k}(t,\nu)\right]
+\nonumber
+%\end{equation}
+\end{align}
+Hence, for a signal with $N$ components, the \WT\ contains 
+$N(N-1)/2$
+additional components.  They result from the interaction of different
+components of the signal, and are called ``interference terms'' for
+two reasons.  First, the mechanism of their creation is analogous to
+the usual interferences that can be observed for physical waves.  A
+second reason for this terminology lies in the
+effect that these terms can have on the %concerning the readability of a
+time-frequency diagram of the signal energy.  As they amount to a
+combinatorial proliferation of additional, ``specious'' signal
+components, they can inhibit our ability to discern ``true'' signal 
+components in the diagram.  
+
+The presence of cross terms in a \WT\ can be regarded as a
+natural consequence of its bilinear structure.  This very structure is also
+what leads to most of the good properties of the transform (such as
+localization).    
+No matter whether one views the cross terms as helpful or hindering,
+it is important to understand fully the mechanism of their creation.
+This is indispensable for drawing the correct interpretation from the 
+representation of an unknown signal, and for separating signal component
+terms from interference terms if desired \cite{Flandrin:1999}.
+
+In the present work, we study the
+cross terms in order to understand how this measure of signal interference
+relates to ``musical interference,'' i.e.~dissonance. 
+
+%As a simple example, consider a well localized time-frequency
+%atom, $x(t)$, centered at $t=0$, and the two atoms which are time and 
+%frequency shifted versions of $x(t)$: 
+%\[
+%\xpull(t) = 
+% \apull \xtpull e^{-i2\pi (\halfxi) t} \quad \text{ and }\quad  
+%\xpush(t) = \apush \xtpush e^{i2\pi (\halfxi) t}
+%\]
+\subsection{Examples}
+\label{sec:examples}
+\def\a{\mathbf{a}}
+\def\b{\mathbf{b}}
+%We will start with some general terminology, but quickly proceed to
+%specifics relevant to our application.  For a lucid treatment of the
+%general theory of time-frequency representations on finite abelian groups,
+%see~\cite{Tolimieri:1998}.  
+
+%For some finite abelian group $A$, with dual $A^*$, consider the signal $x \in
+%L(A)$, and define the \emph{Weyl-Heisenberg operator}
+%$H : A \times A^* \rightarrow  L(A)$ by
+%\[ 
+%H(\a)x(t) = x_\a(t) = x(t-a)\langle t,a^* \rangle, \qquad t\in A
+%\]
+%for any pair $\a = (a,a^*) \in A\times A^*$.
+%This simply provides a convenient notation for the common translation and
+%modulation operation, a special case of which appears in~(\ref{eqn:transmod})
+%below.\\ 
+%\\
+%{\bf Example}\\
+For simplicity, suppose that $x \in L(\Z/N)$ represents an elementary signal
+component, so that $x$ is a discrete periodic function of period $N$, defined
+on the group of integers $\Z/N \simeq \{0,1,\ldots,N-1\}$.  In this
+special case\footnote{For a more general, lucid treatment of the theory of
+  time-frequency representations on finite abelian groups,
+  see~\citeN{Tolimieri:1998}.} 
+the so called \emph{Weyl-Heisenberg} operator is
+$H : \Z /N \times \Z /N \rightarrow  L(\Z /N)$,
+and is defined by
+\begin{align*}
+H(\a)x(n) &= x_\a(n) \nonumber\\
+&= x(n-a_1)\;e^{i2\pi a_2n/N},
+\quad x \in L(\Z/N) %\label{eqn:transmod}
+\end{align*}
+for any $\a = (a_1,a_2) \in \Z /N \times \Z /N$.
+
+The canonical example used to describe the structure of the 
+%\WV\ transform
+cross terms of the \WT\ begins with a well localized time-frequency atom
+$x(t)$ centered at $t=0$. %\cite{Flandrin:1999}. 
+From this we construct two atoms
+which are time 
+and frequency shifted versions of $x(t)$.  In particular, let $\a = (a_1,a_2)$
+and $\b = (b_1,b_2)$ and consider
+\begin{alignat*}{2}%\[
+\alpha\; x_\a(t)&=\alpha \;x(t-a_1)\; e^{i2\pi a_2t}, \qquad \alpha\; &\geq 0\\
+\beta\; x_\b(t)&=\beta\;x(t-b_2)\;e^{i2\pi b_2t}, \qquad \beta &\geq 0
+\end{alignat*}%\]
+The \WT\ of the composite signal $x_\a(t)+x_\b(t)$ is
+\[
+  \W_{x_\a+x_\b}(t,\nu) 
+    = \W_{x_\a}(t,\nu)+\W_{x_\b}(t,\nu) + I_{x_\a x_\b}(t,\nu)
+\]
+The \emph{covariance property} of the \WT\ ensures that
+the shifted atoms, taken individually, have Wigner representations
+given by  
+\begin{align*}
+\W_{x_\a}(t,\nu) &= \alpha^2\W_x(t-a_1,\nu-a_2)\\
+\W_{x_\b}(t,\nu) &= \beta^2\W_x(t-b_1,\nu-b_2)
+\end{align*}
+Since the energy of $\W_x$ is centered at $(0,0)$, the energy of
+$\W_{x_\a}$ and $\W_{x_\b}$ is concentrated in neighborhoods of
+$\a = (a_1,a_2)$ and $\b = (b_1,b_2)$, respectively.  A direct calculation
+verifies that the interference term is
+%\[I_{x_1x_2}(t,\nu)=2a_1a_2\W_x(t-t_m,\nu-\nu_m)
+%\cos[\vartheta(t_1,t_2,\nu_1,\nu_2,\phi_1,\phi_2)]\]
+%\cos\vartheta\]
+%where
+%\[\vartheta \equiv (t-t_m)\Delta \nu-(\nu-\nu_m)\Delta t +\Delta \phi\]
+%\left[(t-t_m)\Delta \nu-(\nu-\nu_m)\Delta t +\Delta \phi \right]\]
+\begin{align*}
+  I_{x_\a x_\b}(t,\nu)&=
+    2\alpha \beta \W_x(t-t_m,\nu-\nu_m)\\
+    & \times \cos\left\{2\pi \left[(t-t_m)\Delta\nu 
+               -(\nu-\nu_m)\Delta t \right]\right\}
+\end{align*}
+where %and
+\begin{alignat*}{2}%\[%begin{eqnarray*}
+  t_m    &= \frac{a_1+b_1}{2}, \quad 
+  \nu_m &&= \frac{a_2+b_2}{2}\\
+  \Delta t    &= a_1-b_1,\quad
+  \Delta \nu &&= a_2-b_2
+\end{alignat*}
+This is an oscillatory waveform concentrated in a neighborhood of the
+point in the time-frequency plane that is the geometric midpoint 
+%, $(t_m,\nu_m)$,
+between the individual components.  The frequency of the oscillations
+is proportional to the Euclidean distance
+$\sqrt{\Delta \nu^2 + \Delta t^2}$ that separates the points
+$\a $ and $\b$, where the individual atoms are
+concentrated.  The direction of these oscillations is perpendicular to
+the line that joins these two center points.
+% $(t_1,\nu_1)$ and $(t_2,\nu_2)$.
+
+%\begin{define}{\bf Physical Interpretation. }  It is possible to attach
+\paragraph{Physical Interpretation.} 
+It is possible to attach physical meaning to the interference structure of the
+\WT. For the most basic case, in which the signal is a simple superposition
+of pure frequencies, the cross term % of the \WV\ 
+can be regarded as a signature of the \emph{beat frequency} resulting
+from the interaction between %coexistence of 
+the individual frequencies.  
+To see this from the preceeding example, let
+$x$ be a pure sinusoidal wave, $x(t) = e^{i2\pi\nu_m t}$ at the (mid-point)
+frequency $\nu_m$, and suppose $\a = (0,-\halfDnu)$, $\b = (0,\halfDnu)$.
+Then $x_\a$ and $x_\b$ are the frequency shifted versions of $x$,
+\[%\begin{align*}
+x_\a(t)%=\xfpull(t) = x(t)e^{-i2\pi(\halfDnu)t}\\
+      =e^{i2\pi(\nu_m-\halfDnu)t},\;
+x_\b(t)%=\xfpush(t) = x(t)e^{i2\pi(\halfDnu)t}\\
+      = e^{i2\pi(\nu_m+\halfDnu)t}
+\]%\end{align*}
+%\end{define}
+The \WT\ of the composite signal $x_\a + x_\b$ is given by
+%\begin{align}
+%\begin{equation}
+\[  \W_{x_\a+x_\b}(t,\nu)
+    = \W_{x_\a}(t,\nu)+\W_{x_\b}(t,\nu) + I_{x_\a x_\b}(t,\nu)\]%\nonumber\\
+\[ =\delta(\nu-(\nu_m-\halfDnu))+\delta(\nu-(\nu_m+\halfDnu))\]%\nonumber\\
+\begin{equation}
++ \delta(\nu-\nu_m)\,2\cos(2\pi \Delta\nu t) \label{eq:WignerBeats}
+\end{equation}
+Now let us relate this expression to the physical phenomenon of
+beats, which are perceived most easily when the distance between
+signal components %, $\Delta\nu$, 
+is small.  To do so, we write the signal as follows:
+\begin{align}
+x_\a(t)+x_\b(t) &=
+\half \,e^{i2\pi(\nu_m-\halfDnu)t}
+      + \half \,e^{i2\pi(\nu_m+\halfDnu)t}\nonumber\\
+      &+ \cos(2\pi\halfDnu t)\,e^{i2\pi\nu_m t}\label{eq:sigbeats}
+\end{align}
+%\begin{align}
+%x_\a(t)+x_\b(t) 
+%    &= e^{i2\pi(\nu_m-\halfDnu)t} 
+%       + e^{i2\pi(\nu_m+\halfDnu)t}\nonumber \\
+%    &= (e^{-i2\pi\halfDnu t} + e^{i2\pi\halfDnu t})\,
+%       e^{i2\pi\nu_m t}\nonumber \\ 
+%    &= 2\,\cos(2\pi\halfDnu t)\,e^{i2\pi\nu_m t}\label{eq:sigbeats}
+%\end{align}
+%This expresses the signal as a tone with frequency $\nu_m$ and
+%modulated amplitude $2\cos(2\pi\halfDnu t)$.  
+%This is a sinusoidal of frequency $\nu_m$ with 
+When the components $x_\a(t)$ and $x_\b(t)$ are close together in
+frequency -- that is, when $\Delta\nu$ is small -- the cosine term is
+slowly varying as compared to the exponential term, and the resulting
+signal can be viewed as a simple tone of frequency $\nu_m$ with
+%slowly varying 
+a modulated amplitude envelope, with modulation frequency $\Delta\nu$.
+The term ``beating'' refers to such
+amplitude modulations. % due to interaction of signal components.
+
+Comparing~(\ref{eq:sigbeats}) with~(\ref{eq:WignerBeats}), it is
+clearly the interference term of the \WT\ which specifies
+the existence and nature of beats in the composite signal.
+% of interacting signal components.
+%existence of the beat frequency component 
+%and stands for its realization in the time-frequency plane.   
+%To make for easier comparison, we can also write this signal as
+%\begin{align*}
+%x_\a(t)+x_\b(t) &=
+%\half \,e^{i2\pi(\nu_m-\halfDnu)t}
+%      + \half \,e^{i2\pi(\nu_m+\halfDnu)t}\\
+%      &+ \cos(2\pi\halfDnu t)\,e^{i2\pi\nu_m t}
+%\end{align*}
+
+%%\begin{define}{\bf Interferences in the Ambiguity Plane. }
+%%The ambiguity function is also a bilinear form, has its own
+%%interference structure, and represents both signal and interference
+%%components in the frequency-time, or ``Doppler-delay,'' plane.
+%%A superposition of two signal components, 
+%%$x_1(t) + x_2(t)$, 
+%%yields the following frequency-time representation:
+%%\[
+%%  \A_{x_1+x_2}(\xi,\tau) 
+%%    = \A_{x_1}(\xi,\tau)+\A_{x_2}(\xi,\tau)
+%%      + \A_{x_1x_2}(\xi,\tau) + \A_{x_2x_1}(\xi,\tau) 
+%%\]
+%%\end{define}
+%%Let the interference term be denoted
+%%\[
+%% J_{x_1x_2}(\xi,\tau) = \A_{x_1x_2}(\xi,\tau) + \A_{x_2x_1}(\xi,\tau) 
+%%\]
+%%The Fourier relation of equation~(\ref{eq:ambig-ft}), between the \WT\
+%%and the ambiguity function, proves that 
+%%\[
+%% I_{x_1x_2} = \iint\limits_{\R^2} J_{x_1x_2}(\xi,\tau) 
+%%              e^{-i2\pi(\xi t + \nu\tau)}\,d\xi\,d\tau
+%%\]
+%%
+%%For the previous example, in which 
+%%\[%\begin{align*}
+%%x_1(t)%\xfpull(t)% = x(t)e^{-i2\pi(\halfDnu)t}\\
+%%      =e^{i2\pi(\nu_m-\halfDnu)t},\quad \text{ and } \quad
+%%x_2(t)%\xfpush(t)% = x(t)e^{i2\pi(\halfDnu)t}\\
+%%      = e^{i2\pi(\nu_m+\halfDnu)t}
+%%\]%\end{align*}
+%%direct calculation yield
+%%\[%\begin{alignat*}{2}
+%%\A_{x_1}(\xi,\tau)=\delta(\xi)\,e^{i2\pi(\nu_m-\halfDnu)\tau},\quad
+%%\A_{x_1x_2}(\xi,\tau)=\delta(\xi+\Delta\nu)\,e^{i2\pi\nu_m\tau}\]%\\
+%%\[
+%%\A_{x_2}(\xi,\tau)=\delta(\xi)\,e^{i2\pi(\nu_m+\halfDnu)\tau},\quad
+%%\A_{x_2x_1}(\xi,\tau)= \delta(\xi-\Delta\nu)\,e^{i2\pi\nu_m\tau}
+%%\]%\end{alignat*}
+%%Summing these and simplifying yields
+%%\begin{align*}
+%%%\label{eq:ambig-beats}
+%%\A_{x_1+x_2}(\xi,\tau) 
+%%%  &= \delta(\xi)(e^{i2\pi(\nu_m-\halfDnu)\tau} 
+%%%                +e^{i2\pi(\nu_m+\halfDnu)\tau})
+%%%   + (\delta(\xi+\Delta\nu)+\delta(\xi-\Delta\nu))e^{i2\pi\nu_m\tau}\\
+%%  &= [2\cos(2\pi\halfDnu\tau)\,\delta(\xi)
+%%   +  \delta(\xi+\Delta\nu)+\delta(\xi-\Delta\nu)]\,e^{i2\pi\nu_m\tau}
+%%\end{align*}
+%%%\begin{define}{\bf Physical Interpretations in the Ambiguity Plane. }
+%%The interference term for this example is
+%%\[
+%%J_{x_1x_2}(\xi,\tau) =    
+%%  [\delta(\xi+\Delta\nu)+\delta(\xi-\Delta\nu)]\,e^{i2\pi\nu_m\tau}
+%%\]
+%%which demonstrates that interferences appear in the ambiguity plane
+%%where the Doppler variable $\xi$ is equal to $\pm\Delta\nu$.  This
+%%quantity represents the frequency difference between the two signal
+%%components.   
+%%
+%%In the context of a dissonance analysis, one could argue that
+%%interferences appearing near the origin are responsible for beating or
+%%``roughness'' as it is here that signal components are %found to be
+%%closest in frequency.  However, such an analysis relies on our ability
+%%to separate signal and interference components when computing the
+%%time-frequency representation.  This is crucial, particularly for the
+%%ambiguity function in which the true signal components appear
+%%near the origin.  In that case it is impossible to discern
+%%interference terms resulting from interaction among components with
+%%small frequency differences, unless we study the interferences terms
+%%by themselves.  We consider one method of separating signal and
+%%interference energy in the following section.
+
+
+
+
+%The instantaneous power of the signal is 
+%\[\left|x_1(t)+x_2(t)\right|^2 = 2 [1+\cos(2\pi\xi t)]\]
+%Hence, it is governed by fluctuations that have a longer period if the
+%two frequencies are closer to each other.  Owing to the correct
+%marginal energy densities of the \WV\ transform, this value must
+%coincide with the sum of all amplitudes of the signal terms
+%\emph{and} the cross terms at this instant.  
+

@@ -1,0 +1,169 @@
+% ICMC 2001 paper template for Latex2e.
+
+% Points to note:
+%    Please use \paragraph instead of \subsubsection -- see discussion below.
+%    See comments in the References section on how to do citations.
+
+\documentclass[10pt,a4paper]{article}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{chicago}                    % for "(Author, year)" cite style.
+\usepackage{indentfirst}                % indent para after headings.
+% \usepackage{url}                      % (handy if you reference a URL.)
+
+% \setlength{\oddsidemargin}{-0.25in}     % Latex has one-inch "driver margin"
+% \setlength{\evensidemargin}{-0.25in}  % (shouldn't be necessary)
+\setlength{\textwidth}{160mm}             % 
+\setlength{\textheight}{247mm} 
+\setlength{\columnsep}{0.25in}
+\setlength{\parindent}{0.2in}
+
+\raggedbottom                           % better than inter-para spaces, I say.
+
+
+\begin{document}
+
+\twocolumn
+
+\title{\textbf{The Resource-Instance Model of Music Representation}}
+\author{
+Roger B. Dannenberg, Dean Rubine, Tom Neuendorffer \\
+School of Computer Science, Carnegie Mellon University \\
+email:dannenberg@cs.cmu.edu
+}
+\date{}     % no date
+\maketitle
+
+\pagestyle{empty}          % no page numbers.
+\thispagestyle{empty}      % yes, that includes not on the first page, either.
+
+% do abstract by hand -- \begin{abstract} wouldn't conform to the guidelines.
+
+\begin{center}
+\large{\textbf{Abstract}}
+\end{center}
+% there's this annoying little indent here I can't properly eliminate, so...
+\hspace*{-0.1in}                       % hackily cancel it out.
+\noindent
+\textit{
+Traditional software synthesis systems, such as Music V, utilize an
+instance model of computation in which each note instantiates a new
+copy of an instrument. An alternative is the resource model,
+exemplified by MIDI "mono mode," in which multiple updates can modify
+a sound continuously, and where multiple notes share a single
+instrument. We have developed a unified, general model for describing
+combinations of instances and resources. Our model is a hierarchy in
+which resource-instances at one level generate output, which is
+combined to form updates to the next level. The model can express
+complex system configurations in a natural way.
+}
+
+\section{Introduction}
+
+Two opposing formalisms are prevalent in music representations.  In
+the resource model, sounds or notes are produced by controlling an
+instrument (the resource).  In the instance model, sounds or notes are
+considered to be independent and isolated.  Resource and instance
+models can be seen in traditional music notation, computer music
+scores, score languages, MIDI, synthesis hardware, and synthesis
+software.  Although the distinction between resource and instance
+models is fundamental, it is not often made (perhaps because the
+implications of the distinction are not well understood).
+
+Once the distinction is made, it can be seen that virtually every
+music representation system exhibits both formalisms.  In other words,
+music representations have aspects of both the resource and instance
+models. Furthermore, these seemingly mutually exclusive models can be
+combined to create a comprehensive formalism.  Armed with this new
+formalism, we can shed new light on existing representation schemes,
+exposing hidden assumptions, revealing subtle ambiguities, and
+unmasking limitations.
+
+We will begin by explaining the instance and resource models in
+greater detail. We then describe our new formalism, which integrates
+the two models. The new "resource-instance" formalism is then applied
+to MIDI and Music V to illustrate particular characteristics of these
+representation systems.  Then, we describe how we are applying the
+formalism in a new system for music representation and synthesis.
+
+\section{A Section}
+
+Sections are numbered.  Subsections are formatted as in the following
+subsection.
+
+\subsection{A Subsection}
+
+The Latex source, \textsf{icmc2001template.tex}, contains comments
+explaining how you should use Latex so as to conform to the paper
+format guidelines.
+
+% \paragraph conforms to the guidelines; \subsubheading doesn't.
+% I'll grant you that \paragraph is logically wrong, but it's easy.
+\paragraph{Third-order heading.}
+If you wish to use third-order headings, format them like this.  They
+start an unindented paragraph.
+
+Additional paragraphs are indented as usual.
+
+\subsection{References}
+
+% We use chicago.(bst|sty), which supports (Author, year) cites and
+% can be made to look _almost_ the way we wanted.  See chicago.sty
+% for a list of all the flavors of citation you can do.
+% \cite            (Laurel and Hardy 1932)
+% \shortcite       (Laurel et al. 1932)
+% \citeN           Laurel and Hardy (1932)
+% \shortciteN      Laurel et al. (1932)
+
+Bibliographical references appear in parentheses; there is an example
+at the end of this sentence~\cite{canon}.  References with up to
+three authors include all the authors \cite{fugue}, but references
+with more than three authors use ``et al.''
+% that is, you use \shortcite
+\shortcite{ircam-mw}.\footnote{the Word template specifies an
+italicized ``\emph{et al.}'', but our Latex style doesn't support that.}
+% (My naive attempt at hacking chicago.bst to do it had the side effect
+% of leaving no space between the author and the "et".  We decided the
+% italics were less than utterly indispensable.  If you know how to
+% get them, though, drop me a note at eli@cs.cmu.edu.)
+
+A reference is not a subject or object. When you want to use the
+referenced work as part of a sentence, use the author or authors and
+use the year only for the reference, as in the following sentence:
+% \citeN is "cite as noun"
+\citeN{mathews} includes a manual for Music V\@.  
+% or if you want to, you can say
+% Mathews~\citeyear{mathews} includes a manual for Music V\@.  
+
+Just for variety, this is a reference to an ICMC
+paper~\cite{superscalar}.
+
+\subsection{Figures and Captions}
+
+If possible, place figures in-line with the text.  Please include an
+explanatory caption.
+
+\begin{figure}[htbp]
+  \begin{center}
+
+    \framebox[7cm]{\rule[-5mm]{0cm}{5cm} }
+
+    \caption{This figure intentionally left blank.} 
+    \label{fig:emptybox}
+  \end{center}
+\end{figure}
+
+\section{Copyright Notices}
+
+You may wish to add a copyright notice to the bottom of the first
+column of your paper.  All copyrights remain with the authors.
+Authors will be asked to sign a form that gives ICMA, ICMC, and IEEE
+rights to sell the ICMC proceedings.  Typically, ICMC papers carry no
+explicit copyright notice.
+
+\bibliographystyle{chicago}
+\small{
+\bibliography{icmc2001template}
+}
+
+\end{document}

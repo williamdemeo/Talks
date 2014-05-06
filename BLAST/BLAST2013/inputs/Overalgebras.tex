@@ -1,0 +1,721 @@
+\begin{frame}[fragile,label=freese,shrink=5]{Construction of an algebra $\bA$ with $\Con \bA \cong L_9$.}
+
+  \begin{columns}
+    \begin{column}{0.2\textwidth}
+
+      \begin{center}
+      \begin{tikzpicture}[scale=.7]
+        \input{tikz/M4.tex}
+        \uncover<2->{
+          \draw[font=\footnotesize] 
+          (0.7,1.5) node {$\alpha$} (1.7,1.5) node {$\beta$}
+          (3.3,1.5) node {$\gamma$} (4.3,1.5) node {$\delta$}
+          (2.8,3.15) node {$1_B$} (2.83,-.15) node {$0_B$};
+        }
+        \visible<1>{
+          \draw  (1,0) node {$M_4$};}
+        \visible<2->{
+          \draw  (1,0) node {$\Con \bB$};}
+      \end{tikzpicture}
+      \end{center}
+
+\vskip3mm
+
+      \begin{center}
+        \begin{tikzpicture}[scale=.7]
+
+          \input{tikz/L9Freese.tex}
+          \visible<1-3>{\draw  (5,0) node {$L_{9}$};}
+          \visible<4->{\draw  (5,0) node {$\Con \bA$};}
+          \visible<4->{\draw[font=\footnotesize] (4.7,2) node {$\widehat{\alpha}$} (4.7,1) node {$\alpha^*$};}
+
+        \end{tikzpicture}
+      \end{center}
+
+    \end{column}
+
+
+    \begin{column}{0.75\textwidth}
+      \begin{enumerate}[Step 1]
+      \item<2-> 
+        Take a permutational algebra $\bB = \<B, F\>$ with congruence lattice $\Con\bB \cong M_4$.
+
+        \vskip6pt
+        
+        \note{There are infinitely many, but apart from those involving 
+          $S_3$, $C_3 \times C_3$, and $(C_3 \times C_3) \rtimes C_3$, they are quite
+          large.  The next smallest G-set with $M_4$ congruence lattice that we
+          know of comes from the group 
+          $G = [ ( (C_3 \times C_3) \rtimes C_2 ) \times ( (C_3 \times C_3) \rtimes C_2 ) ] \rtimes C_2$
+          acting on right cosets of $H \cong D_8$.  The index in this case is $|G:H| = 81$.
+          (In \GAP, {\tt G:=SmallGroup(648,725)}.)}
+
+        {\small
+          \uncover<3->{\underline{Example:}
+          \vskip4pt
+          \begin{itemize}
+%          \begin{itemize}[label=$\cdot$]
+          \item
+            Let $B = \{0, 1, \dots, 5\}$ index the elements of $S_3$ and
+            consider the right regular action of $S_3$ on itself.
+            \vskip5pt
+          \item
+            $g_0 = (0,4)(1,3)(2,5)$ and $g_1 = (0,1,2)(3,4,5)$ generate this
+            action group, the image of $S_3 \hookrightarrow S_6$.
+            \vskip5pt
+          \item $\Con \<B , \{g_0, g_1\}\> \cong M_4$ with congruences
+            \[
+            \hskip-6mm            \alpha = | 0 1 2 | 3 4 5|, \; \beta = | 0 3 | 1 4 | 2 5 |, 
+            \gamma = | 0 4|1 5| 2 3| , \; \delta = | 0 5|1 3| 2 4| .
+            \]
+          \end{itemize}}
+        }
+
+        \vskip6pt
+
+\uncover<4->{
+\hskip-10mm {\rmfamily {\bf Goal:} \emph{expand $\bB$ to an algebra $\bA$ that has
+          $\alpha$ ``doubled'' in $\Con\bA$.}}}
+
+        \vskip10pt
+
+            \item<5-> Since $\alpha = \Cg^\bB(0,2)$, we let $A = B_0 \cup B_1 \cup B_2$ where
+              \vskip-8pt
+              \begin{align*}
+                B_0 &= \{ {\color<5->{blue}0}, 1, {\color<5->{green}2}, 3, 4, 5\} = B\\
+                B_1 &= \{{\color<5->{blue}0}, 6, 7, 8, 9, 10\}\\
+                B_2 &= \{ 11, 12, {\color<5->{green}2}, 13, 14, 15\}.
+              \end{align*}
+            \item<6-> Define unary operations $e_0, e_1, e_2,\, s, \,g_0 e_0$, and $g_1 e_0$.
+      \end{enumerate}
+
+    \end{column}
+
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}[fragile,label=freese,shrink=5]{Construction of an algebra $\bA$ with $\Con \bA \cong L_9$.}
+  \begin{columns}
+
+    \begin{column}{0.3\textwidth}
+      \vskip2mm
+      \begin{tikzpicture}[scale=.7]
+        \input{tikz/M4.tex}
+        \draw[font=\footnotesize] 
+        (0.7,1.5) node {$\alpha$} (1.7,1.5) node {$\beta$}
+        (3.3,1.5) node {$\gamma$} (4.3,1.5) node {$\delta$}
+        (2.8,3.15) node {$1_B$} (2.83,-.15) node {$0_B$};
+      \end{tikzpicture}
+    \end{column}
+
+    \begin{column}{0.4\textwidth}
+      \begin{tikzpicture}[scale=.7]
+        \input{tikz/L9Freese.tex}
+        \draw[font=\footnotesize] 
+        (4.7,1) node {$\alpha^*$} (4.7,2) node {$\widehat{\alpha}$}
+        (5.7,1.5) node {$\beta^*$} (7.3,1.5) node {$\gamma^*$} (8.3,1.5) node {$\delta^*$}
+        (6.8,3.15) node {$1_A$} (6.83,-.15) node {$0_A$};
+      \end{tikzpicture}
+    \end{column}
+
+  \end{columns}
+
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{center}
+        $\Con \< B,\{g_0, g_1\}\>$
+
+        \vskip-2pt
+        \begin{align*}
+          \alpha &= {\color<2->{blue}\pb 0, 1, 2 \pb 3, 4, 5\pb }\\[4pt]
+          \beta &= {\color<2->{blue}\pb 0, 3 \pb  1, 4 \pb 2, 5 \pb} \\[3pt]
+          \gamma &= {\color<2->{blue}\pb 0, 4\pb 1, 5\pb  2, 3\pb}  \\[3pt]
+          \delta &= {\color<2->{blue}\pb 0, 5\pb 1, 3\pb  2, 4\pb} 
+        \end{align*}
+      \end{center}
+    \end{column}
+
+    \begin{column}{0.65\textwidth}
+      \begin{center}
+        $\Con \<A, F_A\>$
+      \end{center}
+      \begin{align*}
+        \widehat{\alpha} &=|{\color<2->{blue}0,1,2},6,7,11,12|{\color<2->{blue}3,4,5}|8,9,10,13,14,15| \\
+        \alpha^* &=|{\color<2->{blue}0,1,2},6,7,11,12|{\color<2->{blue}3,4,5}|8,9,10|13,14,15| \\[2pt]
+        \beta^*&=|{\color<2->{blue}0,3},8|{\color<2->{blue}1,4}|{\color<2->{blue}2,5},15|6,9|7,10|11,13|12,14| \\[2pt]
+        \gamma^*&=|{\color<2->{blue}0,4},9|{\color<2->{blue}1,5}|{\color<2->{blue}2,3},13|6,10|7,8|11,14|12,15| \\[2pt]
+        \delta^*&=|{\color<2->{blue}0,5},10|{\color<2->{blue}1,3}|{\color<2->{blue}2,4},14|6,8|7,9,11,15|12,13|
+      \end{align*}
+    \end{column}
+  \end{columns}
+
+  \vskip4mm
+
+  \only<2>{\[
+    \alpha = \alpha^*\cap B^2 = \widehat{\alpha}\cap B^2,\; \quad
+    \beta = \beta^*\cap B^2, \quad \dots %\quad \gamma = \gamma^*\cap B^2, \quad \delta = \delta^*\cap B^2.
+    \]}
+
+\end{frame}
+
+\newcommand{\ifdot}{dotted}
+%\newcommand{\ifdot}{dashed}
+%\newcommand{\ifdot}{}
+
+\begin{frame}[fragile,label=OA,shrink=5]{Why does it work?}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{center}
+        $\Con \< B,\{g_0, g_1\}\>$
+
+        \vskip-2pt
+        \begin{align*}
+          \alpha &= |{\color<2,6,7>{blue}0, 1, 2} | {\color<2,6,7>{blue}3, 4, 5}|\\[4pt]
+          \beta &= |{\color<3>{blue}0, 3} | {\color<3>{blue}1, 4} |{\color<3>{blue}2, 5} | \\[3pt]
+          \gamma &= |{\color<4>{blue}0, 4}|{\color<4>{blue}1, 5}|{\color<4>{blue}2, 3}| \\[3pt]
+          \delta &= |{\color<5>{blue}0, 5}|{\color<5>{blue}1, 3}|{\color<5>{blue} 2, 4}| 
+        \end{align*}
+      \end{center}
+    \end{column}
+
+    \begin{column}{0.4\textwidth}
+      {
+        \begin{tikzpicture}[scale=.7]
+
+          \visible<1-48,62->{ % B_0
+            \foreach \j in {0,1,2} {
+              \draw (\j -1, 0.5) node {$\j$};
+              \pgfmathtruncatemacro{\x}{\j+3}
+              \draw (\j -1, -0.5) node {$\x$};
+            }
+            \draw (0,-1.5) node {$B_0$};
+          }
+
+          \visible<2,6>{ % alpha
+            \draw[rounded corners,\ifdot] (-1.3,-.8) rectangle (1.3,-.2);
+            \draw[rounded corners,\ifdot] (-1.3,.8) rectangle (1.3,.2);
+            \draw[font=\Large] (-2,-1) node {$\alpha$};
+          }
+          \visible<3>{  % beta
+            \draw[rounded corners,\ifdot] (-1.3,-.8) rectangle (-.7,.8);
+            \draw[rounded corners,\ifdot] (-.3,-.8) rectangle (.3,.8);
+            \draw[rounded corners,\ifdot] (1.3,-.8) rectangle (.7,.8);
+            \draw[font=\Large] (-2,-1) node {$\beta$};
+          }
+          \visible<4>{   % beta
+            \draw[rounded corners,\ifdot] (1,-.85) to (1.35,-.5) to  (-0,.85) to (-.35,.5) to (1,-.85);
+            \draw[rounded corners,\ifdot] (0,-.85) to (0.35,-.5) to  (-1,.85) to (-1.35,.5) to (0,-.85);
+            \draw[rounded corners,\ifdot] (.8,.05) to (1.37,.35) to  (1.1,.87) to (.4,.4);
+            \draw[rounded corners,\ifdot] (-.8,-.05) to (-1.37,-.35) to  (-1.1,-.87) to (-.4,-.4);
+            \draw[\ifdot] (-0.1,.2) to (-.28,.13);
+            \draw[\ifdot] (0.1,-.2) to (.28,-.13);
+            \draw[font=\Large] (-2,-1) node {$\gamma$};
+          }
+
+          \visible<5>{ % delta
+            \draw[rounded corners,\ifdot] (-1,-.85) to (-1.35,-.5) to  (0,.85) to (.35,.5) to (-1,-.85);
+            \draw[rounded corners,\ifdot] (0,-.85) to (-0.35,-.5) to  (1,.85) to (1.35,.5) to (0,-.85);
+            \draw[rounded corners,\ifdot] (-.8,.05) to (-1.37,.35) to  (-1.1,.87) to (-.4,.4);
+            \draw[rounded corners,\ifdot] (.8,-.05) to (1.37,-.35) to  (1.1,-.87) to (.4,-.4);
+            \draw[\ifdot] (0.1,.2) to (.28,.13);
+            \draw[\ifdot] (-0.1,-.2) to (-.28,-.13);
+            \draw[font=\Large] (-2,-1) node {$\delta$};
+          }
+
+          %% B0 rectangle %%
+          \visible<8-34>{\draw[rounded corners,blue] (-1.5,-1) rectangle (1.5,1); }
+          \visible<1-7,35-48,62->{\draw[rounded corners,dotted] (-1.5,-1) rectangle (1.5,1);}
+
+          %% B1 %%
+          \visible<7,35->{ 
+            \foreach \j in {0,1,2} {
+              \pgfmathtruncatemacro{\x}{10-\j}
+              \draw (\j -3, 1.5) node {$\x$};
+            }
+            \draw (-3, .5) node {$7$} (-2, .5) node {$6$}; 
+          }
+          \visible<7,8,35->{\draw  (-2,2.5) node {$B_1$};}
+          \visible<7,62->{\draw[rounded corners,dotted] (-3.5,0) rectangle (-0.5,2);}
+          \visible<35-61>{\draw[rounded corners,blue] (-3.5,0) rectangle (-0.5,2);}
+          \visible<49-61>{\draw (-1, .5) node {$0$}; }
+
+          %% B2 %%
+          \visible<7-21,62->{ 
+            {\color<9-21>{gray}
+              \foreach \j in {0,1,2} {
+                \pgfmathtruncatemacro{\y}{15-\j}
+                \draw (\j +1, 1.5) node {$\y$};
+              }
+              \draw (3, .5) node {$11$} (2, .5) node {$12$};
+            }
+          }
+          \visible<7-22,35,62->{\draw  (2,2.5) node {$B_2$};}
+          \visible<7-21,62->{\draw[rounded corners,dotted] (3.5,0) rectangle (0.5,2);}
+
+          \foreach \i in {0,...,11}{
+            \pgfmathtruncatemacro{\v}{\i+8}
+            \visible<\v>{ 
+              {\color<18-19>{gray}
+                \eImageOfBOne{\i}}
+            }
+          }
+          \foreach \i in {0,...,11}{
+            \pgfmathtruncatemacro{\v}{\i+22}
+            \visible<\v>{ 
+              {\color<32-33>{gray}
+                \eImageOfBTwo{\i}
+              }
+            }
+          }
+
+          \foreach \i in {0,...,11}{
+            \pgfmathtruncatemacro{\v}{\i+35}
+            \visible<\v>{ 
+              {\color<46-47>{gray}
+                \eImageOfBTwo{\i}
+              }
+            }
+          }
+
+        %% Rotate B0 onto B1 %%
+        \foreach \i in {0,1,...,11}{
+          \pgfmathtruncatemacro{\v}{\i+49}
+          \visible<\v>{ 
+            {\color<60-61>{gray}
+              \eImageOfBZero{\i}       %% use -\i for clockwise rotation
+            }
+          }
+        }
+
+        \end{tikzpicture}
+      }
+    \end{column}
+  \end{columns}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{itemize}
+      \item<7-> $A = B_0 \cup B_1 \cup B_2$
+        \vskip4pt
+      \item<8->Unary operations 
+        \begin{align*}
+          \alt<8-34>{{\color{blue} e_0} & {\color{blue} : A \twoheadrightarrow B_0 }}
+                    {{\color{gray} e_0} & {\color{gray} : A \twoheadrightarrow B_0 }}\\
+          \alt<35-61>{{\color{blue} e_1} &{\color{blue} : A \twoheadrightarrow B_1}}
+                     {{\color{gray} e_1} &{\color{gray} : A \twoheadrightarrow B_1}}\\
+          {\color{gray} e_2} &{\color{gray} : A \twoheadrightarrow B_2}\\
+          \alt<62>{{\color{blue} s} &{\color{blue} : A \twoheadrightarrow B_0}}
+                  {{\color{gray} s} &{\color{gray} : A \twoheadrightarrow B_0}}\\
+        \end{align*}
+        \[
+        \alt<63>{{\color{blue} g e_0} {\color{blue} : A \stackrel{e_0}{\twoheadrightarrow} B_0 \stackrel{g}{\rightarrow} B_0}}
+                {{\color{gray} g e_0} {\color{gray} : A \stackrel{e_0}{\twoheadrightarrow} B_0 \stackrel{g}{\rightarrow} B_0}}
+        \]
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{tikzpicture}[scale=.7]
+
+        \visible<6->{                      
+          
+          %%% B_0 %%%
+          \draw (-1,0) node {$B_0 = \{$};
+          \foreach \i in { 0, 1, 2, 3, 4, 5}{ 
+            \draw (\i,0) node {$\i$}; 
+            \visible<8,9,12,13,16,17,20,21-34>{ \draw [|->] (\i,1.1) -- (\i,0.5);}
+            \visible<8-23,26-28,31-34>{ \draw [|->] (\i,-1.1) -- (\i,-0.5); }
+          }
+          \draw (5.5,0) node {$\}$};
+        }
+        
+        \visible<7->{                                               
+
+          %%% B_1 %%%
+          \draw (-1,1.5) node {$B_1 =\{$} (0,1.5) node {$0$};
+          \foreach \i in { 6, 7, 8, 9, 10}{ \draw (\i-5,1.5) node {$\i$}; }
+          \draw (5.5,1.5) node {$\}$};
+          
+          %%% B_2 %%%
+          \draw (-1,-1.5) node {$B_2 =\{$} (0,-1.5) node {$11$} (1,-1.5) node {$12$} (2,-1.5) node {$2$};
+          \foreach \i in { 13, 14, 15}{ \draw (\i-10,-1.5) node {$\i$}; }
+          \draw (5.5,-1.5) node {$\}$};
+        }
+
+      \end{tikzpicture}
+    \end{column}
+
+  \end{columns}
+\end{frame}
+
+
+
+
+
+\begin{frame}[fragile,label=OAop3,shrink=5]{Why does it work?}
+
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{center}
+        $\Con \< B,\{g_0, g_1\}\>$
+
+        \vskip-2pt
+        \begin{align*}
+          \alpha &= |0, 1, 2 | 3, 4, 5|\\[4pt]
+          \beta &= |0, 3 | 1, 4 |2, 5 | \\[3pt]
+          \gamma &= |0, 4| 1, 5|2, 3| \\[3pt]
+          \delta &= |0, 5|1, 3|2, 4| 
+        \end{align*}
+      \end{center}
+    \end{column}
+
+    \begin{column}{0.3\textwidth}
+      \begin{tikzpicture}[scale=.7]
+
+        %% B0 %%
+        \foreach \j in {0,1,2} {
+          \draw (\j -1, 0.5) node {$\j$};
+          \pgfmathtruncatemacro{\x}{\j+3}
+          \draw (\j -1, -0.5) node {$\x$};
+        }
+        \draw (0,-1.5) node {$B_0$};
+        \draw[rounded corners,dotted] (-1.5,-1) rectangle (1.5,1);
+
+        %% B1 %%
+        \foreach \j in {0,1,2} {
+          \pgfmathtruncatemacro{\x}{10-\j}
+          \draw (\j -3, 1.5) node {$\x$};
+        }
+        \draw (-3, .5) node {$7$} (-2, .5) node {$6$}; 
+        \draw[rounded corners,dotted] (-3.5,0) rectangle (-0.5,2);
+        \draw  (-2,2.5) node {$B_1$};
+
+        %% B2 %%
+        \foreach \j in {0,1,2} {
+          \pgfmathtruncatemacro{\y}{15-\j}
+          \draw (\j +1, 1.5) node {$\y$};
+        }
+        \draw (3, .5) node {$11$} (2, .5) node {$12$};
+        \draw  (2,2.5) node {$B_2$};
+        \draw[rounded corners,dotted] (3.5,0) rectangle (0.5,2);
+
+
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{itemize}
+      \item $A = B_0 \cup B_1 \cup B_2$
+        \vskip4pt
+      \item Unary operations 
+        \begin{align*}
+          {\color{gray} e_0} & {\color{gray} : A \twoheadrightarrow B_0 } \\
+          {\color{gray} e_1} &{\color{gray} : A \twoheadrightarrow B_1}\\
+          {\color{gray} e_2} &{\color{gray} : A \twoheadrightarrow B_2}\\
+          {\color{blue} s} &{\color{blue} : A \twoheadrightarrow B_0}
+        \end{align*}
+        \[
+          {\color{gray} g e_0} {\color{gray} : A \stackrel{e_0}{\twoheadrightarrow} B_0 \stackrel{g}{\rightarrow} B_0}
+          \]
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{tikzpicture}[scale=.7]
+
+        %%% B_0 %%%
+        \draw (-1,0) node {$B_0 = \{$};
+        \foreach \i in { 0, 1, 2, 3, 4, 5}{ 
+          \draw (\i,0) node {$\i$}; 
+        }
+        \draw (5.5,0) node {$\}$};
+
+        %%% B_1 %%%
+        \draw (-1,1.5) node {$B_1 =\{$} (0,1.5) node {$0$};
+        \foreach \i in { 6, 7, 8, 9, 10}{ \draw (\i-5,1.5) node {$\i$}; }
+        \draw (5.5,1.5) node {$\}$};
+        
+        %%% B_2 %%%
+        \draw (-1,-1.5) node {$B_2 =\{$} (0,-1.5) node {$11$} (1,-1.5) node {$12$} (2,-1.5) node {$2$};
+        \foreach \i in { 13, 14, 15}{ \draw (\i-10,-1.5) node {$\i$}; }
+        \draw (5.5,-1.5) node {$\}$};
+
+
+      \end{tikzpicture}
+    \end{column}
+
+  \end{columns}
+\end{frame}
+
+
+
+\renewcommand{\ifdot}{dotted}
+\begin{frame}[fragile,label=OAcong,shrink=5]{Why does it work?}
+
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{center}
+        $\Con \< B,\{g_0, g_1\}\>$
+
+        \vskip-2pt
+        \begin{align*}
+          \alpha &= {\color<2>{blue} \pb 0, 1, 2 \pb 3, 4, 5\pb }\\[4pt]
+          \beta &= {\color<5>{blue} \pb 0, 3 \pb 1, 4 \pb 2, 5 \pb} \\[3pt]
+          \gamma &= |0, 4| 1, 5|2, 3| \\[3pt]
+          \delta &= |0, 5|1, 3|2, 4| 
+        \end{align*}
+      \end{center}
+    \end{column}
+
+    \begin{column}{0.3\textwidth}
+      \begin{tikzpicture}[scale=.7]
+
+        %% B0 %%
+        \foreach \j in {0,1,2} {
+          \draw (\j -1, 0.5) node {$\j$};
+          \pgfmathtruncatemacro{\x}{\j+3}
+          \draw (\j -1, -0.5) node {$\x$};
+        }
+        \draw (0,-1.5) node {$B_0$};
+        \draw[rounded corners,dotted] (-1.5,-1) rectangle (1.5,1);
+
+        %% B1 %%
+        \foreach \j in {0,1,2} {
+          \pgfmathtruncatemacro{\x}{10-\j}
+          \draw (\j -3, 1.5) node {$\x$};
+        }
+        \draw (-3, .5) node {$7$} (-2, .5) node {$6$}; 
+        \draw[rounded corners,dotted] (-3.5,0) rectangle (-0.5,2);
+        \draw  (-2,2.5) node {$B_1$};
+
+        %% B2 %%
+        \foreach \j in {0,1,2} {
+          \pgfmathtruncatemacro{\y}{15-\j}
+          \draw (\j +1, 1.5) node {$\y$};
+        }
+        \draw (3, .5) node {$11$} (2, .5) node {$12$};
+        \draw  (2,2.5) node {$B_2$};
+        \draw[rounded corners,dotted] (3.5,0) rectangle (0.5,2);
+
+        \visible<2>{ % alpha
+          \draw[rounded corners,blue] (-1.3,-.8) rectangle (1.3,-.2);
+          \draw[rounded corners,blue] (-1.3,.8) rectangle (1.3,.2);
+          \draw[font=\Large] (-2,-1) node {$\alpha$};
+        }
+        \visible<3,4>{ % \alpha^*
+          % B0 lower rectangle
+          \draw[rounded corners,blue] (-1.3,-.8) rectangle (1.3,-.2);
+          % long rectangle
+          \draw[rounded corners,blue] (-3.3,.8) rectangle (3.3,.2); 
+        }
+        \visible<3>{ % \alpha^*
+          \draw[rounded corners,blue] (-3.3,1.2) rectangle (-.7,1.8);  
+          \draw[rounded corners,blue] (3.3,1.2) rectangle (.7,1.8); 
+          \draw[font=\Large] (-2,-1) node {$\alpha^*$};
+        }
+        \visible<4>{ % \widehat{\alpha}
+          \draw[rounded corners,blue] (-3.3,1.2) rectangle (3.3,1.8);  
+          \draw[font=\Large] (-2,-1) node {$\widehat{\alpha}$};
+        }
+        \visible<5>{  % beta
+          \draw[rounded corners,blue] (-1.3,-.8) rectangle (-.7,.8);
+          \draw[rounded corners,blue] (-.3,-.8) rectangle (.3,.8);
+          \draw[rounded corners,blue] (1.3,-.8) rectangle (.7,.8);
+          \draw[font=\Large] (-2,-1) node {$\beta$};
+        }
+        \visible<6->{  % beta
+          \draw[rounded corners,blue] (-1.3,-.8) rectangle (-.7,1.85);  % big left rect
+          \draw[rounded corners,blue] (-.3,-.8) rectangle (.3,.8);
+          \draw[rounded corners,blue] (1.3,-.8) rectangle (.7,1.85);  % big right rect
+          \draw[rounded corners,blue] (-1.7,.15) rectangle (-2.3,1.85);
+          \draw[rounded corners,blue] (-2.7,.15) rectangle (-3.3,1.85);  % small B1 far left
+          \draw[rounded corners,blue] (1.7,.15) rectangle (2.3,1.85);
+          \draw[rounded corners,blue] (2.7,.15) rectangle (3.3,1.85); % small B2 far right
+          \draw[font=\Large] (-2,-1) node {$\beta^*$};
+        }
+
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \visible<7>{\emph{Why don't the $\beta$ classes of $B_1$ and $B_2$ mix?}}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{center}
+        $\Con \<A, F_A\>$
+      \end{center}
+      \begin{align*}
+        \widehat{\alpha} &= {\color<4>{blue} \pb 0,1,2,6,7,11,12\pb 3,4,5 \pb 8,9,10,13,14,15\pb } \\
+        \alpha^* &= {\color<3>{blue} \pb  0,1,2,6,7,11,12 \pb 3,4,5 \pb 8,9,10 \pb 13,14,15 \pb}  \\[2pt]
+        \beta^*&= {\color<6->{blue} \pb 0,3,8 \pb 1,4 \pb 2,5,15 \pb 6,9 \pb 7,10 \pb 11,13 \pb 12,14 \pb } \\[2pt]
+        \gamma^*&= \pb 0,4,9 \pb 1,5 \pb 2,3,13 \pb 6,10 \pb 7,8 \pb 11,14 \pb 12,15 \pb  \\[2pt]
+        \delta^*&= \pb 0,5,10 \pb 1,3 \pb 2,4,14 \pb 6,8 \pb 7,9,11,15 \pb 12,13 \pb 
+      \end{align*}
+    \end{column}
+
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile,label=OAEx2,shrink=5]{Variations on the same example... }
+
+  \begin{columns}
+    \begin{column}{0.7\textwidth}
+      \begin{itemize}
+      \item 
+        Suppose we want $\beta = \Cg^\bB(0,3) =| 0, 3 | 2, 5 | 1, 4 |$ to 
+        \vskip4pt
+        have non-trivial inverse image $\beta\resB^{-1} = [\beta^*, \widehat{\beta}]$.  
+        \vskip6pt
+      \item<2-> Select elements 0 and 3 as intersection points:
+        \[
+        A = B_0 \cup B_1 \cup B_2 \quad \text{where}
+        \]
+        \begin{align*}
+          B_0 &= \{{\color{blue} 0}, 1,  2,  {\color{green}3},  4,  5\}\\
+          B_1 &= \{{\color{blue} 0}, 6,  7,  8,  9, 10\}\\
+          B_2 &= \{11, 12, 13, {\color{green}3}, 14, 15\}.
+        \end{align*}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      \begin{tikzpicture}[scale=.9]
+        \input{tikz/M4.tex}
+        \draw[font=\small] 
+        (0.7,1.5) node {$\alpha$} (1.7,1.5) node {$\beta$}
+        (3.3,1.5) node {$\gamma$} (4.3,1.5) node {$\delta$}
+        (2.8,3.15) node {$1_B$} (2.83,-.15) node {$0_B$};
+      \end{tikzpicture}
+
+    \end{column}
+
+  \end{columns}
+
+  \vskip-5mm
+
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+
+      \begin{tikzpicture}[scale=.8]
+
+        %% B0 %%
+        \foreach \j in {0,1,2} {
+          \draw (\j -1, 0.5) node {$\j$};
+          \pgfmathtruncatemacro{\x}{\j+3}
+          \draw (\j -1, -0.5) node {$\x$};
+        }
+        \draw (1,-1.5) node {$B_0$};
+        \draw[rounded corners,dotted] (-1.4,-.9) rectangle (1.4,.9);
+
+        \visible<3->{
+
+          %% B1 %%
+          \foreach \j in {0,1,2} {
+            \pgfmathtruncatemacro{\x}{10-\j}
+            \draw (\j -3, 1.5) node {$\x$};
+          }
+          \draw (-3, .5) node {$7$} (-2, .5) node {$6$}; 
+          \draw[rounded corners,dotted] (-3.5,1.9) rectangle (-0.6,.1);
+          \draw  (-4,2) node {$B_1$};
+
+          %% B2 %%
+          \foreach \j in {0,1,2} {
+            \pgfmathtruncatemacro{\y}{13-\j}
+            \draw (\j -3, -1.5) node {$\y$};
+          }
+          \draw (-3, -.5) node {$15$} (-2, -.5) node {$14$};
+          \draw  (-4,-2) node {$B_2$};
+          \draw[rounded corners,dotted] (-3.4,-1.9) rectangle (-0.6,-.1);
+        }
+
+        \visible<1-3>{  % beta
+          \draw[rounded corners,blue] (-1.3,-.8) rectangle (-.7,.8);
+          \draw[rounded corners,blue] (-.3,-.8) rectangle (.3,.8);
+          \draw[rounded corners,blue] (1.3,-.8) rectangle (.7,.8);
+          \draw[font=\Large] (2,0) node {$\beta$};
+        }
+        \visible<4>{  % beta^*
+          \draw[rounded corners,blue] (-1.3,-1.8) rectangle (-.7,1.8);  % big rect
+          \draw[rounded corners,blue] (-.3,-.8) rectangle (.3,.8);
+          \draw[rounded corners,blue] (.7,-.8) rectangle (1.3,.8);     % right rect
+          \draw[rounded corners,blue] (-1.7,.2) rectangle (-2.3,1.8);  % small B1 middle
+          \draw[rounded corners,blue] (-2.7,.2) rectangle (-3.3,1.8);  % small B1 left
+          \draw[rounded corners,blue] (-1.7,-.2) rectangle (-2.3,-1.8);% small B2 middle 
+          \draw[rounded corners,blue] (-2.7,-.2) rectangle (-3.3,-1.8);% small B2 far left
+          \draw[font=\Large] (2,0) node {$\beta^*$};
+        }
+        \visible<5>{  % \widehat{\beta}
+          \draw[rounded corners,blue] (-1.3,-1.8) rectangle (-.7,1.8);  % big B0 rect
+          \draw[rounded corners,blue] (-.3,-.8) rectangle (.3,.8);        % middle B0 rect
+          \draw[rounded corners,blue] (.7,-.8) rectangle (1.3,.8);        % right B0 rect
+          \draw[rounded corners,blue] (-3.3,-1.8) rectangle (-2.7,1.8);    % large far left
+          \draw[rounded corners,blue] (-2.3,-1.8) rectangle (-1.7,1.8);  % small B2 far left
+          \draw[font=\Large] (2,0) node {$\widehat{\beta}$};
+        }
+        \visible<6>{  % beta\eps1
+          \draw[rounded corners,blue] (-1.3,-1.8) rectangle (-.7,1.8); % big rect
+          \draw[rounded corners,blue] (-.3,-.8) rectangle (.3,.8);     % middle B0 rect
+          \draw[rounded corners,blue] (.7,-.8) rectangle (1.3,.8);     % right rect
+          \draw[rounded corners,blue] (-2.7,.2) rectangle (-3.3,1.8);  % small B1 left
+          \draw[rounded corners,blue] (-1.7,1.8) rectangle (-2.3,-1.8);% big B1B2 middle 
+          \draw[rounded corners,blue] (-2.7,-.2) rectangle (-3.3,-1.8);% small B2 far left
+          \draw[font=\Large] (2,0) node {$\beta_\eps$};
+        }
+        \visible<7->{  % beta\eps2
+          \draw[rounded corners,blue] (-1.3,-1.8) rectangle (-.7,1.8); % big rect
+          \draw[rounded corners,blue] (-.3,-.8) rectangle (.3,.8);     % middle B0 rect
+          \draw[rounded corners,blue] (.7,-.8) rectangle (1.3,.8);     % right rect
+          \draw[rounded corners,blue] (-1.7,.2) rectangle (-2.3,1.8);  % small B1 middle
+          \draw[rounded corners,blue] (-1.7,-.2) rectangle (-2.3,-1.8);% small B2 middle 
+          \draw[rounded corners,blue] (-2.7,1.8) rectangle (-3.3,-1.8);%  big B1/B2 left
+          \draw[font=\Large] (2,0) node {$\beta_{\eps'}$};
+        }
+
+      \end{tikzpicture}
+
+    \end{column}
+
+    \newcommand{\bigdotsize}{1.5pt}
+    \begin{column}{0.3\textwidth}
+      \centering
+      \visible<4->{
+        \begin{tikzpicture}[scale=1]
+          \node (bottom) at (6.5,0)  [draw, circle, inner sep=\dotsize] {};  % bottom
+          \node (71) at (7,1.5)  [draw, circle, inner sep=\dotsize] {};  % delta
+          \node (top) at (6.5,3)  [draw, circle, inner sep=\dotsize] {}; % top
+          \alt<4>{\node (61) at (6.1,1)  [fill, circle, red, inner sep=\bigdotsize] {};}  % beta^*}
+                 {\node (61) at (6.1,1)  [draw, circle, inner sep=\dotsize] {};}  
+                 \alt<5>{\node (62) at (6.1,2)  [fill, circle, red, inner sep=\bigdotsize] {};}  % hat{beta}
+                        {\node (62) at (6.1,2)  [draw, circle, inner sep=\dotsize] {};}  % hat{beta}
+                        \visible<6>{\node (63) at (5.7,1.5)  [fill, circle, red, inner sep=\bigdotsize] {};} % beta\eps
+                        \visible<7->{\node (63) at (5.7,1.5)  [fill, circle, inner sep=\dotsize] {};} % beta\eps
+                        \visible<7>{\node (64) at (6.5,1.5)  [fill, circle, red, inner sep=\bigdotsize] {};} % beta\eps'
+                        \visible<8->{\node (64) at (6.5,1.5)  [fill, circle, inner sep=\dotsize] {};} % beta\eps'
+                        \node (51) at (5,1.5)  [draw, circle, inner sep=\dotsize] {};  % alpha
+                        \node (81) at (8,1.5)  [draw, circle, inner sep=\dotsize] {};
+                        \draw[semithick] 
+                        (bottom) to (51) to (top) to (62)
+                        (bottom) to (61) 
+                        (bottom) to (71) to (top) 
+                        (bottom) to (81) to (top);
+                        \visible<4-5>{\draw[dotted,semithick] (61) to (62);}
+                        \visible<6->{\draw[semithick] (61) to (63) to (62);}
+                        \visible<7->{\draw[semithick] (61) to (64) to (62);}
+                        \draw (4.8,1.5) node {$\alpha^*$};
+                        \draw (5.98,2.12) node {$\widehat{\beta}$};
+                        \visible<6->{\draw (5.55,1.4) node {$\beta_\eps$};}
+                        \visible<7->{\draw (6.65,1.3) node {$\beta_{\eps'}$};}
+                        \draw (6,.8) node {$\beta^*$};
+                        \draw (7.25,1.5) node {$\gamma^*$};
+                        \draw (8.2,1.5) node {$\delta^*$};
+                        \draw (6.7,3.15) node {$1_A$};
+                        \draw (6.73,-.15) node {$0_A$};
+        \end{tikzpicture}
+      }
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+
+
+

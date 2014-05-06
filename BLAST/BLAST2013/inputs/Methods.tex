@@ -1,0 +1,96 @@
+\frame[label=methods]{
+  \frametitle{How to find a finite algebra with a given congruence lattice?}
+  %% \begin{columns}
+  %%   \begin{column}{0.8\textwidth}
+\uncover<2->{  \begin{block}{1. use closure properties}{Relate the given lattice to other lattices known to be representable.}
+
+\vskip2mm
+
+    \begin{itemize} %[label=$\diamond$]
+    \item If $L$ is representable, so is 
+      \begin{enumerate}[a.] %[label=$\circ$]
+    %%   \item[$\cdot$] the dual of $L$ (Kurzweil, Netter)\\[4pt]
+    %%   \item[$\cdot$] any interval sublattice of $L$\\[8pt]
+    %%   \item[$\cdot$] any sublattice formed from the union of a principal filter and principal idea of $L$ (Snow) \\[8pt] 
+    %%   \end{itemize}
+    %% \item If $L_1$ and $L_2$ are representable, so is\\[4pt]
+    %%   \begin{itemize} %[label=$\circ$]
+    %%   \item[$\cdot$]  the direct product of $L_1$ and $L_2$ (\Tuma) \\[4pt]
+    %%   \item[$\cdot$]  the ordinal sum of $L_1$ and $L_2$ (McKenzie, Snow)\\[4pt]
+    %%   \item[$\cdot$]  the parallel sum of $L_1$ and $L_2$ (Snow)
+      \item the dual of $L$ {\footnotesize (Kurzweil 1985, Netter)}\\[4pt]
+      \item any interval sublattice of $L$ {\footnotesize (follows from A.)}\\[4pt]
+      \item any sublattice that is the union of a principal filter and principal idea of $L$ {\footnotesize (Snow, 2000)} \\[8pt] 
+      \end{enumerate}
+\uncover<2->{
+    \item If $L_1$ and $L_2$ are representable, so is\\[4pt]
+      \begin{enumerate}[1.]
+      \item  the direct product of $L_1$ and $L_2$ {\footnotesize (\Tuma 1989)} \\[4pt]
+      \item  the ordinal sum of $L_1$ and $L_2$ {\footnotesize (McKenzie 1984, Snow 2000)}\\[4pt]
+      \item  the parallel sum of $L_1$ and $L_2$ {\footnotesize (Snow 2000)}
+      \end{enumerate}
+}
+    \end{itemize}
+  \end{block}}
+%\visible<2->{Subdirect products?}\\[4pt]
+%\visible<3->{Homomorphic images?}
+
+}
+
+\frame[label=methods]{
+  \frametitle{How to find a finite algebra with a given congruence lattice?}
+  %% \begin{columns}
+  %%   \begin{column}{0.8\textwidth}
+  \begin{block}{2. the closure method}{Find a ``closed'' representation of $L$ in $\Eq(X)$.}
+      
+    \begin{itemize} %[label=$\diamond$]
+\item[]\alert{YAGC}
+    \item[] For $L\leq \Eq(X)$ define
+      \[
+      \lambda(L) = \{f\in X^X: (\forall \theta \in L) \; f(\theta) \subseteq \theta \}
+      \]
+    \item[] For $F\subseteq X^X$ define
+      \[
+      \rho(F) = \{\theta \in \Eq(X) :   (\forall f\in F) \; f(\theta) \subseteq \theta\}
+      \]
+    %% \item[] For every $L \leq \Eq(X)$ we have $L \subseteq \rho \lambda (L)$.
+      %% \vskip2mm
+    \item[] The map $\rho \lambda$ is a \emph{closure operator} on $\Sub[\Eq(X)]$.\\
+      {\small (idempotent, extensive, order preserving)}
+      \vskip2mm
+    \end{itemize}
+  \end{block}
+\uncover<2->{\begin{theorem}
+A lattice $L\leq \Eq(X)$ is a congruence lattice if and only if it is \emph{closed},\\ 
+i.e. $\rho\lambda(L) = L$, in which case $L = \Con \<X, \lambda(L)\>$.
+  \end{theorem}}
+\uncover<3->{\alert{Example:} $M_3 \cong L \leq \Eq(5)$}
+}
+
+
+\frame[label=methods]{
+  \frametitle{How to find a finite algebra with a given congruence lattice?}
+  \begin{block}{3. the G-set method}{Find $L$ as an interval in a subgroup lattice of a finite group.}
+
+    \vskip3mm
+
+    If $H\leq G$ are finite groups, then the filter above $H$ in $\Sub(G)$,
+    \[
+      \lb H,G \rb := \{K : H\leq K \leq G\},
+      \]
+      is isomorphic to $\Con\<G/H, \bar{G}\>$.
+
+  \end{block}
+
+  \vskip4mm
+
+  %% \begin{block}{4. the filter+ideal method}{Find $L$ as the union of a filter and ideal in a representable lattice.}
+  %% \end{block}
+\uncover<2->{
+  \begin{block}{4. the rabbit ears method {\footnotesize (aka overalgebras, aka expansion-extension)}}{Build the required algebra by gluing together isomorphic copies of an algebra and adding new operations.}
+  \end{block}}
+
+}
+
+
+

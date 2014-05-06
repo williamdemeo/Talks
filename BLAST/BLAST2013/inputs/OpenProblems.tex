@@ -1,0 +1,95 @@
+\frame[label=milestones]{
+    \frametitle{Open Problems}
+
+\begin{enumerate}[1.]
+\item
+\label{item:1} Are homomorphic images of a representable lattices representable?
+
+\bigskip
+
+\item
+\label{item:2} Are subdirect products of representable lattices representable?
+
+\bigskip
+
+\item\label{item:3} Does representable imply ``group representable?''  \\[4pt]
+{\small i.e., is the congruence lattice of a finite algebra isomorphic to an interval in the subgroup lattice of a finite group?}
+
+\bigskip
+%% \item For which $n$ is $M_n$ a congruence lattice of a finite algebra?
+%% \item\label{item:4} Suppose $L$ is group representable.\\[4pt]
+%% Is the filter+ideal lattice $\tilde{L} = \alpha^\uparrow \cup \beta^\downarrow$ group representable, for all $\alpha, \beta \in L$.
+
+%% \bigskip
+
+\item\label{item:5} Is the class of representable lattices recursive?
+
+\end{enumerate}
+}
+
+%% \frame[label=milestones]{
+%%     \frametitle{Remarks on the problems}
+%% \begin{theorem}[Lucchini, 1994] The lattice $M_n$ occurs as an interval in a subgroup lattices of a finite group when
+%% \[
+%% n = q + 2 \qquad \text{ or } \qquad n =
+%% \frac{q^t + 1}{q + 1}+ 1,\]
+%% where $q$ is a prime power and $t$ is an odd prime.
+%% \end{theorem}
+%% At present the smallest cases for which no occurrence of $M_n$ is known are $n = 16,
+%% 23, 35, \dots$.
+%% }
+
+\frame[label=milestones]{
+    \frametitle{Remarks on the problems}
+    \begin{itemize}
+    \item 
+Are homomorphic images of representable lattices representable?
+\\[4pt]
+If $L = \Con \<A, F\>$ and $\tilde{L}$ is the homomorphic image $\{\theta \cap B^2 \mid \theta \in L\}$, where $B = e(A)$ for some operation $e^2 = e \in F$, then $\tilde{L}=\Con \<B, F\!\mid_B\>$ .
+
+\bigskip
+\uncover<2->{
+\item 
+Is the class of representable lattices recursive?
+\\[4pt]
+In other words, is the membership problem for this class decidable?
+`\\[4pt]
+(Note that the class is recursively enumerable by the closure method.)
+\\[4pt]
+\uncover<3->{
+This question asks whether it's possible to write a program that, when given a finite lattice $L$, halts with output True if $L$ is representable and False otherwise.
+\\[4pt]
+
+A negative answer would solve the finite lattice representation problem.}
+}
+    \end{itemize}
+}
+
+\begin{frame}[fragile]
+    \frametitle{Open Problems}
+One approach: try to find a computable function $f$ such that, if $L$ is a representable lattice of size $n$, then $L$ is representable as the congruence lattice of an algebra of cardinality $f(n)$ or smaller.
+\\[8pt]
+%% which takes as input a representable finite lattice $L$, and outputs a number $f(L)$ such that $L$ is representable as a congruence lattice on an algebra of size at most $f(L)$.
+
+This would answer the decidability question, as follows:
+\begin{small}
+\begin{verbatim}
+IsRepresentable( L ) {
+
+    n:= Size( L )
+    N:= f( n )
+
+    for each L' in Sub[Eq(N)] {
+
+        if ( L' isomorphic to L ) and ( L' is closed ):
+            return True
+
+    }
+
+    return False
+
+}
+\end{verbatim}
+\end{small}
+\end{frame}
+

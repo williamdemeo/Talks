@@ -1,0 +1,9 @@
+      \node (bot) at (0,0)  [draw, circle, inner sep=1pt] {};
+      \node (top) at (0,11)  [draw, circle, inner sep=1pt] {};
+      \foreach \j in {-5,-3,-1,1,3,5} { 
+        \node (\j4) at (\j,4)  [draw, circle, inner sep=1pt] {};
+        \node (\j7) at (\j,7)  [draw, circle, inner sep=1pt] {};
+        \draw[semithick] (bot) to (\j4)  (top) to (\j7);
+      }
+      \draw[semithick] (-54) to (-57) to (-34) to (-17) to (-14) to (-37) to (-54);
+      \draw[semithick] (54) to (57) to (34) to (17) to (14) to (37) to (54);

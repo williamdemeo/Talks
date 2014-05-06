@@ -1,0 +1,63 @@
+\begin{frame}[fragile,label=Conclusion,shrink=5]{The exceptional seven element lattice}
+  \frametitle{Interval enforceable properties}
+  \begin{columns}
+    \begin{column}{0.7\textwidth}
+      \begin{itemize}
+      %% \item  $L_7$ cannot be obtained using the overalgebra construction.
+      %%   \vskip2mm
+      \item<1-> A minimal representation of $L_7$ must come from a transitive $G$-set.
+        \vskip2mm
+      \item<2-> Suppose $L_7 \cong \lb H, G \rb$ for some finite groups $H<G$.\\[4pt]
+        What can we say about the group $G$?
+        \vskip2mm
+      \item<3-> If we prove $G$ must have certain properties, then \FLRP\ has a
+        positive answer iff every finite lattice is an interval
+        in the subgroup lattice of a group \emph{satisfying all of these properties}.
+        \note{
+          \begin{itemize}
+          \item Define $\core_G(H)$.  It is the largest normal subgroup in $G$
+          contained in $H$.  It is also the kernel of the action of $G$ on the
+          cosets of $H$.  
+        \item $L_7 \cong \lb H, G \rb$, assume WLOG $H$ is \alert{core-free} in $G$.\\  
+          Otherwise $L_7\cong \lb G/\core_G(H), H/\core_G(H) \rb$, and $H/\core_G(H)$ c.f. in $G/\core_G(H)$.
+          \end{itemize}
+        }
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.2\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[scale=.5]
+          \input{tikz/L10.tex}
+          \alt<1>{\draw (1,-.8) node {$L_7$};}{\draw (1,-.6) node {$H$};}
+          \uncover<2->{\draw (2,3.6) node {$G$};}
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
+
+  \only<4->{
+\begin{block}{Proposition}
+      \label{thm:except-seven-elem}
+      Suppose $H<G$, \hskip2mm $\core_G(H) = 1$, \hskip2mm $L_7 \cong \lb H,G \rb$.
+      \begin{enumerate}[(i)]
+      \item<4-> $G$ is a primitive permutation group.
+      \item<4-> If $N\ssubnormal G$, then $C_G(N) = 1$.
+      \item<4-> $G$ contains no non-trivial abelian normal subgroup.
+      \item<4-> $G$ is not solvable.
+      \item<4-> $G$ is subdirectly irreducible.
+      \item<4-> With the possible exception of at most one maximal subgroup, %, $M_1$ or $M_2$,
+        all proper subgroups in the interval $\lb H,G \rb$ are core-free. 
+      \end{enumerate}
+    \end{block}
+  }
+  \note{  It is obvious that 
+    \begin{itemize}
+    \item (ii) $\Rightarrow$ (iii) $\Rightarrow$ (iv), and  
+    \item (ii) $\Rightarrow$ (v), but we include these for
+      emphasis;
+    \item the hard work is in proving (ii) and (vi), but
+      the main goal is the pair of restrictions (iii) and (v), which allow us to rule
+      out a number of the O'Nan-Scott types describing primitive permutation
+      groups. 
+  \end{itemize}}
+\end{frame}

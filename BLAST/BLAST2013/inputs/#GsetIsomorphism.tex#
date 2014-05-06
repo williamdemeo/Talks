@@ -1,0 +1,44 @@
+%%% SLIDE 5 %%%
+\begin{frame}[label=gsets2]{The G-set method: details}
+%%   \begin{itemize}
+%%   \item For groups $H \leq G$, the algebra
+%% $\bA = \<G\backslash H, \bar{G}\>$ has
+%% \begin{itemize}
+%% \item  universe: the right cosets $H\bs G = \{Hx \mid x\in G\}$ \\[4pt]
+%% \item operations: $\bar{G} = \{g^{\bA} : g\in G\}$, where $g^{\bA}(Hx)=Hxg$.
+%% \end{itemize}
+
+
+For groups $H \leq G$, let 
+$\bA = \<H\backslash G, \bar{G}\>$ denote the algebra with
+\begin{itemize}
+\item  universe: the right cosets $H\bs G = \{Hx : x\in G\}$ \\[4pt]
+\item operations: $\bar{G} = \{g^{\bA} : g\in G\}$, where $g^{\bA}(Hx)=Hxg$.
+\end{itemize}
+%% In other words, each $g \in G$ acts on the set of right cosets of $H$ by right
+%% multiplication.
+\uncover<2->{
+\begin{theorem}
+\vskip-2mm
+\[\Con \bA \cong \lb H, G\rb :=\{K : H \leq K \leq G\}.\]
+
+The isomorphism $\lb H, G\rb \ni K \mapsto \theta_K \in \Con \bA$ is
+  given by
+\[
+\theta_K = \{(Hx, Hy) : xy^{-1} \in K \}.
+\]
+The inverse isomorphism $\Con \bA \ni \theta \mapsto K_\theta \in \lb H, G\rb$ is
+\[
+K_\theta = \{ g\in G : (H, Hg) \in \theta \}.
+\]
+\end{theorem}}
+\uncover<3->{
+So properties of such congruence lattices
+correspond to properties of (intervals of) subgroup lattices.  For example,
+\begin{lemma}
+  In $\Con \<H\bs G, \bar{G}\>$, two congruences, $\theta_{K_1}$ and $\theta_{K_2}$,
+  $n$-permute if and only if the corresponding subgroups, $K_1$ and $K_2$, $n$-permute.
+\end{lemma}
+}
+\end{frame}
+

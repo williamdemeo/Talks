@@ -1,0 +1,144 @@
+\frame[label=knownresults]{
+  \frametitle{Lattices with at most 6 elements are representable.}
+  
+\newcommand{\fillordraw}{\draw}
+\newcommand{\newdotsize}{.7pt}
+  \begin{center}
+    \begin{tikzpicture}[scale=.4]
+
+      % lat1
+      \foreach \j in {1,...,6}{ 
+       \node (0\j) at (0,\j) [draw,circle,inner sep=\newdotsize] {}; 
+      }
+      \foreach \j in {1,...,5}{ 
+        \pgfmathtruncatemacro{\y}{\j+1}
+        \draw[semithick] (0\j) to (0\y);
+      }
+      % lat2
+      \foreach \j in {1,2,3,5}{ 
+       \node (4\j) at (4,\j) [draw,circle,inner sep=\newdotsize] {}; 
+      }
+       \node (34) at (3,4) [draw,circle,inner sep=\newdotsize] {}; 
+       \node (54) at (5,4) [draw,circle,inner sep=\newdotsize] {}; 
+      \draw[semithick] (41) to (42) to (43) to (34) to (45) to (54) to (43);
+
+      % lat3
+      \foreach \j in {1,2,4,5} { 
+       \node (8\j) at (8,\j) [draw,circle,inner sep=\newdotsize] {}; 
+      }
+       \node (73) at (7,3) [draw,circle,inner sep=\newdotsize] {}; 
+       \node (93) at (9,3) [draw,circle,inner sep=\newdotsize] {}; 
+      \draw[semithick] (81) to (82) to (73) to (84) to (85) (84) to (93) to (82);
+
+      % lat4
+      \foreach \j in {1,...,4} { 
+       \node (12\j) at (12,\j) [draw,circle,inner sep=\newdotsize] {}; 
+      }
+       \node (113) at (11,3) [draw,circle,inner sep=\newdotsize] {}; 
+       \node (133) at (13,3) [draw,circle,inner sep=\newdotsize] {}; 
+      \draw[semithick] (121) to (122) to (123) to (124) to (113) to (122) to (133) to (124);
+
+      % lat5
+      \foreach \j in {1,2,5} {
+        \node (15\j) at (15.5,\j) [draw,circle,inner sep=\newdotsize] {};
+      }
+      \foreach \j in {3,4} {
+        \node (15\j) at (16.3,\j) [draw,circle,inner sep=\newdotsize] {};
+      }
+      \node (1435) at (14.5,3.5) [draw,circle,inner sep=\newdotsize] {};
+      \draw[semithick] (151) to (152) to (153) to (154) to (155) to (1435) to (152);
+
+    \end{tikzpicture}
+  \end{center}
+
+  \begin{center}
+    \begin{tikzpicture}[scale=.5]
+
+      % lat6
+        \node (01) at (0,1) [draw,circle,inner sep=\newdotsize] {};
+      \foreach \j in {0,2} {
+        \node (1\j) at (1,\j) [draw,circle,inner sep=\newdotsize] {};
+      }
+      \foreach \j in {1,3} {
+        \node (2\j) at (2,\j) [draw,circle,inner sep=\newdotsize] {};
+      }
+        \node (32) at (3,2) [draw,circle,inner sep=\newdotsize] {};
+      \draw[semithick] (10) to (01) to (12) to (23) to (32) to (21) to (10) (21) to (12);
+
+      % lat7
+      \foreach \j in {0,3} {
+        \node (5\j) at (5,\j) [draw,circle,inner sep=\newdotsize] {};
+      }
+        \node (51) at (5,1.5) [draw,circle,inner sep=\newdotsize] {};
+        \node (41) at (4,1.5) [draw,circle,inner sep=\newdotsize] {};
+      \foreach \j in {1,2} {
+        \node (6\j) at (6,\j) [draw,circle,inner sep=\newdotsize] {};
+      }
+      \draw[semithick] (50) to (41) to (53) to (51) to (50) to (61) to (62) to (53);
+      
+      % lat8
+      % \foreach \i in {7,8,9} 
+      \foreach \i in {9,10} {
+        \node (\i2) at (\i,2) [draw,circle,inner sep=\newdotsize] {};
+      }
+        \node (82) at (8,1.5) [draw,circle,inner sep=\newdotsize] {};
+        \node (90) at (9,0) [draw,circle,inner sep=\newdotsize] {};
+        \node (93) at (9,3) [draw,circle,inner sep=\newdotsize] {};
+        \node (101) at (10,1) [draw,circle,inner sep=\newdotsize] {};
+      \draw[semithick] (90) to (82) to (93) to (92) to (101) to (90) (101) to (102) to (93);
+
+      % lat9
+      \foreach \j in {0,3}{
+        \node (125\j) at (12.5,\j) [draw,circle,inner sep=\newdotsize] {};
+      }
+      \foreach \i in {11,...,14}{
+        \node (\i15) at (\i,1.5) [draw,circle,inner sep=\newdotsize] {};
+        \draw[semithick] (\i15) to (1250);
+        \draw[semithick] (\i15) to (1253);
+      }
+
+    \end{tikzpicture}
+  \end{center}
+%  \setbeamercovered{transparent}
+  \begin{center}
+    {\scalefont{.8}
+      \begin{tikzpicture}[scale=.5]
+%        \uncover<2->{      % lat10
+          \foreach \j in {1,5}{
+            \node (4\j) at (3.25,\j) [draw,circle,inner sep=\newdotsize] {};
+          }
+          \foreach \j in {2,...,4}{
+            \node (4\j) at (4,\j) [draw,circle,inner sep=\newdotsize] {};
+          }
+            \node (33) at (2.25,3) [draw,circle,inner sep=\newdotsize] {};
+          \draw[semithick] (41) to (42) to (43) to (44) to (45) to (33) to (41);
+
+          % lat11
+          \foreach \j in {2,3}{
+
+            \node (5\j) at (5.5,\j) [draw,circle,inner sep=\newdotsize] {};
+            \node (7\j) at (7,\j) [draw,circle,inner sep=\newdotsize] {};
+          }
+          \foreach \j in {1,4} {
+            \node (6\j) at (6.25,\j) [draw,circle,inner sep=\newdotsize] {};
+          }
+          \draw[semithick] (61) to (52) to (53) to (64) to (73) to (72) to (61);
+ %       }
+
+        \uncover<1->{
+          \draw (12,5) node {Watatani (1996) {\it J. Funct. Anal.}};
+        }
+%        \uncover<2->{
+          \draw (11.5,2.3) node {Aschbacher (2008) {\it JAMS}};
+%        }
+
+      \end{tikzpicture}
+    }
+  \end{center}
+  \uncover<2->{
+    {\bf Theorem:} {\it Lattices with at most 6 elements are
+      intervals in\\ 
+      \hskip15.5mm subgroup lattices of finite groups.}}
+}
+
+

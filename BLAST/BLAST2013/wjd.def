@@ -1,0 +1,85 @@
+\newcommand{\Hawaii}{Hawai\kern.05em`\kern.05em\relax i}
+\newcommand{\Manoa}{M\=anoa}
+\newcommand{\dotsize}{.8pt}
+\newcommand{\FLRP}{{\small FLRP}}
+\newcommand{\ssubnormal}{\ensuremath{\vartriangleleft}}
+\newcommand{\core}{\ensuremath{\mathrm{core}}}
+\newcommand{\bs}{\ensuremath{\backslash}}
+\newcommand{\GAP}{{\small GAP}}
+\newcommand{\cd}{\ensuremath{\otimes}}
+\newcommand{\con}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\ii}[1]{{\it #1}}
+\newcommand{\power}[1]{\ensuremath{\mathscr{P}(#1)}}
+\newcommand{\scrA}{\ensuremath{\mathscr{A}}}
+\newcommand{\bM}{\ensuremath{\mathbf{M}}}
+\newcommand{\Mn}{\ensuremath{\mathbf{M}_n}}
+\newcommand{\bF}{\ensuremath{\mathbf{F}}}
+\newcommand{\bE}{\ensuremath{\mathbf{E}}}
+\newcommand{\bR}{\ensuremath{\mathbf{R}}}
+\newcommand{\bA}{\ensuremath{\mathbf{A}}}
+\newcommand{\bG}{\ensuremath{\mathbf{G}}}
+\newcommand{\bH}{\ensuremath{\mathbf{H}}}
+\newcommand{\bK}{\ensuremath{\mathbf{K}}}
+\newcommand{\bL}{\ensuremath{\mathbf{L}}}
+\newcommand{\bB}{\ensuremath{\mathbf{B}}}
+\newcommand{\svert}{\ensuremath{\; \vert \; }}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\sE}{\ensuremath{\mathcal{E}}}
+\newcommand{\sO}{\ensuremath{\mathcal{O}}}
+\newcommand{\sH}{\ensuremath{\mathcal{H}}}
+\newcommand{\sS}{\ensuremath{\mathcal{S}}}
+\newcommand{\sL}{\ensuremath{\mathcal{L}}}
+\newcommand{\bN}{\ensuremath{\mathbf{N}}}
+\newcommand{\bX}{\ensuremath{\mathbf{X}}}
+\newcommand{\resB}{\ensuremath{|_{_B}}}
+\newcommand{\eps}{\ensuremath{\varepsilon}}
+\newcommand{\sA}{\ensuremath{\mathcal{A}}}
+\newcommand{\sB}{\ensuremath{\mathcal{B}}}
+\newcommand{\sC}{\ensuremath{\mathcal{C}}}
+\newcommand{\SSS}{\text{\emphslb{S}}}
+\newcommand{\id}{\mbox{id}}
+\newcommand{\Hom}{\mbox{Hom}}
+\newcommand{\End}{\ensuremath{\mathrm{End}}}
+\newcommand{\bEnd}{\ensuremath{\mathbf{End}}}
+\newcommand{\Aut}{\ensuremath{\mathrm{Aut}}}
+\newcommand{\bAut}{\ensuremath{\mathbf{Aut}}}
+\newcommand{\Cg}{\ensuremath{\mathrm{Cg}}}
+\newcommand{\Con}{\ensuremath{\mathrm{Con}\,}}
+\newcommand{\bCon}{\ensuremath{\mathbf{Con}\,}}
+\newcommand{\Sub}{\mbox{Sub}}
+\newcommand{\bSub}{\ensuremath{\mathbf{Sub}}}
+\newcommand{\CSub}[1]{\ensuremath{\mathbf{CSub}[#1]}}
+\newcommand{\csub}{\ensuremath{\mbox{CSub}}}
+\newcommand{\Stab}{\mbox{Stab}}
+\newcommand{\bStab}{\ensuremath{\mathbf{Stab}}}
+\newcommand{\X}{\ensuremath{\mathbf{X}}}
+\newcommand{\image}{\mbox{im}}
+\newcommand{\Eq}{\mbox{Eq}}
+\newcommand{\bEq}{\ensuremath{\mathbf{Eq}}}
+\newcommand{\bEqX}{\ensuremath{\mathbf{Eq}(X)}}
+\newcommand{\idemdec}{\ensuremath{\mbox{Idemdec}(X)}}
+\newcommand{\EqX}{\ensuremath{\mbox{Eq}(X)}}
+\newcommand{\upalpha}{\ensuremath{\alpha^{\uparrow}}}
+\newcommand{\downalpha}{\ensuremath{\alpha^{\downarrow}}}
+\newcommand{\upbeta}{\ensuremath{\beta^{\uparrow}}}
+\newcommand{\downbeta}{\ensuremath{\beta^{\downarrow}}}
+\newcommand{\meet}{\ensuremath{\wedge}}
+\newcommand{\join}{\ensuremath{\vee}}
+\newcommand{\Meet}{\ensuremath{\bigwedge}}
+\renewcommand{\Join}{\ensuremath{\bigvee}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\nleq}{\ensuremath{\nleqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+\newcommand{\pb}{\ensuremath{\protect{|}}}
+
+\newcommand{\code}[1]{{\small {\tt #1}}}
+\newcommand{\<}{\langle}	     %% left angle for order sequences <a,b>
+\renewcommand{\>}{\rangle}	     %% right angle
+\newcommand{\lb}{\ensuremath{\llbracket}}
+\newcommand{\rb}{\ensuremath{\rrbracket}}
+
+\newcommand{\Palfy}{P\'alfy}
+\newcommand{\Pudlak}{Pudl\'ak}
+\newcommand{\PAP}{P\'alfy-Pudl\'ak}
+\newcommand{\Tuma}{T\r{u}ma}
+\newcommand{\res}{\ensuremath{\upharpoonright}}  % restriction

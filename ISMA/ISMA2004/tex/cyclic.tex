@@ -1,0 +1,77 @@
+%---
+\ismasubsec{Cyclic Groups}
+%---
+A group $C$ is called a \emph{cyclic group} if there exists
+$x\in C$ such that every $y\in C$ has the form $y=x^n$ for
+some integer $n$.  In this case, $x$ is a
+\emph{generator} of $C$. 
+
+%Cyclic groups are frequently constructed as special
+%subgroups of arbitrary groups, but it is convenient to have
+%notation for a cyclic group of 
+%order $N$ without reference to a particular underlying group.
+Let the set
+\begin{equation}\label{eq:cyclicGroup}
+C_N(x) = \{ x^n : 0 \leq n < N\}
+\end{equation} 
+denote the cyclic group of order $N$ with
+generator $x$, and define binary composition by
+\begin{equation}\label{eq:binarycomp}
+x^m x^n = x^{m+n}, \quad 0\leq m, n < N,
+\end{equation}
+where $m+n$ is addition modulo $N$.  
+%Then $C_N(x)$ is a cyclic group of order $N$ having generator $x$.
+In $C_N(x)$, the identity element %of $C_N(x)$ 
+is $x^0 = 1$, and the inverse of $x^n$ is $x^{N-n}$.
+
+%Most of the groups discussed above have elements
+%in the set $\Z/N$, and we wrote the binary composition on
+%the group as addition modulo $N$.   
+To say that a group is \emph{abelian} is to specify that the binary
+composition of the group is commutative, in which case the
+symbol $+$ is usually used to represent this operation.
+For nonabelian groups, we write the binary
+composition as multiplication.  Since our work involves
+both abelian and nonabelian groups, it is notationally
+cleaner to write the binary operations of all groups --
+whether abelian or not -- as multiplications. As the
+following discussion illustrates, groups such as $\Z/N$ with
+addition modulo $N$ have a simple multiplicative
+representation.
+
+%~~~
+\begin{example}\label{ex:ZN}
+%~~~
+Let $\Z/N = \{0, 1, \ldots, N-1\}$,
+and let addition modulo $N$ be the binary composition on $\Z/N$.
+This group is isomorphic to the cyclic group $C_N(x)$; %\ie
+%\begin{eqnarray}
+%\Z/N &=& \{ n : 0 \leq n < N \} \nonumber\\
+%&\simeq& \{ x^n : 0 \leq n < N\}= C_N(x).\label{eq:ZNisoCN}
+%\end{eqnarray}
+indeed, it is by this identification %~(\ref{eq:ZNisoCN}) 
+that the binary composition on $\Z/N$ can be written as multiplication. 
+More precisely, uniquely identifying each $m \in \Z/N$
+with $x^m \in C_N(x)$, the binary composition
+$m+n$ is replaced with that of~(\ref{eq:binarycomp}).  
+\end{example}
+
+%-----------------------------------------------------------------------
+\ismasubsec{Group of Units}
+%-----------------------------------------------------------------------
+%Multiplication modulo $N$ is a ring product on the group of
+%integers $\Z/N$. 
+An element $m\in \Z/N$ is called a {\it unit} if
+there exists an $n\in \Z/N$ such that $mn = 1$.  The set
+$U(N)$ of all units in $\Z/N$ is a group with respect to
+multiplication modulo $N$, and is called the 
+\emph{group of units}.%unit group} of $\Z/N$. 
+The group of units can be described %characterized 
+as the set of all integers $0<m<N$ such that $m$ and $N$ are
+relatively prime.  
+\begin{example}
+For $N=8$, $U(8) = \{1, 3, 5, 7\}$.
+%\begin{equation}\label{eq:unitGroup}
+%U(8) = \{1, 3, 5, 7\}.
+%\end{equation}
+\end{example}

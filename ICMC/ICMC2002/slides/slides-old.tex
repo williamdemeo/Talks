@@ -1,0 +1,511 @@
+% slides.tex 
+% ICMC 2002 slides 
+%**start of header
+\documentclass{slides}
+\usepackage{theorem}
+\onlyslides{1-100}
+\usepackage{fullpage}
+%{\theorembodyfont{\rmfamily} \newtheorem{definition}{Definition}[section]}
+%
+%{\theoremstyle{break}  \newtheorem{theorem}{Theorem}[section]}
+%% Theorems are used for important, well-known results
+%
+%{\theorembodyfont{\rmfamily} \newtheorem{fact}{Fact}[section]}
+%% Facts are used for less important, well-known results
+%
+%{\theorembodyfont{\rmfamily} \newtheorem{lemma}{Lemma}[section]}
+%% Lemmas are for proving theorems and facts
+%
+%\newtheorem{prop}{Proposition}[section] 
+%% Propositions are used to state any new results of this paper
+
+\newcommand{\Epi}{\mbox{{\bf E}}\ensuremath{_{\pi}}}
+\newcommand{\Ppi}{\mbox{{\bf P}}\ensuremath{_{\pi}}}
+\newcommand{\Cpi}{\mbox{{\bf Cov}}\ensuremath{_{\pi}}}
+\newcommand{\MuPhi}{\ensuremath{\langle \Phi \rangle}}
+
+% Matrix font commands
+\newcommand{\M}{\mbox{M}}
+\newcommand{\D}{\mbox{D}}
+\newcommand{\He}{\mbox{H}}
+\newcommand{\Prob}{\mbox{P}}
+\newcommand{\T}{\mbox{T}}
+\newcommand{\R}{\mbox{R}}
+\newcommand{\C}{\mbox{C}}
+\newcommand{\E}{\mbox{E}}
+\newcommand{\Q}{\mbox{Q}}
+\newcommand{\Z}{\mbox{Z}}
+\newcommand{\V}{\mbox{V}}
+\newcommand{\K}{\mbox{K}}
+\newcommand{\Krylov}{\mathcal{K}}
+\newcommand{\minTV}{\tau_x(\epsilon)}
+
+\newcommand{\ran}{\mbox{ran}}
+%
+%-------------------------------------------------------------
+%
+\begin{document}
+%
+\title{\textbf{Characterizing Musical Signals 
+with Wigner-Ville Interferences}}
+\author{William J. DeMeo\\
+\vspace{3mm}
+{\small {\tt williamdemeo@yahoo.com}}
+%\\
+%\vspace{3mm}
+%{\small {\tt www.williamdemeo.com}}
+\\
+\vspace{2cm}
+%\begin{tabular}{ll}
+{\tt www.harmonicanalysis.com}
+%&{\tt www.incunabula.us}
+%\end{tabular}
+}
+\date{}
+\maketitle
+
+%%% Slide 1
+\begin{slide}
+\underline{OUTLINE}
+\begin{enumerate}
+\item Basic set up, motivation, applications.
+\item Other approaches.
+\item Our basic assumptions and methods.
+\item Preliminary computational results.
+\item Conclusions and future work.
+\end{enumerate}
+\end{slide}
+
+%%% Slide 2
+\begin{slide}
+\underline{BASIC SET UP}\\
+Let $S$ be a finite set, called the {\it state space}, 
+and suppose $\Prob:S \times S \rightarrow [0,1]$ satisfies 
+\begin{equation}
+\label{StochasticMatrix} 
+\sum_{y\in S}\Prob(x,y)=1
+\end{equation}
+A matrix P with elements $\Prob(x,y)$, is called a \emph{stochastic matrix}.
+\\
+Define 
+\[\Prob^2(x,y) \equiv \sum_{z\in S} \Prob(x,z)\Prob(z,y)\]
+and higher powers inductively.
+\\\\
+$\Prob^n$ is the $n$th power of the matrix P.  
+In applications we must understand what happens to $\Prob^n$ as $n$ gets large.
+This leads us to our \\\\
+\underline{BASIC PROBLEM}
+\\
+What are the dominant eigenvalues of P?
+\end{slide}
+
+\begin{note}
+The elements of P can
+be thought of as transition probabilities of a Markov chain. 
+We also refer to P as the \emph{transition probability matrix}.
+\end{note}
+
+%%% Slide 3
+\begin{slide}
+\underline{Motivation}\\\\
+{\it Main Application}: Markov chain simulation.\\
+A method of sampling from a probability distribution 
+with a given density, $\pi$.  \\
+The basis of many probabilistic algorithms in\\
+-- statistical mechanics\\
+-- combinatorial optimization  
+\\\\
+{\it General idea} (Metropolis):
+Invent a Markov chain with a matrix P, such that rows 
+of $\Prob^n$ converge to $\pi$.  Realizations of the chain will 
+eventually represent samples from $\pi$.
+\\\\
+{\it Example Problem}:\\
+1-D spin-flip system with 100 sites\\
+-- has $2^{100} \approx 10^{30}$ different states\\
+-- transition matrix P is $10^{30} \times 10^{30}$
+\end{slide}
+
+\begin{note}
+In Dayar's talk, they had P and were trying to solve for $\pi$.
+In these applications, we know $\pi$ and we invent a suitable P.
+\\\\
+To be of practical use, we must understand what ``eventually'' means.  
+That is, how many steps of the chain must we 
+discard before we are sampling from a distribution that is
+close (in, say, variation distance) to the distribution of interest?  
+In other words, how long until the chain is well mixed.  
+This is the purpose of bounding convergence rates, or mixing rates,
+of Markov chains.
+\end{note}
+
+%%% Slide 4
+\begin{slide}
+\underline{Other Approaches}
+\begin{enumerate}
+\item Traditional Eigen-analysis \\
+{\it problems}: \\
+-- no $\Prob x$ ``black box'' available\\
+-- problem is out-of-core
+\item Multiresolution\\
+Force certain entries in vectors to be the same.
+Find crudest representation that yields results 
+of desired accuracy. \\
+(Parlett and Heng, JCP v. 114, 1994).\\
+{\it problems}: \\
+-- still limited by dimension size \\
+-- developed only for 2-D Ising model
+\item Eigenvalue bounds \\
+{\it problems}: \\
+-- not sharp\\
+-- don't reveal eigenvectors
+\end{enumerate}
+\end{slide}
+
+\begin{note}
+Although, as we will see, 
+for stochastic matrices, quadratic forms, 
+e.g. $<x,A x>$, often \emph{are} available.
+\end{note}
+
+%%% Slide 5
+\begin{slide}
+\underline{Our Approach}\\
+Approximate eigenvalues of a stochastic matrix
+\emph{without storing any vectors of the matrix.}
+We do this using:\\
+1) Monte Carlo simulation  \\
+2) Rayleigh--Ritz over a Krylov subspace\\\\
+{\it General idea}:
+Any stochastic matrix P determines a Markov chain.  So...
+\begin{enumerate}
+\item Simulate the Markov chain.
+\item Study functions, or ``observables'', on the outcome space.
+\end{enumerate}
+This will provide the ingredients for 
+Rayleigh--Ritz without direct use of the matrix P.
+\end{slide}
+
+\begin{note}
+The ingredients are the Rayleigh quotients required for the 
+Rayleigh--Ritz procedure
+\end{note}
+
+%%%% Slide 5
+%\begin{slide}
+%Convergence rates can be bounded using the sub-dominant eigenvalue of
+%P, $\lambda_{max}(P)$
+%\\\\
+%This eigenvalue also determines the 
+%decay of correlations between observables 
+%on the chain's state space.
+%\\\\
+%The eigenvectors corresponding to the ``slowest modes'' 
+%are also of interest, for example, 
+%in the ``mode coupling'' theory of dynamic 
+%critical phenomena and the liquid glass transition.
+%\end{slide}
+
+%%% Slide 6
+\begin{slide}
+\underline{BASIC ASSUMPTIONS}\\\\
+1) P is ``ergodic'' (aperiodic and irreducible).
+\\\\
+Therefore, P has a \emph{stationary} measure;
+i.e.~a function $\pi : S \rightarrow (0,1)$ satisfying
+\[\sum_{x \in S} \pi(x) \Prob(x,y) = \pi(y), \; (y \in S) \]
+\[\pi \Prob = \pi\]
+\\
+2) P is ``reversible.''
+        \begin{equation}  \pi(x) \Prob(x,y) = \pi(y) \Prob(y,x)
+\end{equation}
+\begin{center}
+{\it reversibility} $\leftrightarrow$ {\it detailed balance}
+\end{center}
+
+Letting $\D = \mbox{diag}(\pi)$, the condition is
+        \begin{equation}
+        \label{eqn:reversible}
+        \D \Prob = \Prob^t \D
+        \end{equation}
+\end{slide}
+
+\begin{note}
+$\pi$ is unique if we require $\sum_{x \in S} \pi(x) = 1$, 
+making $\pi$ a probability measure.
+\\\\
+2) holds for most physical processes, and any random walk on a
+   graph.  If it doesn't hold, it may be possible to ``reversibilize''
+   this work.
+\end{note}
+
+%%% Slide 7
+\begin{slide}
+The problem is then ``symmetrizable'' using the matrix
+\[\M = \D^{1/2}\Prob \D^{-1/2}\]
+\\
+{\bf fact:}\\ M is symmetric $\Leftrightarrow$the process is reversible.\\
+{\small{\bf proof:} \\
+Verify that $\M^t = \M$ is the same as equation (\ref{eqn:reversible}) above.}
+\\\\
+We now have a symmetric eigen problem.  \\\\
+Still, size of problem can prohibit use of traditional methods.  
+\end{slide}
+
+\begin{note} Reversibility means 
+the process looks the same whether time 
+moves forward or backward.
+\end{note}
+
+%%% Slide 8
+\begin{slide}
+\underline{Functions on the State Space}
+\\\\
+Call a function $\phi :S \rightarrow {\bf R}$
+an ``observable.''
+\\\\
+State space $S$ finite with $d$ possible states.  \\
+Think of $\phi$ as a vector of $d$ real numbers -- 
+the $d$ values that it takes on at the different states.
+\\\\
+Let $X_n(\omega)=x_n \in S$ denote the state in which the 
+Markov chain exists at time $n$. 
+\\\\
+Starting the chain from its stationary distribution,$\pi$,
+$\phi(X_n)$ is a stationary stochastic process with mean 
+\[ \Epi\phi = \sum_{x \in S}\pi(x)\phi(x) \]
+\end{slide}
+
+\begin{note}
+Suppose $X_0$ has distribution $\pi$ -- then $X_n$ is 
+a stationary process.  Recall, motivation was that $\pi$ 
+is too complicated to sample from.  However, many times
+we can draw one sample from it, then simulate the rest.
+Also, we could run the simulation for a while the first time
+and throw away a conservative number of observations.
+\end{note}
+
+% slide 9
+\begin{slide}
+The {\it covariance}, or {\it autocorrelation}, function is
+\begin{equation}
+%\label{eq:cov}
+\begin{array}{l}
+\Cpi \left(\phi(X_n),\phi(X_{n+s}) \right)
+\\\\
+\equiv \Epi\left[\left(\phi(X_n)-\Epi\phi\right)
+\left(\phi(X_{n+s})-\Epi\phi\right)\right]
+\\\\
+= \sum_{x,y \in S} \Ppi(X_n=x, X_{n+s}=y)\times\\
+\hspace{1.5 in} \left(\phi(x)-\Epi\phi\right) \left(\phi(y)-\Epi\phi \right)
+\end{array}
+\end{equation}
+\\
+Equivalently,\\
+\[
+\begin{array}{l}
+\sum_{x,y \in S} \Ppi(X_n=x)\Ppi(X_{n+s}=y \mid X_n=x)\times \\
+\hspace{1.5 in}\left(\phi(x)-\Epi\phi\right)\left(\phi(y)-\Epi\phi\right)
+\end{array}
+\]
+\[
+= \sum_{x,y \in S}\pi(x)\Prob^s(x,y)
+\left(\phi(x)-\Epi\phi\right)\left(\phi(y)-\Epi\phi\right)
+\]
+\\
+\end{slide}
+
+\begin{note}
+Here $\Prob^s(x,y)$ denotes the element in row $x$ and column $y$ of
+$\Prob^s$,
+the $s$th power of the transition probability matrix.
+\end{note}
+
+%%% Slide 10
+\begin{slide}
+To write this in matrix terms, let \\
+\[\left<\phi \right> = \{\Epi \phi\}, \hspace{.7 in} \D = \mbox{diag}(\pi)\]
+\[\mbox{C}(s)= \Cpi \left(\phi(X_n),\phi(X_{n+s}) \right)\]
+Then,
+\[
+{\mbox{C}(s)} = (\phi-\left<\phi \right>)^t \D \mbox{P}^s 
+(\phi- \left<\phi \right>) 
+\]
+\\
+Substitute symmetric matrix $\M = \D^{1/2}\Prob \D^{-1/2}$:
+\begin{eqnarray*}
+{\mbox{C}(s)}& =& (\phi-\left<\phi \right>)^t \D^{1/2}\M^s \D^{1/2}
+(\phi- \left<\phi \right>) \\
+& & \\
+& \equiv & \left<\psi,\M^s \psi \right>\\
+\end{eqnarray*}
+where $\psi \equiv \D^{1/2}(\phi- \left<\phi \right>)$.\\
+\end{slide}
+
+\begin{note}
+Summary: We get useful quadratic forms by simply computing the
+covariance of observables on the outcome space.
+\end{note}
+
+%%% Slide 11
+\begin{slide}
+\underline{Krylov--Rayleigh--Ritz}\\
+Let $\K \equiv  [\psi ,\M\psi ,\ldots,\M^{k-1}\psi ]$\\
+We access this subspace by simulating the Markov chain 
+and computing covariances of $\phi$.  
+\[\max_{v \in \ran\{\K\}}\frac{\left< v,\M v \right>}{\left<v,v\right>} 
+= \max_x \frac{x^t \K^t \M \K x }{x^t \K^t \K x} 
+\]
+\\
+We have a generalized eigen problem:
+\begin{equation} \K^t \M \K x = \lambda \K^t \K x 
+\end{equation}
+\\
+For, say, $k=3$,
+\[\K^t \M \K = 
+\left(
+\begin{array}{ccc}
+\C(1) & \C(2) & \C(3)\\
+\C(2) & \C(3) & \C(4)\\
+\C(3) & \C(4) & \C(5)
+\end{array}\right)\]
+and
+\[\K^t \K = 
+\left(
+\begin{array}{ccc}
+\C(0) & \C(1) & \C(2) \\
+\C(1) & \C(2) & \C(3)\\
+\C(2) & \C(3) & \C(4)\\
+\end{array}\right)\]
+\end{slide}
+
+\begin{slide}
+\underline{Summary of the Method}
+\begin{enumerate}
+\item Choose (wisely) observable $\phi$.
+\item Simulate the chain.
+\item Compute $2k$ sample covariances:
+\[\begin{array}{l}
+\widehat{\Cpi}(\phi(X_n),\phi(X_{n+s}))\\
+\\
+= \frac{1}{N - s}\sum_{n=1}^{N - s}\left(\phi(x_n)- \bar \phi\right)
+\left(\phi(x_{n+s})- \bar \phi\right)
+\end{array}\]
+for $s=0,\ldots,2k-1$.
+\item Solve $k \times k$ generalized eigen problem.
+\end{enumerate} 
+\end{slide}
+\begin{slide}
+\underline{Application: 1-D spin-flip system}\\\\
+A ``state,'' $\sigma_i$, is a particular permutation of $\pm 1$'s:\\\\
+$+1\hspace{1.4 in} +1 \hspace{.5 in} +1 \hspace{.4 in} +1$\\
+o--------o--------o--------o--------o--------o----- $\cdots$\\
+\indent $\hspace{1 in} -1 \hspace{3.5 in} -1$
+\\\\
+e.g.~if there are 100 sites, there are $2^{100}$ possible states.
+\\\\
+Define the energy $H(\sigma_i)$ of state $i$ by the Hamiltonian
+\[H(\sigma_i) = -\sum_{\left<j\:k\right>}\sigma_i(j)\sigma_i(k) \] 
+where the sum runs over all nearest neighbor pairs.  
+\end{slide}
+
+\begin{slide}
+In statistical mechanics we are interested in
+the {\it Gibbs measure}, defined by
+\\
+\begin{equation}
+\label{eqn:gibbs}
+\pi(i) = Z^{-1}\exp\{-\beta H(\sigma_i)\}
+\end{equation}
+\\
+where $Z^{-1}$ is the normalization constant, or \emph{partition
+  function}.  For the spin-flip model, we put
+\\
+\[ Z = \sum_{i=1}^{2^n}\exp\{-\beta H(\sigma_i)\} \]
+\\
+so that $\pi$ is a probability measure.
+\end{slide}
+
+\begin{slide}
+The partition function is hard to evaluate.\\
+\\
+\underline{Alternative}: (MCMC) \\
+Use Metropolis to simulate a Markov chain which 
+converges to the Gibbs distribution.
+The underlying transition matrix P is $2^n \times 2^n$. 
+\\\\
+\underline{Eigenanalysis of P}:\\
+For $n=6$ and $8$, we simulated this chain for 200,000 iterations, 
+recording $\phi(\sigma(t))$ = number of $+1$'s
+at time $t$, and computed covariances.  Solutions to
+the resulting $3 \times 3$ generalized eigenvalue problems appear
+in the table.
+\end{slide}
+
+\begin{slide}
+\underline{Preliminary Computational Results}
+\\\\
+\begin{tabular}{c|c|c}
+$n=6$& $\Cpi$ & $\widehat{\Cpi}$\\
+\hline
+&$\tilde \lambda_0 = 0.997868 $ &$\hat{\tilde \lambda}_0 = 0.997956$\\
+&$\tilde \lambda_1 = 0.716909 $ &$\hat{\tilde \lambda}_1 =0.524011$\\
+&$\tilde \lambda_2 = 0.117214 $ &$\hat{\tilde \lambda}_2= 0.021784$ \\
+\hline
+& $\lambda_{\max} = 0.997869$ & \\
+& $\lambda_8 =  0.698375$&\\
+& $\lambda_{44} = 0.113235$&\\
+\end{tabular}
+\\\\
+
+\begin{tabular}{c|c|c}
+$n = 8$& $\Cpi$ & $\widehat{\Cpi}$\\
+\hline
+&$\tilde \lambda_0 = 0.998773$ &$\hat{ \tilde \lambda}_0 =  0.998823$ \\
+&$\tilde \lambda_1 = 0.799914$ &$\hat{ \tilde \lambda}_1 =   0.296857$ \\
+&$\tilde \lambda_2 = 0.327410$ &$\hat{ \tilde \lambda}_2 =   0.004026$ \\
+\hline
+& $\lambda_{\max} = 0.998775$ &\\
+& $ \lambda_{14} = 0.798968$ & \\
+& $ \lambda_{122} = 0.327961$ & 
+\end{tabular}
+\end{slide}
+
+\begin{slide}
+\underline{Conclusions}\\\\
+When does the foregoing apply?\\
+Out-of-core stochastic matrices which satisfy:
+\begin{enumerate}
+\item Reversibility: $\D \Prob = \Prob^t \D$
+\item The underlying chain can be simulated and observables recorded.
+\end{enumerate}
+When these conditions hold, we can approximate the information 
+contained in the Krylov subspace without storing vectors.
+\end{slide}
+
+\begin{slide}
+\underline{Future work}
+\\\\
+1) Error bounds and numerical stability.  \\
+(combine error bounds on Ritz values with error bounds on covariance
+computations)
+\\\\
+2) Consider a number of observables and use block Krylov subspace:\\
+Define $\Psi = [\psi_1, \psi_2, \ldots, \psi_p]$.  We can access
+\[K = \left[\Psi, \M \Psi, \ldots, \M^{k-1}\Psi\right]\]
+by computing the covariances among different observables.
+\end{slide}
+
+\begin{slide}
+3) Possibly generalize to non-reversible case:\\
+Suppose $\D\Prob \neq \Prob^t\D$.  Then define 
+\[\tilde{\Prob} = \D^{-1} \Prob^t\D\]  
+In fact, $\tilde{\Prob}$ also defines a MC -- it is the reversed
+process.
+\\\\
+Proposal: study the \emph{reversible} MC defined by
+\[\R = \tilde{ \Prob} \Prob = \D^{-1} \Prob^t\D \Prob \]
+Relate the spectrum of R to that of P.
+\end{slide}
+
+\end{document}

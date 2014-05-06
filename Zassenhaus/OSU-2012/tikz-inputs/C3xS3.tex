@@ -1,0 +1,18 @@
+
+        \node (U0) at (0,0)  [draw, circle, inner sep=\dotsize] {};
+        \draw (U0) node [below] {$U_0 = 1$};
+        \node (UH) at (0,8)  [draw, circle, inner sep=\dotsize] {};
+        \draw (UH) node [above] {$UH = \<a,b,c\>$};
+        \node (V) at (-2.5,2)  [draw, circle, inner sep=\dotsize] {};
+        \node (W) at (-.5,3)  [draw, circle, inner sep=\dotsize] {};
+        \node (U) at (-3,5)  [draw, circle, inner sep=\dotsize] {};
+        \draw (U) node [left] {$U=\<a,b\>$};
+        \node (H) at (2.5,3)  [draw, circle, inner sep=\dotsize] {};
+        \draw (H) node [right] {$H=\<bc\>$};
+        \node (K) at (2,6)  [draw, circle, inner sep=\dotsize] {};
+
+        \draw[semithick] 
+        (U0) to (V) to (U) to (W) to (U0) to (H) to (K) to (UH) to (U);
+       %\draw (-4.5,2.2) node {$L \cong$};
+
+

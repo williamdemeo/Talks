@@ -1,0 +1,85 @@
+\frame[label=filterideal,shrink=5]{
+  \frametitle{filter+ideal method: details}
+
+  \begin{lemma}
+    Suppose $L_0 \cong \Con \<A, F\>$, \hskip4pt 
+    and $\alpha, \beta \in L_0\setminus \{0, 1\}$. \hskip6pt
+    \uncover<2->{Consider             
+      {\color{blue} $\;L = \alpha^\uparrow \cup \beta^\downarrow$.\\[4pt] }
+    }
+    \uncover<3->{There exists a set $F' \subset A^A$ such that 
+      ${\color{blue} L} \cong \Con \<A, F\cup F'\>$.}
+  \end{lemma}
+  \vskip5pt
+  \begin{columns}
+    \uncover<4->{
+      \begin{column}{0.65\textwidth}
+        \underline{{\it Proof:}}\\
+        \begin{itemize}
+        \item[] 
+          Fix $\theta \in L_0 \setminus {\color{blue} L}$.  Then $\alpha \nleq \theta \nleq \beta $, so
+          \begin{itemize}
+          \item $\exists (a,b) \in \alpha \setminus \theta$,\vskip4pt
+          \item $\exists (u,v) \in \theta \setminus \beta$.
+          \end{itemize}
+          \vskip5pt
+          Define $f_\theta :A \rightarrow A$ by
+          \[
+          f_\theta(x) = 
+          \begin{cases}
+            a & x \in u/\beta,\\
+            b & x \notin u/\beta.
+          \end{cases}
+          \]
+          Then
+          \begin{itemize} %[label=$\diamond$]
+          \item $(f_\theta(u),f_\theta(v)) = (a,b) \notin \theta$, so $f_\theta(\theta) \nsubseteq \theta$,\vskip2pt
+          \item $\ker f_\theta \geq \beta$, so $f_\theta(\gamma) \subseteq \gamma$ for all $\gamma \leq \beta$,\vskip2pt
+          \item $f_\theta(A) \subseteq \{a,b\}$, so $f_\theta(\gamma) \subseteq \gamma$ for all $\gamma \geq \alpha$.
+          \end{itemize}
+          \vskip5pt
+          Let $F' = \{f_\theta : \theta \in L_0\setminus {\color{blue}L}\}$.
+        \end{itemize}
+
+      \end{column}
+    }
+    \begin{column}{0.25\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[scale=.4]
+          % lat5
+          \node (c) at (.5,.75)   {};
+          \node (d) at (-1.5,4.5)   {};
+          \node (e) at (1,2)   {};
+          \node (f) at (-.75,6)   {};
+                {\color<2->{blue} \node (bottom) at (0,0)  [fill, circle, inner sep=.8pt] {};
+                  \node (top) at (0,8)  [fill, circle, inner sep=.8pt] {};
+                  \node (alpha) at (-1.8,3)  [fill, circle, inner sep=.8pt] {};
+                  \node (beta) at (1.5,4)  [fill, circle, inner sep=.8pt] {};}
+                \uncover<4->{  
+                  \node (theta) at (-.5,3)  [fill, circle, inner sep=.8pt] {};
+                  \draw (-.3,3.5) node {$\theta$};
+                }
+                \draw[semithick] 
+                (bottom) to [out=15, in=-15] (top) 
+                (top) to [out=195, in=165] (bottom);
+                     {\color<2->{blue}
+                       \only<2,3>{ \draw[dotted] (c) to (d) (e) to (f);}
+                       \uncover<2->{
+                         \draw[dotted] (bottom) to (alpha)  (beta) to (top);
+                         \draw[semithick] 
+                         (alpha) to [out=30, in=-80] (top)
+                         (top) to [out=205, in=105] (alpha)
+                         (bottom) to [out=30, in=-80] (beta)
+                         (beta) to [out=205, in=110] (bottom);
+                         }
+                     }
+                     \draw (-2,9) node {$\uncover<2->{{\color{blue} L} \leq}  L_0$};
+                           {\color<2->{blue}
+                             \draw (-1.8,2.5) node {$\alpha$};
+                             \draw (1.5,4.5) node {$\beta$};
+                           }
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
+}

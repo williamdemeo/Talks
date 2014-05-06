@@ -1,0 +1,145 @@
+% -*- mode: LaTeX; tex-main-file: "../notes.tex"; -*-
+\section{Measures of Consonance}
+In later sections, we consider signal analysis methods that are
+particularly well suited to the type of musical analysis we wish to
+perform.  Therefore, we should first consider %crucial that we have a good grasp of the
+some of the musical ideas underlying and motivating our work.
+The next section presents one such notion --
+musical \emph{consonance}.  We also briefly discuss some existing
+quantitative measures of this concept; the reader can find a more detailed
+treatment in Sethares \citeyear{Sethares:1997}.
+% (end: insert file synthesis.tex)
+
+% (begin: insert file consonance.tex)
+\subsection{Consonance and Dissonance}
+\label{sec:consonance}
+According to Tenney~\citeyear{Tenney:1988} and Sethares
+\citeyear{Sethares:1997}, the historical usage of the term {\it
+consonance} 
+%(and its antonym, {\it dissonance}) 
+can be classified according to five distinct categories:
+%(see~\citeN{Sethares:1997} for more details):
+\emph{melodic consonance} (CDC-1), \emph{polyphonic consonance} (CDC-2),
+\emph{contrapuntal consonance} (CDC-3), \emph{functional consonance} (CDC-4),
+\emph{sensory consonance} (CDC-5).  
+
+In this paper, the focus is on CDC-1 and CDC-5, so we describe only these.
+Briefly, \emph{melodic consonance} applies to successive melodic intervals and
+describes these intervals as either consonant or dissonant depending on the
+surrounding melodic context; it refers to relatedness of pitches sounded
+successively, or the \emph{melodic contour}.  \emph{Sensory consonance}
+equates consonance with smoothness and the absence of beats, and equates
+dissonance with roughness and the presence of beats.
+
+The definition of sensory consonance is based on the  phenomenon of
+beats.  If two pure sine tones are sounded at almost the same
+frequency, then beating occurs due to the interference between the
+tones.  The beating becomes slower as the two frequencies approach
+each other and disappears when they coincide.  Typically, slower  
+beats are perceived as gentle and pleasant while fast beats are
+perceived as rough and unpleasant. Observing that any sound can be
+decomposed into sinusoidal partials, Helmholtz~\citeyear{Helmholtz:1877}
+theorized that the perception of dissonance in a musical tone is
+determined by the presence and quality of beats among the tone's
+interacting partials. 
+
+The present research effort is directed at the discovery of a
+measure which might simultaneously quantify multiple notions of consonance.
+In particular, we  would like to exploit the theory of \emph{sensory}
+and \emph{tonal} consonance (CDC-2 and CDC-5)
+of Plomp and Levelt~\citeyear{Plomp:1965} as well as its elaboration
+in~\citeN{Sethares:1997}.  
+%Some of this theory is described below in
+%section~\ref{sec:disscurves}.  
+Briefly, this theory employs functions called
+\emph{dissonance curves} which measure the ``sensory'' dissonance, of
+a complex tone at each particular instant in time.\footnote{Really, a
+small interval of time is required to ascertain what pseudo-periodic
+frequencies are present at a particular instant.}   
+This provides a useful point-wise measure.
+However, we would also like a measure that is dynamic and appeals to a
+melodic sense of consonance, as in CDC-1.  For example, a dissonance curve
+does not account for dissonance due to melodic changes from one complex tone
+to the next.  
+
+%\subsection{Dissonance Curves}
+%\label{sec:disscurves}
+%Two pure sine waves are both perceptible if the frequencies are well
+%separated.  When the frequencies are close together, only one sine
+%wave is heard (though possibly with beats).  By varying the frequency
+%of one of the waves while keeping the other wave fixed, Plomp and
+%Levelt~\cite{Plomp:1965} gathered data revealing subject's preferences
+%for various frequency intervals.  An example of what these data
+%indicate appears as a \emph{dissonance curve} in 
+%Figure~\ref{fig:1DissCurve}. Methods for deriving such curves in
+%practice are described in~\cite{Sethares:1997}.  These curves are 
+%in stark contrast to existing musical theory.  In particular they imply 
+%that, in terms of sensory dissonance, intervals such as the major 7th and
+%minor 9th are almost indistinguishable from the octave.  This leads some 
+%to argue that these data bear no relation to our notions of musical
+%consonance. Regardless of whether they have a direct influence on our 
+%ideas about musical intervals, dissonance curves provide a way to measure
+%the intervals among \emph{pure sine waves}.  Therefore, they can be 
+%useful when analyzing a musical signal that has been decomposed into 
+%its spectral components.
+%
+%\begin{figure}
+%\ifthenelse{\boolean{nofigures}}{}{
+%%             \pdfimage
+%%             width 120 mm 
+%%             height 70 mm
+%%             {\HOME/figures/1DissCurve.png}
+%\centering  
+%\includegraphics[width=120mm, height=70mm]{\HOME/figures/1DissCurve}
+%}
+%\caption{{\small Two sine waves are sounded simultaneously.  Typical
+%perceptions include pleasant beating (at small frequency ratios),
+%roughness (at middle ratios), and separation into two tones (at first
+%with roughness, and later without) for larger ratios.  the horizontal
+%axis represents the frequency interval between the two sine waves,
+%and the vertical axis is a normalized measure of ``sensory''
+%dissonance.  The frequency of the lower sine wave is 400 Hz}}
+%\label{fig:1DissCurve}
+%\end{figure}
+%
+%% Leaving out this figure for now:
+%%\begin{figure}
+%\ifthenelse{\boolean{nofigures}}{}{
+%%             \pdfimage
+%%             width 120 mm 
+%%             height 70 mm
+%%             {\HOME/figures/3DissCurves.png}
+%\centering  
+%\includegraphics[width=120mm, height=70mm]{\HOME/figures/3DissCurves}
+%}
+%\caption{{\small Two sine waves are sounded simultaneously.  The
+%horizontal axis represents the frequency interval between the two sine
+%waves, and the vertical axis is a normalized measure of ``sensory''
+%dissonance. The plot shows how the sensory consonance and dissonance
+%change depending on the frequency of the lower tone.}}
+%\label{fig:3DissCurves}
+%\end{figure}
+%% (end: insert file consonance.tex)
+
+%%% NEWER (UNDERDEVELOPED) IDEAS %%%
+%Recall equation~(\ref{eqn:sumpartials}) of section~\ref{sec:synthesis}
+%in which a complex tone $x$ is modeled as a weighted sum of sinusoidal
+%partials: 
+%\[x(t) = \sum_{k=1}^K a_k(t) \cos(\phi_k(t))\]
+%where the instantaneous frequency of the $k$th partial is
+%%(cf.~\S~\ref{sec:instfreq}, equation~\ref{eqn:sumpartials}): 
+%\[\omega_k(t) = \phi'_k(t) \geq 0.\]
+%Suppose for simplicity that the set of $K$ instantaneous frequencies
+%$\{\omega_k\}$ are known and constant over a small interval (instant)
+%of time.  Then...
+%%the relative dissonances among the frequencies in a complex
+%%tone
+%
+%It is possible that a particular \emph{instant} in a piece of music
+%will have a high sensory dissonance value but, because of this
+%instant's relation to its context, the section of the piece containing
+%this instant has a low total dissonance value.  We can create measures
+%that act in this way.  Consider a simple succession of 3 instants of a
+%musical piece represented by $\{S_0, S_1, S_2\}.$  Let $\|\cdot\|$ be
+%the measure of dissonance of $S_k.$  It is possible ...
+

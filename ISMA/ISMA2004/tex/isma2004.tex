@@ -1,0 +1,59 @@
+%% LaTeX file 'isma2004.tex'
+
+%% latexfile{
+%% author = {William DeMeo},
+%% filename = {isma2004.tex},
+%% date = {2004.06.02},
+%% text = {Main LaTeX input file for isma paper}
+%% }
+%============================================================
+\ismasec{Notation and Background}
+%============================================================
+This section summarizes the notations,
+definitions, and important facts needed below.
+The presentation style is terse since the goal %of this section 
+is to distill from the %more general 
+literature only those results that are most relevant for DSP
+applications. 
+The books~\cite{An:2003} and~\cite{Tolimieri:1998} treat the
+same material in a more thorough and rigorous manner.
+
+Throughout, $\C$ denotes complex numbers, 
+$G$ an arbitrary (nonabelian) group, %of order $N$, 
+and $\LG$ the collection of complex valued functions on $G$.
+
+\input{cyclic}
+
+\input{trans}
+
+\input{ga}
+
+\input{ideals}
+
+%=======================================================================
+\ismasec{Nonabelian Group DSP}
+%=======================================================================
+This section presents some basic theory of digital 
+signal processing (DSP), but relies on a more general 
+mathematical formalism than that employed by the 
+standard textbooks on the subject.\footnote{A few notable
+  exceptions are 
+  \cite{{An:2003}, {Tolimieri:1998}}, {Chirikjian:2002}.}
+%\cite{{An:2003},{Chirikjian:2001},{Tolimieri:1998},{Tolimieri:1997}}}.
+%the book by Chirikjian and Kyatkin~  %and the books by Tolimieri and An
+
+\input{nonabelianDSP}
+
+\input{sdp}
+
+%=======================================================================
+\ismasec{Examples}
+%=======================================================================
+As seen above, when varying group structures are placed on indexing sets,
+and products in the resulting group algebra are computed, 
+interesting signal transforms obtain.  In this section,
+we elucidate the nature of these operations by
+examining some simple concrete examples in detail.
+
+\input{examples}
+
