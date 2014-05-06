@@ -8,8 +8,8 @@ Brief Description of Directories
 
 + **AMS** - American Mathematical Society meetings
 
-+ **BLAST** - <b>B</b>oolean Algebras, **L**attices, **A**lgebraic and Quantum Logic,
-Universal **A**lgebra, **S**et Theory, and **T**opology
++ **BLAST** - <b>B</b>oolean Algebras, <b>L</b>attices, <b>A</b>lgebraic and Quantum Logic,
+Universal <b>A</b>lgebra, <b>S</b>et Theory, and <b>T</b>opology
 
 + **ICMC** - International Computer Music Conference
 
