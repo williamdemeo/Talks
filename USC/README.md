@@ -1,5 +1,5 @@
-USC -- Algebra and Logic Seminar -- Fall 2012
-=============================================
+USC Algebra and Logic Seminar, Fall 2012
+========================================
 
 In the Algebra and Logic Seminar at University of South Carolina, I gave a
 series of four talks about methods of representing finite lattices as 
@@ -8,7 +8,7 @@ I used for these lectures.
 
 ---------------------------------------------------------
 
-## Part 1 -- Sep 21, 2012  
+## Part 1: Sep 21, 2012  
 
 **Title:** The Finite Lattice Representation Problem and intervals in Sugroup
   Lattices of Finite Groups: Part i.
@@ -39,7 +39,7 @@ and then describe some new approaches and recent progress.
 
 --------------------------------------------------------------------
 
-## Part 2 -- Sep 28, 2012  
+## Part 2: Sep 28, 2012  
 
 **Title:** The Finite Lattice Representation Problem: Part ii.
 
@@ -66,7 +66,7 @@ Algebra Calculator.
 
 --------------------------------------------------------------------------
 
-## Part 3 -- Oct 05, 2012  
+## Part 3: Oct 5, 2012  
 
 **Title:** The Finite Lattice Representation Problem: Part iii.
 
@@ -96,7 +96,7 @@ two meetings.
 
 
 -------------------------------------------------------------------------
-## Part 4 -- Oct 12, 2012  
+## Part 4: Oct 12, 2012  
 
 **Title:** The Finite Lattice Representation Problem: Part iv.
 
