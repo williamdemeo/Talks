@@ -9,20 +9,33 @@
 % 3. NOTES ONLY:
 %\documentclass[xcolor=dvipsnames,9pt,show only notes]{beamer}
 
-% 4. HANDOUTS:
-%\documentclass[xcolor=dvipsnames,9pt,handout,show notes]{beamer}
+% 4. STANDARD HANDOUTS:
+\documentclass[xcolor=dvipsnames,9pt,handout]{beamer}
 
-% 5. NO NOTES: ONLY ONE THAT BUILDS WITHOUT WARNINGS
-\documentclass[xcolor=dvipsnames,9pt,hide notes,mathserif]{beamer}
+% 5. NO NOTES:
+%\documentclass[xcolor=dvipsnames,9pt,hide notes,mathserif]{beamer}
+%\documentclass[xcolor=dvipsnames,9pt,mathserif]{beamer}
 %\setbeameroption{show only notes}
 %\setbeameroption{show notes}
+
+% 6. HANDOUTS WITH LINES FOR NOTES:
+%% \documentclass[handout]{beamer} 
+%% \mode<handout>
+%%     {
+%%       \usepackage{pgf}
+%%       \usepackage{pgfpages}
+%%       \usepackage{LSHandoutWithNotes}
+%%     }
+%%     \pgfpagesuselayout{2 on 1 boxed with notes}[letterpaper,border shrink=5mm]
+
+
+
+
+
 \usepackage{enumerate,amsmath,amssymb,fancyhdr,mathrsfs,amsthm,url,stmaryrd}
 \usepackage{pgfpages}
 \usepackage{listings}
 
-%% For creating a handout:
-%\pgfpagesuselayout{4 on 1}[border shrink=5mm]
-%\mode<handout>{\setbeamercolor{background canvas}{bg=black!5}}
 
 \setbeamerfont{structure}{family=\rmfamily,shape=\scshape} 
 \usepackage{graphicx}
@@ -34,6 +47,7 @@
 \setbeamertemplate{navigation symbols}{}
 \usepackage{verbatim}
 \usepackage[mathcal]{euscript}
+
 
 \definecolor{Crimson}{rgb}{0.800,0.000,0.200}
 \definecolor{darkred}{rgb}{0.5,0,0}
@@ -68,7 +82,7 @@
 % Or whatever. Note that the encoding and the font should match. If T1
 % does not look nice, try deleting the line with the fontenc.
 
-\title[Synchronizing Automata]{Dedekind's transposition principle\\
+\title[Isotopy]{Dedekind's transposition principle\\
 {\small and}\\
 isotopic algebras with nonisomorphic\\ congruence lattices}
 \author[William DeMeo]{William DeMeo\\
@@ -269,7 +283,7 @@ April 13-14, 2013
 \end{frame}
 
 \section{Another transposition principle}
-\begin{frame}[label=intro]{Another transposition principle}
+\begin{frame}[label=anotherTP]{Another transposition principle}
 {for lattices of equivalence relations}
 Let $X$ be a set and let $\Eq X$ be the lattice of equivalence relations on $X$.  
 
@@ -348,7 +362,7 @@ Suppose $\alpha$ and $\beta$ are permuting relations in $L\leq \Eq X$.
 \end{frame}
 
 
-\begin{frame}[label=intro]{Dedekind's Rule}
+\begin{frame}[label=DedekindsRule]{Dedekind's Rule}
 \note{
   The lemma states that the sublattice $\lb\beta, \alpha \join \beta\rb_L$ is isomorphic to the 
 lattice, $\lb\alpha \meet \beta, \alpha\rb_L^\beta$, of relations in $L$ that are below
@@ -383,7 +397,7 @@ Then the following identities of subsets of $X^2$ hold:
 
 \section{Isotopy}
 
-\begin{frame}[label=intro]{Isotopy}{basic definitions}
+\begin{frame}[label=IsotopyIntro]{Isotopy}{basic definitions}
 Let $\bA$, $\bB$, $\bC$ be algebras of the same type.
 
 
@@ -432,7 +446,7 @@ closure of $\sim^{\mathrm{mod}}_1$.
 
 
 
-\begin{frame}[label=intro]{Isotopy}{modular case}
+\begin{frame}[label=IsotopyModularCase]{Isotopy}{modular case}
 %A well known 
 %\vskip2mm
 %~ \hskip 2cm 
@@ -463,7 +477,7 @@ The perspectivity map that is so useful
 
 \end{frame}
 
-\begin{frame}[label=intro]{Counterexamples}
+\begin{frame}[label=CounterExamples]{Counterexamples}
   We describe a class of examples in which $\bA\sim \bB$ and $\Con \bA
   \ncong \Con \bB$. 
 
@@ -479,11 +493,12 @@ The perspectivity map that is so useful
   \uncover<3->{
     A group $G$ is called a \alert{Dedekind group} if every subgroup of $G$ is
     normal.
-    \note{a \emph{non-Dedekind group} is one with a non-trivial non-normal subgroup.}
+    
   }
-  \note{of course this requires $G$ be nonabelian, but that is not
-    sufficient.  For example, the eight element quaternion group 
-    is a Dedekind group.}
+  \only<3>{
+  \note{A \emph{non-Dedekind group} is one with a non-trivial non-normal subgroup.
+  Of course this requires $G$ be nonabelian, but that is not sufficient.  For
+  example, the eight element quaternion group is a Dedekind group.}}
 
   \vskip2mm
   \uncover<4->{
@@ -499,7 +514,7 @@ The perspectivity map that is so useful
     \vskip2mm
     \uncover<4->{
       \begin{lemma}
-        \label{lem:1}
+%        \label{lem:1}
         The filter above the diagonal subgroup of $S\times S$ %in the subgroup lattice of $S\times S$
         is isomorphic to the lattice of normal subgroups of $S$. 
 
@@ -513,7 +528,7 @@ The perspectivity map that is so useful
 
 \section{Example}
 
-\begin{frame}[label=example]{The example}
+\begin{frame}[label=example1]{The example}
 
 Let $S$ be a group, and 
 let $G = S_1 \times S_2$, where
@@ -550,7 +565,7 @@ Define the algebra $\bC = \< G/T_2, G^{\bC}\>$ similarly.
 \end{frame}
 
 
-\begin{frame}[label=example]{The example}
+\begin{frame}[label=example2]{The example}
 The algebra $\bB$ will have universe $B = G/D$, but we
 define the action of $G$ on $B$ with a twist.
 \vskip2mm
