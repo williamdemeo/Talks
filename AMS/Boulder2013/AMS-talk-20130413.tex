@@ -11,6 +11,13 @@
 
 % 4. STANDARD HANDOUTS:
 \documentclass[xcolor=dvipsnames,9pt,handout]{beamer}
+\mode<handout>
+    {
+      \usepackage{pgf}
+      \usepackage{pgfpages}
+      \usepackage{LSHandoutWithNotes}
+      \pgfpagesuselayout{4 on 1 boxed}[letterpaper,border shrink=5mm,landscape]
+    }
 
 % 5. NO NOTES:
 %\documentclass[xcolor=dvipsnames,9pt,hide notes,mathserif]{beamer}
