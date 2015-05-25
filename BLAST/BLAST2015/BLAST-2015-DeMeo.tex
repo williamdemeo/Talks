@@ -1,0 +1,530 @@
+%\documentclass[xcolor=dvipsnames,9pt]{beamer} 
+\documentclass[xcolor=dvipsnames,9pt,hide notes,mathserif]{beamer}
+
+\usepackage{pgfpages}
+\usepackage{listings}
+%\usepackage{enumitem}
+
+%% For creating a handout:
+%\pgfpagesuselayout{4 on 1}[border shrink=5mm]
+%\mode<handout>{\setbeamercolor{background canvas}{bg=black!5}}
+
+%% For creating notes for the speaker:
+%\setbeameroption{notes on second screen}
+%\setbeameroption{show notes}
+
+\setbeamerfont{structure}{family=\rmfamily,shape=\scshape} 
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{scalefnt}
+\usepackage{amsmath}%
+\usepackage{amsfonts}%
+\usepackage{amssymb}%
+%(wjd) added stmaryrd and enumerate packages
+\usepackage{stmaryrd,enumerate}
+\usepackage{graphicx}
+\usepackage{comment}
+\usetikzlibrary{matrix,arrows}
+
+\usepackage{mathrsfs,textcomp}
+\setbeamertemplate{navigation symbols}{}
+\usepackage{verbatim}
+\usepackage[mathcal]{euscript}
+
+% This changes the color of alerted text to blue:
+\definecolor{MyDarkBlue}{rgb}{0.2,0.2,0.7}
+\definecolor{olivegreen}{cmyk}{0.64,0,0.95,0.40} % PANTONE 582
+\setbeamercolor{alerted text}{fg=blue}
+\newcommand{\emphcyan}[1]{\textcolor{MyDarkBlue}{\textbf{#1}}}
+%\renewcommand{\alert}[1]{\textcolor{olivegreen}{\emph{#1}}}
+\renewcommand{\alert}[1]{\textcolor{olivegreen}{#1}}
+%\renewcommand{\alert}[1]{\textbf{{\emph{#1}}}}
+% (default is red, but my slides are green and I don't like red and green together)
+
+%\usecolortheme[named=OliveGreen]{structure} 
+\usecolortheme[named=olivegreen]{structure} 
+\setbeamertemplate{items}[square] 
+\setbeamertemplate{blocks}[rounded][shadow=false]
+
+
+% Commands for creating the ROTATING RECTANGLE
+% Pass in a number which will be used to calculate the rotation angle.
+% Example: Inside a tikzpicture environment, I would call 
+%          \foreach \i in {0,...,11} { \eImageOfBZero{\i}  }
+\newcommand{\eImageOfBZero}[1]{
+  \pgfmathtruncatemacro{\r}{15*#1}
+  \foreach \j in {1,2} {
+    \draw[rotate around={\r:(-1,0.5)}] (\j -1, 0.5) node {$\j$};
+    \pgfmathtruncatemacro{\x}{\j+3}
+    \draw[rotate around={\r:(-1,0.5)}] (\j -1, -0.5) node {$\x$};
+  }
+  \draw[rotate around={\r:(-1,0.5)}] (-1, -0.5) node {$3$};
+  \draw[rounded corners, dotted, rotate around={\r:(-1,0.5)}] (-1.5,-1) rectangle (1.5,1);
+}
+
+\newcommand{\eImageOfBOne}[1]{
+  \pgfmathtruncatemacro{\r}{-15*#1}
+  \foreach \j in {0,1,2} {
+    \pgfmathtruncatemacro{\x}{10-\j}
+    \draw[rotate around={\r:(-1,0.5)}] (\j -3, 1.5) node {$\x$};
+  }
+  \draw[rotate around={\r:(-1,0.5)}] (-3, .5) node {$7$} (-2, .5) node {$6$};
+  \draw[rounded corners, dotted, rotate around={\r:(-1,0.5)}] (-3.5,0) rectangle (-0.5,2);
+}
+
+\newcommand{\eImageOfBTwo}[1]{
+  \pgfmathtruncatemacro{\r}{15*#1}
+  \foreach \j in {0,1,2} {
+    \pgfmathtruncatemacro{\x}{15-\j}
+    \draw[rotate around={\r:(1,0.5)}] (\j+1,1.5) node {$\x$};
+  }
+  \draw[rotate around={\r:(1,0.5)}] (3, .5) node {$11$} (2, .5) node {$12$};
+  \draw[rounded corners, dotted,rotate around={\r:(1,0.5)}] (3.5,0) rectangle (0.5,2);
+}
+
+
+\input{wjd.def}
+
+\mode<presentation>{\usetheme{boxes}}  %boxes,Pittsburgh JuanLesPins, PaloAlto, Singapore, Szeged, Warsaw, Boadilla
+%\usetheme{Madrid}}
+%\usetheme{boxes}  %boxes,Pittsburgh JuanLesPins, PaloAlto, Singapore, Szeged, Warsaw, Boadilla
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+\title{CSP Theory of Commutative Idempotent Binars}
+
+\author[William DeMeo]{William DeMeo\\
+  {\small \url{williamdemeo@gmail.com}}\\
+  {\small Iowa State University}\\[4pt]
+  {\footnotesize joint work with}\\[4pt] 
+  Cliff Bergman\\
+  Jiali Li
+}
+%\institute[]{
+
+%% \date[BLAST 2013]{ % (optional, should be abbreviation of conference name)
+%%   BLAST Conference\\{\small University of North Texas}\\
+%%   {\small June 7--12, 2015}}
+
+\subject{Universal Algebra; Lattice Theory.}% (optional) inserted into PDF info catalog.
+
+% TOC pops up at the beginning of each subsection:
+\AtBeginSubsection[]{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+% If you wish to uncover everything in a step-wise fashion, uncomment the following command: 
+% \beamerdefaultoverlayspecification{<+->}
+
+\begin{document}
+\thicklines
+
+%% \includeonlyframes{titlepage,problem,milestones,methods,knownresults,filterideal,MO,freese,OA,OAcong,OAEx2,PAP1,OAresults,OAextension,Limitations,OAextension2,conclusion,MO,Conclusion}
+
+
+\frame[label=titlepage]{
+  \titlepage
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 1: CSP dichotomy conjecture
+\frame[label=problem]{
+  \frametitle{~}
+%  \framesubtitle{CSP dichotomy conjecture}
+
+      \alert{General Problem:} Find Maltsev conditions that characterize complexity of
+      CSPs of universal algebras.
+      \vskip3mm
+
+      \begin{overprint}
+        \onslide<1->
+          \begin{block}{csp dichotomy conjecture}
+            For a (finite, idempotent) algebra $\mathbf A$...
+            \[
+            \CSP (\mathbf A) \text{ is tractable } \; \Longleftrightarrow \;  \bA
+            \text{ has a wnu term operation}
+            \]
+          \end{block}
+        \onslide<3->
+          \begin{block}{csp dichotomy conjecture}
+            For a (finite, idempotent) algebra $\mathbf A$...
+            \[
+            \CSP (\mathbf A) \text{ is tractable } \; \Longleftarrow \;  \bA
+            \text{ has a wnu term operation}
+            \]
+          \end{block}
+      \end{overprint}
+
+      \vskip3mm
+
+      \onslide<2->{ The left-to-right direction is known, the converse is open.} \\[10pt]
+
+      \begin{overprint}
+        \onslide<4->
+          A term $t(x_1, \dots, x_n)$ is a \alert{weak near unanimity}
+          term operation if it satisfies 
+          \begin{align*}
+          t(x, x, \dots, x)&\approx x \quad \text{ (idempotent)}\\[4pt]
+          t(y, x, \dots, x) &\approx t(x, y, \dots, x) \approx \dots \approx
+          t(x, x, \dots, y).
+          \end{align*}
+
+        \onslide<5->\begin{center}\includegraphics[height=1.5in]{figures/wnu-only-cropped.png}\end{center}
+        \onslide<6->\begin{center}\includegraphics[height=1.5in]{figures/Taylor-cropped.png}\end{center}
+        \onslide<7->\begin{center}\includegraphics[height=1.5in]{figures/Cyclic-cropped.png}\end{center}
+        \onslide<8->\begin{center}\includegraphics[height=1.5in]{figures/Siggers-cropped.png}\end{center}
+        \onslide<9->\begin{center}\includegraphics[height=1.5in]{figures/NP-cropped.png}\end{center}
+        \onslide<10->\begin{center}\includegraphics[height=1.5in]{figures/P-cropped.png}\end{center}
+      \end{overprint}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 2: Commutative Idempotent Binars
+\frame[label=problem]{
+  \frametitle{Commutative Idempotent Binars}
+Some more definitions.
+  \begin{itemize}
+  \item A set $A$ together with a single binary operation is called a \alert{binar}.
+
+  \item A \alert{commutative idempotent binar} is an algebra 
+    $\bA = \<A, \cdot\>$ satisfying $x\cdot y \approx y\cdot x$ and $x\cdot x \approx x$.
+
+  \item A binary operation $x\cdot y = t(x,y)$ is a WNU term if and only if it is idempotent and 
+    commutative. This suggests the following 
+  \end{itemize}
+\onslide<2->{
+  \begin{block}{Question}
+    Is every finite commutative idempotent binar tractable?
+  \end{block}
+  If the dichotomy conjecture is to hold, then the answer must be ``yes.''
+  % We let **\cib** denote the variety of **commutative idempotent binars.**
+\\[4pt]
+\onslide<3->{
+  A semilattice is an associative CIB.\\[4pt]
+  Semilattices are tractable (in fact, they have \emph{finite width}).  
+}}
+
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 3: More well known facts
+
+\frame[label=knownfigs]{
+  \frametitle{Some well known facts}
+  Let $\bA$ be a finite idempotent algebra. Let $\mathbf S_2$ be the 2-elt semilattice.
+  %% \begin{block}{}
+  \begin{align*}
+    \V(\bA) \text{ is CP } &\Longleftrightarrow \quad \bA \text{ has Malcev term}\\
+    \onslide<3->{        &\Longrightarrow \quad \bA \text{ has cube term}\\
+      \onslide<4->{        &\Longrightarrow \quad \V(\bA) \text{ is CM}\\
+        \onslide<5->{        &\Longrightarrow \quad \bS_2 \text{ is not in }
+          \V(\bA)
+        }
+      }
+    }
+  \end{align*}
+  %% \end{block}
+
+  \begin{overprint}
+    \onslide<2->
+    \begin{center}\includegraphics[height=2in]{figures/CP-cropped.png}\end{center}
+    \onslide<3->
+    \begin{center}\includegraphics[height=2in]{figures/Cube-cropped.png}\end{center}
+    \onslide<4->
+    \begin{center}\includegraphics[height=2in]{figures/CM-cropped.png}\end{center}
+    \onslide<5->
+    \begin{center}\includegraphics[height=2in]{figures/NoSL-cropped.png}\end{center}
+  \end{overprint}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 4: Some well known facts
+\frame[label=known]{
+  \frametitle{Some well known facts}
+
+  $\bA=$ a finite idempotent algebra\\[4pt]
+  $\mathbf S_2=$ the 2-elt semilattice.
+
+  \begin{align*}
+    \V(\bA) \text{ is CP } &\Longleftrightarrow \quad \bA \text{ has a Malcev term}\\
+    &\Longrightarrow \quad \bA \text{ has a cube term}\\
+    &\Longrightarrow \quad \V(\bA) \text{ is CM}\\
+    &\Longrightarrow \quad \bS_2 \text{ is not in } \V(\bA)
+  \end{align*}
+
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \begin{center}\includegraphics[height=1.25in]{figures/NoSL-cropped.png}\end{center}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{itemize}
+      \item<2-> cube term $\Longrightarrow$ CM\\[4pt]
+        \emph{Proof:} few subalgebras of powers\\[5pt]
+        Berman, Idziak, Markovi{\'c}, McKenzie, Valeriote, Willard (BIMMVW) 2010.
+        %% ``Varieties with few subalgebras of powers'' 
+        \\[10pt]
+      \item<3-> CM $\Longrightarrow \; \bS_2$ is not in $\V(\bA)$\\[4pt]
+        \emph{Proof:} $\bS_2 \in \V(\bA) \; \Rightarrow\; \bS_2^2 \in \V(\bA)$;\\[4pt]
+        ~ \phantom{\emph{Proof:}} $\Con(\bS_2^2)$ is not modular.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 5
+\frame[label=known]{
+  \frametitle{Commutative Idempotent Binars (CIBs)}
+  Let $\bA$ be a CIB.
+  \begin{align*}
+    \V(\bA) \text{ is CP } &\Longleftrightarrow \quad \bA \text{ has Malcev term}\\
+    &\Longrightarrow \quad \bA \text{ has cube term}\\
+    &\Longrightarrow \quad \V(\bA) \text{ is CM}\\
+    &\Longrightarrow \quad \bS_2 \text{ is not in } \V(\bA)
+  \end{align*}
+
+  \begin{overprint}
+    \onslide<1->
+    \begin{center}\includegraphics[height=2in]{figures/NoSL-cropped.png}\end{center}
+    \onslide<2->
+    \begin{center}\includegraphics[height=2in]{figures/CubeEquiv-cropped.png}\end{center}
+    \onslide<3->
+    \begin{center}\includegraphics[height=2in]{figures/CPequiv-cropped.png}\end{center}
+  \end{overprint}
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 6
+\frame[label=cube]{
+  \frametitle{Cube Terms}
+  \begin{block}{}
+    A \alert{cube operation} is
+    a function $c: A^n \rightarrow A$ satisfying
+    for each $1 \leq i \leq n$ 
+    $c(w_1, \dots, w_n) = x$ where 
+    $\{w_1, \dots, w_n\} \subseteq \{x, y\}$ and 
+    $w_i = y$.
+    \\[4pt]
+    Here $x$ and $y$ are distinct variables.
+    \\[6pt]
+    An algebra $\bA$ is said to have a \alert{cube term} if its clone
+    of term operations contains a cube operation. 
+  \end{block}
+  \vfill
+  \onslide<2->{
+    Cube terms were introduced in... ?\\[8pt]
+    Berman, Idziak, Markovi{\'c}, McKenzie, Valeriote, Willard,\\
+    ``Varieties with few subalgebras of powers,'' 2010. \\[10pt]
+    Markovi{\'c}, Mar{\'o}ti, McKenzie,\\
+    ``Finitely related clones \& algebras with cube terms,'' 2012.}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 4
+\frame[label=cube]{
+  \frametitle{Cube Term Blockers}
+  \begin{block}{}
+    %% \begin{definition}
+    A \alert{cube term blocker} (CTB) for $\bA$ is a pair $(C, B)$ of subuniverses
+    of $\bA$ satisfying $\emptyset < C < B \leq A$ and for every term 
+    $t(x_1, \dots, x_n)$ of $\bA$ there is an index $i \in [n]$ such that 
+    \[
+    (\forall (b_1, \dots, b_n) \in B^n) (b_i \in C \longrightarrow t(b_1, \dots, b_n)\in C).
+    \]
+  \end{block}
+  %% \end{definition}
+  %% We call a set $D$ a (proper) \defn{ideal} of a \cib $\bA = \< A, \cdot\>$
+  %%   if $D$ is a (proper) subset of $A$ satisfying $d\cdot a \in D$ for all 
+  %% $d\in D$ and $a \in A$.
+  Markovi{\'c}, Mar{\'o}ti, McKenzie proved that a finite idempotent algebra has
+  a cube term iff it possesses no CTB.  
+
+  \vfill
+  \onslide<2->{
+    \begin{lemma}
+      A finite CIB $\bA = \<A, \cdot\>$ has a CTB if and only if 
+      $\bS_2 \in \sansH \sansS (\bA)$.
+    \end{lemma}
+    \onslide<3->{
+      \begin{proof}
+        If $(C, B)$ is a CTB, then $\theta = C^2 \cup (B- C)^2$ is a congruence of
+        $\bB = \<B, \cdot\>$ and $\bB/\theta \cong \bS_2$. 
+        \\[5pt]
+        Conversely, suppose $\bS_2 \in \sansH \sansS (\bA)$, and $\bB$ is 
+        a subalgebra of $\bA$ with $\bB/\theta$ a meet-SL for some $\theta$. 
+        Let $C/\theta$ be the bottom of $\bB/\theta$, then $(C, B)$ is a CTB.
+      \end{proof}
+    }
+}}
+
+
+}
+
+
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% 4
+  \frame[label=cube]{
+    \frametitle{Collapse for CIBs}
+
+    Kearnes and Tschantz,
+    ``Automorphism groups of squares and of free algebras,'' 2007.
+
+    \begin{lemma}
+      If $V$ is an idempotent variety that is not congruence permutable, then there
+      are subuniverses $U$ and $W$ of $\bF := \bF_V\{x, y\}$ (the 2-generated free
+      algebra) satisfying 
+      \begin{enumerate}[1.]
+      \item $x\in U \cap W$
+      \item $y \in U^c \cap W^c$
+      \item $(U \times F) \cup (F \times W) \leq \bF^2$
+      \end{enumerate}
+    \end{lemma}
+    \onslide<2->{
+      For CIB's, $U$ or $W$ will be an ideal.\\[4pt]
+      This implies a CTB and a semilattice.}
+  }
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% 4
+  \frame[label=examples]{
+    \frametitle{Remaining Question for CIBs}
+
+    \begin{block}{Conclusion}
+      Let $\bA$ be a CIB and $\bS_2 \notin \V(\bA)$. Then $\CSP(\bA)$ is tractable.
+    \end{block}
+
+    \onslide<2->
+    \begin{block}{Open Question}
+      Let $\bA$ be a CIB and $\bS_2 \in \V(\bA)$.  Is $\CSP(\bA)$ tractable?
+    \end{block}
+
+    Recall, for every $\bA$, 
+    \begin{itemize}
+    \item<3->if $\bS_2 \in \V(\bA)$, then $\V(\bA)$ is not CM;
+
+    \item<4-> if $\V(\bA)$ is  $\mathrm{SD}_\wedge$, then $\CSP(\bA)$ is
+    tractable (in fact, always has a solution).
+    \end{itemize}
+
+    \onslide<5->
+    \begin{block}{Revised Question}
+    Let $\bA$ be a CIB with $\bS_2$ in $\V(\bA)$, not $\mathrm{SD}_\wedge$.
+    Is $\CSP(\bA)$ tractable?
+    \end{block}
+
+  }
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% 4
+  \frame[label=examples]{
+    \frametitle{Examples}
+
+    \begin{tabular}{c|cccc}
+$\cdot$ & 0 & 1 & 2 & 3\\
+\hline
+      0 & 0 & 0 & 0 & 1\\
+      1 & 0 & 1 & 3 & 2\\
+      2 & 0 & 3 & 2 & 1\\
+      3 & 1 & 2 & 1 & 3\\
+    \end{tabular}
+\hskip1cm
+    \begin{tabular}{c|cccc}
+$\ast$ & 0 & 1 & 2 & 3\\
+\hline
+      0 & 0 & 0 & 1 & 1\\
+      1 & 0 & 1 & 3 & 2\\
+      2 & 1 & 3 & 2 & 1\\
+      3 & 1 & 2 & 1 & 3\\
+    \end{tabular}
+\vskip1cm
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+    \begin{tabular}{c|cccc}
+$\circ$ & 0 & 1 & 2 & 3\\
+\hline
+      0 & 0 & 0 & 2 & 1\\
+      1 & 0 & 1 & 3 & 2\\
+      2 & 2 & 3 & 2 & 1\\
+      3 & 1 & 2 & 1 & 3\\
+    \end{tabular}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+    Maroti's idea:
+    \vskip1cm
+    Bergman's idea: replace basic binary operation with a term from
+    $\Clo(\bA)$, say $t(x,y) = (x\ast y) \ast x$.\\[4pt] If $\<A, t\>$ tractable,
+    then so is $\<A, \ast\>$
+    \end{column}
+  \end{columns}
+  }
+
+    \end{document}
+
+
+
+
+    Question: Does the converse of the last implication hold in general?
+    That is, if A is an finite idempotent algebra, then is it true that
+
+    S not in V(A)  =>  V(A) is CM?
+
+    This is certainly not true. For example, take A to be a 2-element set. However,
+    even if you omit type 1 it fails. Example 2.2 in the Freese-McKenzie paper on
+    Robust Maltsev conditions is an example. (It is actually an example due to
+    Matt.) You can probably find more examples by hunting through the Berman-Burris
+    catalog of 3-element binars:
+    http://www.math.uic.edu/~berman/1994-Groupoid-Catalog-Preprint.pdf 
+
+    It seems to me this is what Prop 3.9 and Cor 3.10 of Freese-Valeriote
+    says.  (If not, do you know a counter-example?)
+    No, the stuff about the tails is subtle. That's what Matt's example was designed to show.
+
+    I should know counter-examples for each of the converses that don't
+    hold.  Right now, I only know of one for "CM => cube term".  Namely,
+    the algebra Kearnes4.ua available here:
+
+    https://github.com/UACalc/AlgebraFiles/tree/master/Kearnes
+
+    has no cube term, but V(A) is CM.
+    This is the only example I am aware of.
+
+    What are examples of algebras with a cube term but no Malcev term.  (I
+    should know this! ...Jiali, feel free to jump in here!)
+    Every near-unanimity term is a cube term. So Lattices, for example, have cube terms but not Malcev terms. Also, the gmm terms of Dalmau are cube terms. I presume they are not always Malcev terms.
+
+    Now, back to the CIB case.  Once we prove (for CIBs) that
+
+    S not in V(A)  =>   V(A) is CP
+
+    then all the conditions above are equivalent.  That is,
+
+    For a finite CIB A, TFAE
+
+    1. V(A) is CP
+    2. A has a Malcev term
+    3. A has a cube term
+    4. V(A) is CM
+    5. S is not in V(A)
+    Correct. By the way, do we need A finite for this? I suspect not
+
+
+
+
+
+
+
