@@ -21,6 +21,7 @@
 \newcommand{\V}{\ensuremath{\operatorname{V}}}
 \newcommand{\CSP}{\ensuremath{\operatorname{CSP}}}
 \newcommand{\Clo}{\ensuremath{\operatorname{Clo}}}
+\newcommand{\Rel}{\ensuremath{\operatorname{Rel}}}
 \newcommand{\sansH}{\ensuremath{\mathsf{H}}}
 \newcommand{\sansP}{\ensuremath{\mathsf{P}}}
 \newcommand{\bP}{\ensuremath{\mathbf{P}}}
