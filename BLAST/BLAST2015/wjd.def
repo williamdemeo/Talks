@@ -21,6 +21,10 @@
 \newcommand{\V}{\ensuremath{\operatorname{V}}}
 \newcommand{\CSP}{\ensuremath{\operatorname{CSP}}}
 \newcommand{\Clo}{\ensuremath{\operatorname{Clo}}}
+\newcommand{\Rel}{\ensuremath{\operatorname{Rel}}}
+\newcommand{\Op}{\ensuremath{\operatorname{op}}}
+\newcommand{\sansPoly}{\ensuremath{\mathsf{pol}}}
+\newcommand{\sansRel}{\ensuremath{\mathsf{rel}}}
 \newcommand{\sansH}{\ensuremath{\mathsf{H}}}
 \newcommand{\sansP}{\ensuremath{\mathsf{P}}}
 \newcommand{\bP}{\ensuremath{\mathbf{P}}}
@@ -36,7 +40,10 @@
 \newcommand{\bL}{\ensuremath{\mathbf{L}}}
 \newcommand{\bB}{\ensuremath{\mathbf{B}}}
 \newcommand{\svert}{\ensuremath{\; \vert \; }}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
 \newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\bbD}{\ensuremath{\mathbb{D}}}
+\newcommand{\bbV}{\ensuremath{\mathbb{V}}}
 \newcommand{\sE}{\ensuremath{\mathcal{E}}}
 \newcommand{\sO}{\ensuremath{\mathcal{O}}}
 \newcommand{\sH}{\ensuremath{\mathcal{H}}}
@@ -49,6 +56,7 @@
 \newcommand{\sA}{\ensuremath{\mathcal{A}}}
 \newcommand{\sB}{\ensuremath{\mathcal{B}}}
 \newcommand{\sC}{\ensuremath{\mathcal{C}}}
+\newcommand{\sR}{\ensuremath{\mathcal{R}}}
 \newcommand{\SSS}{\text{\emphslb{S}}}
 \newcommand{\id}{\mbox{id}}
 \newcommand{\Hom}{\mbox{Hom}}
@@ -57,7 +65,9 @@
 \newcommand{\Aut}{\ensuremath{\mathrm{Aut}}}
 \newcommand{\bAut}{\ensuremath{\mathbf{Aut}}}
 \newcommand{\Cg}{\ensuremath{\mathrm{Cg}}}
-\newcommand{\Con}{\ensuremath{\mathrm{Con}\,}}
+\newcommand{\Poly}{\ensuremath{\operatorname{Poly}}}
+\newcommand{\Con}{\ensuremath{\operatorname{Con}}}
+\newcommand{\Cg}{\ensuremath{\operatorname{Cg}}}
 \newcommand{\bCon}{\ensuremath{\mathbf{Con}\,}}
 \newcommand{\Sub}{\mbox{Sub}}
 \newcommand{\bSub}{\ensuremath{\mathbf{Sub}}}
