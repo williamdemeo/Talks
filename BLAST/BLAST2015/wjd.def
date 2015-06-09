@@ -25,6 +25,7 @@
 \newcommand{\Op}{\ensuremath{\operatorname{op}}}
 \newcommand{\sansPoly}{\ensuremath{\mathsf{pol}}}
 \newcommand{\sansRel}{\ensuremath{\mathsf{rel}}}
+\newcommand{\sansClo}{\ensuremath{\mathsf{clo}}}
 \newcommand{\sansH}{\ensuremath{\mathsf{H}}}
 \newcommand{\sansP}{\ensuremath{\mathsf{P}}}
 \newcommand{\bP}{\ensuremath{\mathbf{P}}}

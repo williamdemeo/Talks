@@ -80,7 +80,7 @@
 \begin{document}
 \thicklines
 
-\includeonlyframes{titlepage,intro,intro2,intro3,intro4,intro5}
+\includeonlyframes{titlepage,intro,intro2,intro3,intro4,intro5,intro6,problem1,cib,general1,cube,cp,general2,examples1,examples2,examples3,examples4,others}
 
 
 \frame[label=titlepage]{
@@ -97,7 +97,7 @@
   \begin{itemize}
   \item \emph{variables:} $V = \{v_1, v_2, \dots\}$
   \item \emph{domain:}  $D$
-  \item \emph{contraints:} $C_1, C_2, \dots$
+  \item \emph{constraints:} $C_1, C_2, \dots$
   \end{itemize}
   \vskip1cm
 %  \underline{Output}
@@ -286,8 +286,8 @@
   Let $\bar{R} := \sansRel (\sansPoly (R))$ be the ``closure'' of $R$.
   \onslide<5->
   \[\text{Then,} \quad \CSP\<D, R\> \leq_P \CSP\<D, \bar{R}\> \]
-  \onslide<6->
-  \[\text{{\bf Theorem:}} \quad \CSP\<D, \bar{R}\> \leq_P \CSP\<D, R\> \]
+  %% \onslide<6->
+  %% \[\text{{\bf Theorem:}} \quad \CSP\<D, \bar{R}\> \leq_P \CSP\<D, R\> \]
   %% \begin{theorem}
   %%   \[\CSP\<D, \bar{R}\> \leq_P \CSP\<D, R\> \]
   %% \end{theorem}
@@ -295,212 +295,190 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% 4: CSP dichotomy conjecture
-\frame[label=problem]{
+%% 6: CSP intro 6
+\frame[label=intro6]{
+%  \frametitle{Constraint Satisfaction Problems}
+  \frametitle{CSP: algebraic formulation}
+
+  \begin{theorem}[Bodnar\v{c}uk et al.; Geiger, 1968]
+    Let $R$ be a set of relations on a finite set.\\[4pt]
+    Then $\bar{R} := \sansRel (\sansPoly (R))$ is the set of relations
+    that are \emph{pp-definable} from $R$.
+  \end{theorem}
+  \vskip5mm
+  \onslide<2->
+  \begin{theorem}
+  Let $S\subseteq R$ be sets of relations.
+  \begin{itemize}
+  \item<2-> $\CSP(S) \leq_P \CSP(R)$ 
+    \onslide<3->{{\small ($\CSP(S)$
+    reducible to $\CSP(R)$)}}
+  \item<4-> $\CSP(R) \equiv_P \CSP(\bar{R})$
+    \onslide<5->{{\small ($\CSP(\bar{R})$
+    reducible to $\CSP(R)$!)}}
+  \end{itemize}
+  \end{theorem}
+  \vskip5mm
+  \onslide<6->{
+  \alert{Corollary} % If $R$ and $S$ are sets of relations on $D$, then
+  $\quad \<D, \sansPoly(R)\> = \<D, \sansPoly(S)\> \quad \Longrightarrow \quad
+  \CSP(R) \equiv_P \CSP(S)$
+  \vskip5mm
+  \emph{The algebras determine the complexity of
+  the corresponding constraint satisfaction problem!} }
+}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 7: CSP dichotomy conjecture
+\frame[label=problem1]{
   \frametitle{~}
   %  \framesubtitle{CSP dichotomy conjecture}
 
-  \alert{General Problem:} Find Maltsev conditions that characterize complexity of
-  CSPs of universal algebras.
-  \vskip3mm
+  \begin{block}{General Problem}
+  %% \alert{General Problem:}
+  Find properties (of algebras) that characterize
+  the complexity of CSPs.
+  \end{block}
 
   \begin{overprint}
-    \onslide<1->
+    \onslide<1|handout:0>
     \begin{block}{csp dichotomy conjecture}
       For a (finite, idempotent) algebra $\mathbf A$...
       \[
       \CSP (\mathbf A) \text{ is tractable } \; \Longleftrightarrow \;  \bA
-      \text{ has a wnu term operation}
+      \text{ has a weak-nu term operation}  \phantom{\quad \text{ ?}}
       \]
     \end{block}
-    \onslide<3->
+    \onslide<2|handout:0>
+    \begin{block}{csp dichotomy conjecture}
+      For a (finite, idempotent) algebra $\mathbf A$...
+      \[
+      \CSP (\mathbf A) \text{ is tractable } \; \Longrightarrow \;  \bA
+      \text{ has a weak-nu term operation}  \quad \checkmark
+      \]
+    \end{block}
+    \onslide<3-|handout:1>
     \begin{block}{csp dichotomy conjecture}
       For a (finite, idempotent) algebra $\mathbf A$...
       \[
       \CSP (\mathbf A) \text{ is tractable } \; \Longleftarrow \;  \bA
-      \text{ has a wnu term operation}
+      \text{ has a weak-nu term operation}  \quad \text{ (?)}
       \]
     \end{block}
   \end{overprint}
 
   \vskip3mm
 
-  \onslide<2-3>{ The left-to-right direction is known, the converse is open.} \\[10pt]
-
   \begin{overprint}
-    \onslide<4|handout:4>
-    A term $t(x_1, \dots, x_n)$ is a \alert{weak near unanimity}
-    term operation if it satisfies 
+    \onslide<2|handout:0>The left-to-right direction is known. \\[5pt]
+    \onslide<3|handout:0>The right-to-left direction is open. \\[5pt]
+    \onslide<4-|handout:1>
+    A \alert{weak near unanimity} (weak-nu) term operation is one that satisfies 
     \begin{align*}
-      t(x, x, \dots, x)&\approx x \quad \text{ (idempotent)}\\[4pt]
+      t(x, x, \dots, x)&\approx x \quad \text{ {\small (idempotent)}}\\[4pt]
       t(y, x, \dots, x) &\approx t(x, y, \dots, x) \approx \dots \approx
-      t(x, x, \dots, y).
+      t(x, x, \dots, y)
     \end{align*}
-
-    \onslide<5|handout:0>\begin{center}\includegraphics[height=1.5in]{figures/wnu-only-cropped.png}\end{center}
-    \onslide<6|handout:0>\begin{center}\includegraphics[height=1.5in]{figures/Taylor-cropped.png}\end{center}
-    \onslide<7|handout:0>\begin{center}\includegraphics[height=1.5in]{figures/Cyclic-cropped.png}\end{center}
-    \onslide<8|handout:0>\begin{center}\includegraphics[height=1.5in]{figures/Siggers-cropped.png}\end{center}
-    \onslide<9|handout:0>\begin{center}\includegraphics[height=1.5in]{figures/NP-cropped.png}\end{center}
-    \onslide<10|handout:4>\begin{center}\includegraphics[height=1.5in]{figures/P-cropped.png}\end{center}
   \end{overprint}
+  
+  \vskip3mm
+
+  \onslide<5->{
+    A \emph{binary} operation $t(x,y)$ is weak-nu if 
+    \begin{align*}
+      t(x, x)&\approx x \qquad \text{  {\small (idempotent)}}\\[4pt]
+      t(y, x) &\approx t(x, y)  \quad \text{  {\small (commutative)}}
+    \end{align*}
+    So let's try to prove (?) for 
+    \alert{commutative idempotent binars}.
+  }
 }
 
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% 2: Commutative Idempotent Binars
-\frame[label=problem]{
+%% 8: Commutative Idempotent Binars
+\frame[label=cib]{
   \frametitle{Commutative Idempotent Binars}
-  Some more definitions.
-  \begin{itemize}
-  \item A set $A$ together with a single binary operation is called a \alert{binar}.
+  A \alert{CIB} is an algebra $\bA = \<A, \cdot\>$ satisfying
+  $x\cdot y \approx y\cdot x$ and $x\cdot x \approx x$.
 
-  \item A \alert{commutative idempotent binar} is an algebra 
-    $\bA = \<A, \cdot\>$ satisfying $x\cdot y \approx y\cdot x$ and $x\cdot x \approx x$.
-
-  \item A binary operation $x\cdot y = t(x,y)$ is a WNU term if and only if it is idempotent and 
-    commutative. This suggests the following 
-  \end{itemize}
   \onslide<2->{
     \begin{block}{Question}
       Is every finite commutative idempotent binar tractable?
     \end{block}
-    If the dichotomy conjecture is to hold, then the answer must be ``yes.''
+    %  If the dichotomy conjecture is to hold, then the answer must be ``yes.''
     % We let **\cib** denote the variety of **commutative idempotent binars.**
-    \\[4pt]
+    \vskip2mm
     \onslide<3->{
-      A semilattice is an associative CIB.\\[4pt]
-      Semilattices are tractable (in fact, they have \emph{finite width}).  
-  }}
-
+      First Example: a semilattice is an associative CIB.\\[4pt]
+      Semilattices are tractable. % (in fact, they have \emph{finite width}).  
+    }
+    \vskip1cm
+    \onslide<4->{
+      Pause to consider more general case for a minute...
+    }
+  }
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% 3: More well known facts
 
-\frame[label=knownfigs]{
-  \frametitle{Some well known facts}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 9: More well known facts
+
+\frame[label=general1]{
+  \frametitle{General case}
+  \begin{block}{Some well known facts}
   Let $\bA$ be a finite idempotent algebra. Let $\mathbf S_2$ be the 2-elt semilattice.
   %% \begin{block}{}
   \begin{align*}
-    \V(\bA) \text{ is CP } &\Longleftrightarrow \quad \bA \text{ has Malcev term}\\
-    \onslide<3->{        &\Longrightarrow \quad \bA \text{ has cube term}\\
-      \onslide<4->{        &\Longrightarrow \quad \V(\bA) \text{ is CM}\\
-        \onslide<5->{        &\Longrightarrow \quad \bS_2 \text{ is not in }
+    \V(\bA) \text{ is CP } &\Longleftrightarrow \; \bA \text{ has Malcev term}\\
+    \onslide<3->{        &\Longrightarrow \; \bA \text{ has cube term}\\
+      \onslide<4->{        &\Longrightarrow \; \V(\bA) \text{ is CM}\\
+        \onslide<5->{        &\Longrightarrow \; \bS_2 \text{ is not in }
           \V(\bA)
         }
       }
     }
   \end{align*}
-  %% \end{block}
-
-  \begin{overprint}
-    \onslide<2->
-    \begin{center}\includegraphics[height=2in]{figures/CP-cropped.png}\end{center}
-    \onslide<3->
-    \begin{center}\includegraphics[height=2in]{figures/Cube-cropped.png}\end{center}
-    \onslide<4->
-    \begin{center}\includegraphics[height=2in]{figures/CM-cropped.png}\end{center}
-    \onslide<5->
-    \begin{center}\includegraphics[height=2in]{figures/NoSL-cropped.png}\end{center}
-  \end{overprint}
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% 4: Some well known facts
-\frame[label=known]{
-  \frametitle{Some well known facts}
-
-  $\bA=$ a finite idempotent algebra\\[4pt]
-  $\mathbf S_2=$ the 2-elt semilattice.
-
-  \begin{align*}
-    \V(\bA) \text{ is CP } &\Longleftrightarrow \quad \bA \text{ has a Malcev term}\\
-    &\Longrightarrow \quad \bA \text{ has a cube term}\\
-    &\Longrightarrow \quad \V(\bA) \text{ is CM}\\
-    &\Longrightarrow \quad \bS_2 \text{ is not in } \V(\bA)
-  \end{align*}
-
-  \begin{columns}
-    \begin{column}{0.4\textwidth}
-      \begin{center}\includegraphics[height=1.25in]{figures/NoSL-cropped.png}\end{center}
-    \end{column}
-    \begin{column}{0.6\textwidth}
-      \begin{itemize}
-      \item<2-> cube term $\Longrightarrow$ CM\\[4pt]
-        \emph{Proof:} few subalgebras of powers\\[5pt]
-        Berman, Idziak, Markovi{\'c}, McKenzie, Valeriote, Willard (BIMMVW) 2010.
-        %% ``Varieties with few subalgebras of powers'' 
-        \\[10pt]
-      \item<3-> CM $\Longrightarrow \; \bS_2$ is not in $\V(\bA)$\\[4pt]
-        \emph{Proof:} $\bS_2 \in \V(\bA) \; \Rightarrow\; \bS_2^2 \in \V(\bA)$;\\[4pt]
-        ~ \phantom{\emph{Proof:}} $\Con(\bS_2^2)$ is not modular.
-      \end{itemize}
-    \end{column}
-  \end{columns}
-}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% 5
-\frame[label=known]{
-  \frametitle{Commutative Idempotent Binars (CIBs)}
-  Let $\bA$ be a CIB.
-  \begin{align*}
-    \V(\bA) \text{ is CP } &\Longleftrightarrow \quad \bA \text{ has Malcev term}\\
-    &\Longrightarrow \quad \bA \text{ has cube term}\\
-    &\Longrightarrow \quad \V(\bA) \text{ is CM}\\
-    &\Longrightarrow \quad \bS_2 \text{ is not in } \V(\bA)
-  \end{align*}
-
-  \begin{overprint}
-    \onslide<1->
-    \begin{center}\includegraphics[height=2in]{figures/NoSL-cropped.png}\end{center}
-    \onslide<2->
-    \begin{center}\includegraphics[height=2in]{figures/CubeEquiv-cropped.png}\end{center}
-    \onslide<3->
-    \begin{center}\includegraphics[height=2in]{figures/CPequiv-cropped.png}\end{center}
-  \end{overprint}
-}
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% 6
-\frame[label=cube]{
-  \frametitle{Cube Terms}
-  \begin{block}{}
-    A \alert{cube operation} is
-    a function $c: A^n \rightarrow A$ satisfying
-    for each $1 \leq i \leq n$ 
-    $c(w_1, \dots, w_n) = x$ where 
-    $\{w_1, \dots, w_n\} \subseteq \{x, y\}$ and 
-    $w_i = y$.
-    \\[4pt]
-    Here $x$ and $y$ are distinct variables.
-    \\[6pt]
-    An algebra $\bA$ is said to have a \alert{cube term} if its clone
-    of term operations contains a cube operation. 
   \end{block}
-  \vfill
-  \onslide<2->{
-    Cube terms were introduced in... ?\\[8pt]
-    Berman, Idziak, Markovi{\'c}, McKenzie, Valeriote, Willard,\\
-    ``Varieties with few subalgebras of powers,'' 2010. \\[10pt]
-    Markovi{\'c}, Mar{\'o}ti, McKenzie,\\
-    ``Finitely related clones \& algebras with cube terms,'' 2012.}
+
+  \begin{overprint}
+    \onslide<2|handout:1>
+    \begin{center}\includegraphics[height=2in]{figures/CP-cropped.png}\end{center}
+    \onslide<3|handout:0>
+    \begin{center}\includegraphics[height=2in]{figures/Cube-cropped.png}\end{center}
+    \onslide<4|handout:0>
+    \begin{center}\includegraphics[height=2in]{figures/CM-cropped.png}\end{center}
+    \onslide<5|handout:0>
+    \begin{center}\includegraphics[height=2in]{figures/NoSL-cropped.png}\end{center}
+  \end{overprint}
 }
 
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% 4
+%% 10
 \frame[label=cube]{
-  \frametitle{Cube Term Blockers}
+  \frametitle{First Reduction}
+  \framesubtitle{by Cube-Term Blockers}
+
+  Markovi{\'c}, M.~Mar{\'o}ti, McKenzie ($M^4$)\\
+  ``Finitely related clones and algebras with cube terms'' (2012)
+
   \begin{block}{}
     %% \begin{definition}
-    A \alert{cube term blocker} (CTB) for $\bA$ is a pair $(C, B)$ of subuniverses
-    of $\bA$ satisfying $\emptyset < C < B \leq A$ and for every term 
-    $t(x_1, \dots, x_n)$ of $\bA$ there is an index $i \in [n]$ such that 
+    A \alert{cube-term blocker} (CTB) is a pair $(C, B)$ of subuniverses
+    %% of $\bA$ 
+    satisfying $\emptyset < C < B \leq A$ and for every
+    $t(x_1, \dots, x_n)$ %% of $\bA$ 
+    there is an index $i \in [n]$ with
     \[
     (\forall (b_1, \dots, b_n) \in B^n) (b_i \in C \longrightarrow t(b_1, \dots, b_n)\in C).
     \]
@@ -509,130 +487,285 @@
   %% We call a set $D$ a (proper) \defn{ideal} of a \cib $\bA = \< A, \cdot\>$
   %%   if $D$ is a (proper) subset of $A$ satisfying $d\cdot a \in D$ for all 
   %% $d\in D$ and $a \in A$.
-  Markovi{\'c}, Mar{\'o}ti, McKenzie proved that a finite idempotent algebra has
-  a cube term iff it possesses no CTB.  
+\onslide<2->$M^4$ prove a finite idempotent algebra has
+  a cube term iff it has no CTB.  
 
   \vfill
-  \onslide<2->{
+  \onslide<3->{
     \begin{lemma}
-      A finite CIB $\bA = \<A, \cdot\>$ has a CTB if and only if 
+      A finite CIB $\bA$ has a CTB if and only if 
       $\bS_2 \in \sansH \sansS (\bA)$.
     \end{lemma}
-    \onslide<3->{
+    \onslide<4->{
       \begin{proof}
-        If $(C, B)$ is a CTB, then $\theta = C^2 \cup (B- C)^2$ is a congruence of
-        $\bB = \<B, \cdot\>$ and $\bB/\theta \cong \bS_2$. 
+        $(C, B)$ a CTB implies
+        $\theta = C^2 \cup (B- C)^2$ a congruence with $\bB/\theta \cong \bS_2$. 
         \\[5pt]
         Conversely, suppose $\bS_2 \in \sansH \sansS (\bA)$, and $\bB$ is 
         a subalgebra of $\bA$ with $\bB/\theta$ a meet-SL for some $\theta$. 
         Let $C/\theta$ be the bottom of $\bB/\theta$, then $(C, B)$ is a CTB.
       \end{proof}
     }
-}}
-
-
+  }
 }
 
 
 
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  %% 4
-  \frame[label=cube]{
-    \frametitle{Collapse for CIBs}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 11
+\frame[label=cp]{
+  \frametitle{Second Reduction}
 
-    Kearnes and Tschantz,
-    ``Automorphism groups of squares and of free algebras,'' 2007.
+  Kearnes and Tschantz\\
+  ``Automorphism groups of squares and of free algebras'' (2007)
 
-    \begin{lemma}
-      If $V$ is an idempotent variety that is not congruence permutable, then there
-      are subuniverses $U$ and $W$ of $\bF := \bF_V\{x, y\}$ (the 2-generated free
-      algebra) satisfying 
-      \begin{enumerate}[1.]
-      \item $x\in U \cap W$
-      \item $y \in U^c \cap W^c$
-      \item $(U \times F) \cup (F \times W) \leq \bF^2$
-      \end{enumerate}
-    \end{lemma}
-    \onslide<2->{
-      For CIB's, $U$ or $W$ will be an ideal.\\[4pt]
-      This implies a CTB and a semilattice.}
-  }
+  \begin{lemma}
+    If $V$ is an idempotent variety that is not congruence permutable, then there
+    are subuniverses $U$ and $W$ of $\bF := \bF_V\{x, y\}$ %% (the 2-generated free
+    %% algebra)
+    satisfying 
+    \begin{enumerate}[1.]
+    \item $x\in U \cap W$
+    \item $y \in U^c \cap W^c$
+    \item $(U \times F) \cup (F \times W) \leq \bF^2$
+    \end{enumerate}
+  \end{lemma}
+  \onslide<2->{
+    For CIB's, either $U$ or $W$ will be an ideal.\\[4pt]
+    This implies a CTB and a semilattice.}
+}
 
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  %% 4
-  \frame[label=examples]{
-    \frametitle{Remaining Question for CIBs}
 
-    \begin{block}{Conclusion}
-      Let $\bA$ be a CIB and $\bS_2 \notin \V(\bA)$. Then $\CSP(\bA)$ is tractable.
-    \end{block}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 12: Some well known facts
+\frame[label=general2]{
+  \frametitle{}
 
-    \onslide<2->
-    \begin{block}{Open Question}
-      Let $\bA$ be a CIB and $\bS_2 \in \V(\bA)$.  Is $\CSP(\bA)$ tractable?
-    \end{block}
+  $\bA=$ a finite CIB \hskip1cm
+  $\mathbf S_2=$ the 2-elt semilattice.
 
-    Recall, for every $\bA$, 
-    \begin{itemize}
-    \item<3->if $\bS_2 \in \V(\bA)$, then $\V(\bA)$ is not CM;
+  \begin{align*}
+    \V(\bA) \text{ is CP } &\Longleftrightarrow \quad \bA \text{ has a Malcev term}\\
+    &\Longrightarrow \quad \bA \text{ has a cube term}\\
+    &\Longrightarrow \quad \V(\bA) \text{ is CM}\\
+    &\Longrightarrow \quad \bS_2 \text{ is not in } \V(\bA)
+    \uncover<2->{ \\   &{\mathbf \Longrightarrow} \quad \bA \text{ has a cube term} }
+    \uncover<3->{ \\   &{\mathbf \Longrightarrow} \quad \V(\bA) \text{ is CP } }
+  \end{align*}
 
-    \item<4-> if $\V(\bA)$ is  $\mathrm{SD}_\wedge$, then $\CSP(\bA)$ is
-      tractable (in fact, always has a solution).
-    \end{itemize}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \begin{overprint}
+        \onslide<1|handout:0>
+        \begin{center}\includegraphics[height=1.25in]{figures/NoSL-cropped.png}\end{center}
+        \onslide<2|handout:0>
+        \begin{center}\includegraphics[height=1.25in]{figures/CubeEquiv-cropped.png}\end{center}
+        \onslide<3|handout:1>
+        \begin{center}\includegraphics[height=1.25in]{figures/CPequiv-cropped.png}\end{center}
+      \end{overprint}
+      \vskip1cm
+    \end{column}
+    \begin{column}{0.6\textwidth}
+        \begin{itemize}
+        \item<2-> 1st reduction by cube-term blockers.
+        \end{itemize}
+        \begin{itemize}
+        \item<3-> 2nd reduction by Kearnes-Tschantz.
+        \end{itemize}
+    \end{column}
+  \end{columns}
+}
 
-    \onslide<5->
-    \begin{block}{Revised Question}
-      Let $\bA$ be a CIB with $\bS_2$ in $\V(\bA)$, not $\mathrm{SD}_\wedge$.
-      Is $\CSP(\bA)$ tractable?
-    \end{block}
 
-  }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 13
+\frame[label=remaining]{
+  \frametitle{Remaining Questions for Finite CIBs}
 
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  %% 4
-  \frame[label=examples]{
-    \frametitle{Examples}
+  \begin{block}{Conclusion}
+    Let $\bA$ be a finite CIB. Then 
+\[
+\bS_2 \notin \sansH \sansS (\bA) \text{ if and
+    only if } \V(\bA) \text{ is congruence permutable.}
+\]
+\onslide<2->(so $\CSP(\bA)$ tractable in this case)
+  \end{block}
 
-    \begin{tabular}{c|cccc}
-      $\cdot$ & 0 & 1 & 2 & 3\\
-      \hline
-      0 & 0 & 0 & 0 & 1\\
-      1 & 0 & 1 & 3 & 2\\
-      2 & 0 & 3 & 2 & 1\\
-      3 & 1 & 2 & 1 & 3\\
-    \end{tabular}
-    \hskip1cm
-    \begin{tabular}{c|cccc}
-      $\ast$ & 0 & 1 & 2 & 3\\
-      \hline
-      0 & 0 & 0 & 1 & 1\\
-      1 & 0 & 1 & 3 & 2\\
-      2 & 1 & 3 & 2 & 1\\
-      3 & 1 & 2 & 1 & 3\\
-    \end{tabular}
-    \vskip1cm
-    \begin{columns}
-      \begin{column}{0.4\textwidth}
-        \begin{tabular}{c|cccc}
-          $\circ$ & 0 & 1 & 2 & 3\\
-          \hline
-          0 & 0 & 0 & 2 & 1\\
-          1 & 0 & 1 & 3 & 2\\
-          2 & 2 & 3 & 2 & 1\\
-          3 & 1 & 2 & 1 & 3\\
+  \onslide<3->
+  \begin{block}{Open Question}
+    Let $\bA$ be a finite CIB with $\bS_2$ in $\sansH \sansS (\bA)$.  Is $\CSP(\bA)$ tractable?
+  \end{block}
+
+\onslide<4->  Recall, 
+    if $\V(\bA)$ is  $\mathrm{SD}_\wedge$, then $\CSP(\bA)$ is
+    tractable.
+
+%% %% for every $\bA$, 
+%%   %% \begin{itemize}
+%%   %% \item<3->if $\bS_2 \in \V(\bA)$, then $\V(\bA)$ is not CM;
+%%   %% \item<4->
+%%     if $\V(\bA)$ is  $\mathrm{SD}_\wedge$, then $\CSP(\bA)$ is
+%%     tractable.
+%%   %% \end{itemize}
+
+  \onslide<5->
+  \begin{block}{Revised Question}
+    Let $\bA$ be a finite CIB with $\bS_2$ in $\sansH \sansS (\bA)$,
+    and $\V(\bA)$ not $\mathrm{SD}_\wedge$.\\[4pt] 
+    Is $\CSP(\bA)$ tractable?
+  \end{block}
+
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 14
+\frame[label=examples1]{
+  \frametitle{Example 1}
+
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+  \begin{tabular}{c|cccc}
+    $\cdot$ & 0 & 1 & 2 & 3\\
+    \hline
+    0 & 0 & 0 & 0 & 1\\
+    1 & 0 & 1 & 3 & 2\\
+    2 & 0 & 3 & 2 & 1\\
+    3 & 1 & 2 & 1 & 3\\
+  \end{tabular}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \onslide<2->
+      \emph{Cliff's trick:} replace binary operation with a term from
+      $\sansClo(\bA)$, say 
+      \[x \ast y = (x\cdot(x\cdot y)) \cdot (y\cdot(x\cdot y))
+      \]
+      \\[6pt] 
+      If $\<A, \ast\>$ tractable, then so is $\bA = \<A, \cdot\>$.
+      \\[6pt] 
+      \onslide<3->
+      \begin{align*}
+      \{\ast\} \subseteq \sansClo(\bA) \quad &\Longrightarrow \quad \sansRel(\sansClo(\bA)) 
+      \subseteq \sansRel(\{\ast\})\\
+      &\Longrightarrow \quad \CSP(\bA) \leq_P \CSP\<A, \ast\>
+      \end{align*}
+    \end{column}
+  \end{columns}
+  \onslide<4->
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \begin{tabular}{c|cccc}
+        $\ast$ & 0 & 1 & 2 & 3\\
+        \hline
+        0 & 0 & 0 & 0 & 0\\
+        1 & 0 & 1 & 3 & 2\\
+        2 & 0 & 3 & 2 & 1\\
+        3 & 0 & 2 & 1 & 3\\
         \end{tabular}
-      \end{column}
-      \begin{column}{0.5\textwidth}
-        Maroti's idea:
-        \vskip1cm
-        Bergman's idea: replace basic binary operation with a term from
-        $\Clo(\bA)$, say $t(x,y) = (x\ast y) \ast x$.\\[4pt] If $\<A, t\>$ tractable,
-        then so is $\<A, \ast\>$
-      \end{column}
-    \end{columns}
-  }
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      $\<A, \ast\> \text{  tractable } \quad  \Longrightarrow \quad \bA 
+\text{  tractable }$ 
+    \end{column}
+  \end{columns}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 15
+\frame[label=examples2]{
+  \frametitle{Example 2}
+
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+  \begin{tabular}{c|cccc}
+    $\cdot$ & 0 & 1 & 2 & 3\\
+    \hline
+    0 & 0 & 0 & 1 & 1\\
+    1 & 0 & 1 & 3 & 2\\
+    2 & 1 & 3 & 2 & 1\\
+    3 & 1 & 2 & 1 & 3\\
+  \end{tabular}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      Let $t(x,y) = x\cdot(x\cdot(x\cdot y)) \cdot y\cdot (y\cdot(x\cdot y))$.
+    \end{column}
+  \end{columns}
+
+\vskip3mm
+
+  \onslide<3->
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \begin{tabular}{c|cccc}
+        $t$ & 0 & 1 & 2 & 3\\
+        \hline
+        0 & 0 & 0 & 0 & 1\\
+        1 & 0 & 1 & 3 & 2\\
+        2 & 0 & 3 & 2 & 1\\
+        3 & 1 & 2 & 1 & 3\\
+        \end{tabular}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      $\<A, t\> \text{  tractable }$ 
+    \end{column}
+  \end{columns}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 16
+\frame[label=examples3]{
+  \frametitle{Example 3}
+
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+  \begin{tabular}{c|cccc}
+    $\cdot$ & 0 & 1 & 2 & 3\\
+    \hline
+    0 & 0 & 0 & 2 & 1\\
+    1 & 0 & 1 & 3 & 2\\
+    2 & 2 & 3 & 2 & 1\\
+    3 & 1 & 2 & 1 & 3\\
+  \end{tabular}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+\onslide<2->      Let $t_2(x,y) = \dots$ ?
+\vskip2mm
+\onslide<3->      Let $t_3(x,y,z) = \dots$ ?
+    \end{column}
+  \end{columns}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 17
+\frame[label=others]{
+  \frametitle{}
+...and about 25 others.
+
+\begin{center}\includegraphics[height=2in]{figures/UACalcBergman.png}
+%% \includegraphics[height=1.5in]{figures/BergmanDirectory.png}
+\end{center}
+
+To see them, load UACalc with files 
+from the \alert{Bergman} directory at
+\begin{center}
+{\bf \url{https://github.com/UACalc/AlgebraFiles} }
+\\[6pt]
+\onslide<2->Thank you for listening!
+\end{center}
+
+}
 
 \end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 18
+\frame[label=goodbye]{
+  \frametitle{}
+\begin{center}
+Thank you for listening!
+\end{center}
+}
+
 
 
 
