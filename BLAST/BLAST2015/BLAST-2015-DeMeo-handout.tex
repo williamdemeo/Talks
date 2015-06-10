@@ -1,18 +1,19 @@
 %\documentclass[xcolor=dvipsnames,9pt]{beamer} 
-\documentclass[xcolor=dvipsnames,9pt,hide notes,mathserif]{beamer}
-%\documentclass[xcolor=dvipsnames,9pt,handout,hide notes,mathserif]{beamer}
+%\documentclass[xcolor=dvipsnames,9pt,hide notes,mathserif]{beamer}
+\documentclass[xcolor=dvipsnames,9pt,handout,hide notes,mathserif]{beamer}
 
 \usepackage{pgfpages}
 \usepackage{listings}
 %\usepackage{enumitem}
 
 %% For creating a handout:
-\mode<handout>{\pgfpagesuselayout{4 on 1}[border shrink=5mm]
+\pgfpagesuselayout{4 on 1}[border shrink=5mm]
+%\pgfpagesuselayout{4 on 1}[landscape, border shrink=5mm]
 \pgfpageslogicalpageoptions{1}{border code=\pgfusepath{stroke}}
 \pgfpageslogicalpageoptions{2}{border code=\pgfusepath{stroke}}
 \pgfpageslogicalpageoptions{3}{border code=\pgfusepath{stroke}}
 \pgfpageslogicalpageoptions{4}{border code=\pgfusepath{stroke}}
-}
+%\mode<handout>{\setbeamercolor{background canvas}{bg=black!5}}
 
 %% For creating notes for the speaker:
 %\setbeameroption{notes on second screen}
@@ -80,8 +81,7 @@ CSPs of Commutative Idempotent Binars}
 
 \date[BLAST 2015]{ % (optional, should be abbreviation of conference name)
   BLAST 2015\\{\small University of North Texas}\\
-  {\small June 8--12}\\[6pt]
-}
+  {\small June 8--12}}
 
 \subject{Universal Algebra; Lattice Theory; CSP.}% (optional) inserted into PDF info catalog.
 
