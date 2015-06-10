@@ -1,20 +1,19 @@
 %\documentclass[xcolor=dvipsnames,9pt]{beamer} 
-\documentclass[xcolor=dvipsnames,9pt,hide notes,mathserif]{beamer}
-%\documentclass[xcolor=dvipsnames,9pt,handout,hide notes,mathserif]{beamer}
+%\documentclass[xcolor=dvipsnames,9pt,hide notes,mathserif]{beamer}
+\documentclass[xcolor=dvipsnames,9pt,handout,hide notes,mathserif]{beamer}
 
 \usepackage{pgfpages}
 \usepackage{listings}
 %\usepackage{enumitem}
 
 %% For creating a handout:
-\mode<handout>{
 \pgfpagesuselayout{4 on 1}[border shrink=5mm]
 %\pgfpagesuselayout{4 on 1}[landscape, border shrink=5mm]
 \pgfpageslogicalpageoptions{1}{border code=\pgfusepath{stroke}}
 \pgfpageslogicalpageoptions{2}{border code=\pgfusepath{stroke}}
 \pgfpageslogicalpageoptions{3}{border code=\pgfusepath{stroke}}
 \pgfpageslogicalpageoptions{4}{border code=\pgfusepath{stroke}}
-}
+%\mode<handout>{\setbeamercolor{background canvas}{bg=black!5}}
 
 \usepackage{pgfpages}
 \usepackage{listings}
@@ -277,7 +276,7 @@
   \frametitle{Recent results}
 
   \begin{overprint}
-    \onslide<1-2|handout:1>
+    \onslide<1|handout:1>
     $\bA=$ a finite idempotent algebra
     \onslide<3-|handout:2->
     $\bA=$ a finite {\bf CIB}
