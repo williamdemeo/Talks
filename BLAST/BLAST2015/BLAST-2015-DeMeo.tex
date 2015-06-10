@@ -60,7 +60,9 @@
 % Or whatever. Note that the encoding and the font should match. If T1
 % does not look nice, try deleting the line with the fontenc.
 
-\title{CSPs of Finite Commutative Idempotent Binars}
+\title{The Algebraic Approach to CSP\\
+{\small and}\\
+CSPs of Commutative Idempotent Binars}
 
 \author[William DeMeo]{William DeMeo\\
   {\small \url{williamdemeo@gmail.com}}\\[4pt]
@@ -73,14 +75,15 @@
 
 \date[BLAST 2015]{ % (optional, should be abbreviation of conference name)
   BLAST 2015\\{\small University of North Texas}\\
-  {\small June 7--12}}
+  {\small June 8--12}}
 
 \subject{Universal Algebra; Lattice Theory; CSP.}% (optional) inserted into PDF info catalog.
 
 \begin{document}
 \thicklines
 
-\includeonlyframes{titlepage,intro,intro2,intro3,intro4,intro5,intro6,problem1,cib,general1,cube,cp,general2,examples1,examples2,examples3,examples4,others}
+\includeonlyframes{titlepage,intro,intro2,intro3,intro4,intro5,intro6,problem1,cib,general1,cube,cp,general2,remaining,examples1,examples2,examples3,examples4,others}
+%%\includeonlyframes{intro6}
 
 
 \frame[label=titlepage]{
@@ -194,7 +197,7 @@
   %% \end{overprint}
 \onslide<3->
   Then a solution $\sigma$ must satisfy
-  ``$\sigma \sC \subseteq \sR$''
+  ``$\sigma S \subseteq R$''
 \[
 \text{that is, } \quad (x,y,z) \in S \; \Longrightarrow \;
 (\sigma x, \sigma y, \sigma z) \in R
@@ -210,7 +213,7 @@
   \frametitle{CSP: relational formulation}
 
   Let $\bbD = \<D, \sR\>$ be a relational structure.\\[4pt]
-  $\CSP (\bbD)$ is the decision problem with\\[6pt]
+  $\CSP (\bbD)$ (or $\CSP(\sR)$) is the decision problem with\\[6pt]
 %  \underline{Input}
   {\bf Input}
   \begin{itemize}
@@ -227,19 +230,19 @@
   \begin{overprint}
   \onslide<2->
   Alternatively, let $\Rightarrow$ be the binary relation on
-  similar structures
+  similar structures:
   \[
   \bbV \Rightarrow \bbD \quad 
   \text{ iff there is a homomorphism $\sigma: \bbV \rightarrow \bbD$}
   \]
-  Then the CSP is the membership problem for the set
+  Then the CSP of $\bbD$ is the membership problem for the set
   \[
   \CSP(\bbD) := \{\bbV : \bbV \Rightarrow \bbD\}
   \]
   \onslide<3->
-  We call $\bbD$ ``tractable'' if there is a
-  polynomial-time algorithm for
-  $\CSP(\bbD)$.
+  We call $\bbD$ (or $\sR$) ``tractable'' if there is a
+  polynomial-time algorithm for solving
+  $\CSP(\bbD)$ (or $\CSP(\sR)$).
   %%  in time polynomial in the size of $\bbV$.
   %% any instance $\bbV$\\ 
   %%   of $\CSP(\bbD)$ in time polynomial in the size of $\bbV$.
@@ -257,12 +260,12 @@
   define the \emph{polymorphisms} of $R$,
   \[
   \sansPoly(R) := \{f:D^k \rightarrow D \mid
-  f(\rho)\subseteq \rho \text{ for every } \rho \in R \}
+  f(\rho)\subseteq \rho \text{ {\small for every} } \rho \in R \}
   \]
   \begin{overprint}
   \onslide<2->
   that is, 
-    $f\in \sansPoly(R)$ iff for every $\rho\in R$ {\small (say, $n$-ary)}
+    $f\in \sansPoly(R)$ iff for every $\rho\in R$ %{\small (say, $n$-ary)}
   \vskip2mm 
   \begin{tabular}{rcl}
     $(a_1, b_1, \dots, z_1)$ &$\in$ & $\rho$\\
@@ -277,20 +280,6 @@
   We call $\bD$ ``tractable'' if the corresponding 
   structure $\<D, R\>$ is tractable.
   \end{overprint}
-  \onslide<4-> For $F$ a set of operations on $D$,
-  define the \emph{relational clone} of $F$,
-  \[
-  \sansRel(F) := \{\rho \subseteq D^n \mid
-  f(\rho)\subseteq \rho \text{ for every } f \in F \}
-  \]
-  Let $\bar{R} := \sansRel (\sansPoly (R))$ be the ``closure'' of $R$.
-  \onslide<5->
-  \[\text{Then,} \quad \CSP\<D, R\> \leq_P \CSP\<D, \bar{R}\> \]
-  %% \onslide<6->
-  %% \[\text{{\bf Theorem:}} \quad \CSP\<D, \bar{R}\> \leq_P \CSP\<D, R\> \]
-  %% \begin{theorem}
-  %%   \[\CSP\<D, \bar{R}\> \leq_P \CSP\<D, R\> \]
-  %% \end{theorem}
 
 }
 
@@ -300,33 +289,65 @@
 %  \frametitle{Constraint Satisfaction Problems}
   \frametitle{CSP: algebraic formulation}
 
-  \begin{theorem}[Bodnar\v{c}uk et al.; Geiger, 1968]
-    Let $R$ be a set of relations on a finite set.\\[4pt]
-    Then $\bar{R} := \sansRel (\sansPoly (R))$ is the set of relations
-    that are \emph{pp-definable} from $R$.
-  \end{theorem}
+  \onslide<1-> For $F$ a set of operations on $D$,
+  define the \emph{relational clone} of $F$,
+  \[
+  \sansRel(F) := \{\rho \subseteq D^n \mid
+  f(\rho)\subseteq \rho \text{ for every } f \in F \}
+  \]
+  Let $\bar{R} := \sansRel (\sansPoly (R))$ be the ``closure'' of $R$.
   \vskip5mm
   \onslide<2->
+  Then, $\CSP\<D, R\>$ is \emph{poly-time reducible} to $\CSP\<D, \bar{R}\>$.
+  %Denoted $\CSP\<D, R\> \leq_P \CSP\<D, \bar{R}\>$,
+  \onslide<3->
+  In fact, 
   \begin{theorem}
-  Let $S\subseteq R$ be sets of relations.
-  \begin{itemize}
-  \item<2-> $\CSP(S) \leq_P \CSP(R)$ 
-    \onslide<3->{{\small ($\CSP(S)$
-    reducible to $\CSP(R)$)}}
-  \item<4-> $\CSP(R) \equiv_P \CSP(\bar{R})$
-    \onslide<5->{{\small ($\CSP(\bar{R})$
-    reducible to $\CSP(R)$!)}}
-  \end{itemize}
+    $\CSP\<D, R\> \equiv_P \CSP\<D, \bar{R}\>$
   \end{theorem}
-  \vskip5mm
-  \onslide<6->{
+  \vskip2mm
+  \onslide<4->{
   \alert{Corollary} % If $R$ and $S$ are sets of relations on $D$, then
-  $\quad \<D, \sansPoly(R)\> = \<D, \sansPoly(S)\> \quad \Longrightarrow \quad
+  %% $\quad \<D, \sansPoly(R)\> = \<D, \sansPoly(S)\> \quad \Longrightarrow \quad
+  $\quad \sansPoly(R) = \sansPoly(S) \quad \Longrightarrow \quad
   \CSP(R) \equiv_P \CSP(S)$
   \vskip5mm
-  \emph{The algebras determine the complexity of
-  the corresponding constraint satisfaction problem!} }
+  \emph{The algebra $\<D, \sansPoly(R)\>$ determines the complexity of
+  the corresponding CSP!} }
 }
+
+  %% \onslide<6->
+  %% \[\text{{\bf Theorem:}} \quad \CSP\<D, \bar{R}\> \leq_P \CSP\<D, R\> \]
+  %% \begin{theorem}
+  %%   \[\CSP\<D, \bar{R}\> \leq_P \CSP\<D, R\> \]
+  %% \end{theorem}
+  %% \begin{theorem}[Bodnar\v{c}uk et al.; Geiger, 1968]
+  %%   Let $R$ be a set of relations on a finite set.\\[4pt]
+  %%   Then $\bar{R} := \sansRel (\sansPoly (R))$ is the set of relations
+  %%   that are \emph{pp-definable} from $R$.
+  %% \end{theorem}
+  %% \vskip5mm
+  %% \onslide<2->
+%%   \begin{theorem}
+%%   Let $S\subseteq R$ be sets of relations.
+%%   \begin{itemize}
+%%   \item $\CSP(S) \leq_P \CSP(R)$ 
+%%     \onslide<3->{{\small (i.e., $\CSP(S)$
+%%     reducible to $\CSP(R)$)}}
+%%   \item $\CSP(R) \equiv_P \CSP(\bar{R})$
+%%     \onslide<3->{{\small (i.e., $\CSP(\bar{R})$
+%%     reducible to $\CSP(R)$!)}}
+%%   \end{itemize}
+%%   \end{theorem}
+%%   \vskip5mm
+%%   \onslide<4->{
+%%   \alert{Corollary} % If $R$ and $S$ are sets of relations on $D$, then
+%%   $\quad \<D, \sansPoly(R)\> = \<D, \sansPoly(S)\> \quad \Longrightarrow \quad
+%%   \CSP(R) \equiv_P \CSP(S)$
+%%   \vskip5mm
+%%   \emph{The algebras determine the complexity of
+%%   the corresponding CSP!} }
+%% }
 
 
 
@@ -480,23 +501,27 @@
     $t(x_1, \dots, x_n)$ %% of $\bA$ 
     there is an index $i \in [n]$ with
     \[
-    (\forall (b_1, \dots, b_n) \in B^n) (b_i \in C \longrightarrow t(b_1, \dots, b_n)\in C).
+    (\forall (b_1, \dots, b_n) \in B^n) (b_i \in C \longrightarrow t(b_1, \dots, b_n)\in C)
     \]
   \end{block}
+    \onslide<2->
+    \[
+    t(b_1, \dots, b_{i-1}, c, b_{i+1}, \dots, b_n)\in C
+    \]
   %% \end{definition}
   %% We call a set $D$ a (proper) \defn{ideal} of a \cib $\bA = \< A, \cdot\>$
   %%   if $D$ is a (proper) subset of $A$ satisfying $d\cdot a \in D$ for all 
   %% $d\in D$ and $a \in A$.
-\onslide<2->$M^4$ prove a finite idempotent algebra has
-  a cube term iff it has no CTB.  
+    \onslide<3->$M^4$ prove a finite idempotent algebra has
+    a cube term iff it has no CTB.  
 
   \vfill
-  \onslide<3->{
+  \onslide<4->{
     \begin{lemma}
       A finite CIB $\bA$ has a CTB if and only if 
       $\bS_2 \in \sansH \sansS (\bA)$.
     \end{lemma}
-    \onslide<4->{
+    \onslide<5->{
       \begin{proof}
         $(C, B)$ a CTB implies
         $\theta = C^2 \cup (B- C)^2$ a congruence with $\bB/\theta \cong \bS_2$. 
@@ -694,7 +719,7 @@
 
 \vskip3mm
 
-  \onslide<3->
+  \onslide<2->
   \begin{columns}
     \begin{column}{0.4\textwidth}
       \begin{tabular}{c|cccc}
