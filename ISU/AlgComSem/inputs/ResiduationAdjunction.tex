@@ -36,11 +36,13 @@ $\alpha\resB = \alpha \cap B^2$, is a lattice epimorphism of $\Con\bA$ onto $\Co
     \end{column}
     \begin{column}{0.3\textwidth}
       \includegraphics[height=2cm]{inputs/starchart}
-      \begin{center} \only<1>{star map}\only<2>{\sout{star map} star chart}\end{center}
+      %% \begin{center} \only<1>{star map}\only<2>{\sout{star map} star chart}\end{center}
+      \begin{center}star map?\end{center}
     \end{column}
     \begin{column}{0.3\textwidth}
       \includegraphics[height=2cm]{inputs/maphat.jpg}
-      \begin{center}\only<1>{hat map}\only<2>{\sout{hat map} map hat}\end{center}
+      %% \begin{center}\only<1>{hat map}\only<2>{\sout{hat map} map hat}\end{center}
+      \begin{center}hat map?\end{center}
     \end{column}
   \end{columns}
 \end{frame}
@@ -86,7 +88,7 @@ $\alpha\resB = \alpha \cap B^2$, is a lattice epimorphism of $\Con\bA$ onto $\Co
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile,label=P5Lemma]{Residuation lemma}
-A lemma relating the three maps $\,^*\,$, $\, \resB\,$ and $\,\hatmap$.
+A lemma relating the three maps $\,^*\,$, $\, \resB\,$, and $\,\hatmap$.
 \vskip2mm
 
 \begin{lemma} %[D, 2011]
@@ -152,29 +154,32 @@ Statement {\it (ii)} is equivalent to
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile,label=P5Lemma]{Adjunction lemma}
-New version of the lemma:
+\begin{frame}[fragile,label=P5Lemma]{Residuation/adjunction lemma}
+New version...
 \vskip2mm
-{\Large 
-\[^* \quad \dashv \quad \resB \quad \dashv \quad \hatmap\]
-}
-That is,
 \begin{lemma} %[D, 2011]
 \label{lem:residuation-lemma}
+%% \vskip-2mm
+{\Large \[^* \quad \dashv \quad \resB \quad \dashv \quad \hatmap\] }
+%% {\Large $^* \quad \dashv \quad \resB \quad \dashv \quad \hatmap$ }
+\end{lemma}
+\vskip2mm
+\visible<2>{...that is...
+\vskip2mm
   \begin{enumerate}[(i)]
-  \item $^*: \Con\bB \rightarrow \Con\bA$ is \defn{left adjoint} to $\resB$.
-  \item $\resB : \Con\bA \rightarrow \Con\bB$ is \defn{left adjoint} to $\hatmap$.
+  \item $^*: \Con\bB \rightarrow \Con\bA$ is \defn{left adjoint} to $\resB$;\\[5pt]
+  \item $\resB : \Con\bA \rightarrow \Con\bB$ is \defn{left adjoint} to $\hatmap$;\\[5pt]
   \item For all $\alpha \in \Con\bA, \, \beta \in \Con\bB$,
     \[\beta = \alpha\resB \quad \Leftrightarrow  \quad 
     \beta^* \leq \alpha \leq \widehat{\beta}.\]
     In particular, 
     $\beta^*\resB = \beta = \widehat{\beta}\resB$.
-  \end{enumerate}
-\end{lemma}
+  \end{enumerate}}
+%% \end{lemma}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile,label=P5Lemma]{Proof of the $P^5$ Lemma}
+\begin{frame}[fragile,label=P5Lemma]{New Proof of the $P^5$ Lemma}
   \begin{lemma}[\Palfy-\Pudlak, 1980]
 The restriction mapping 
 \[
@@ -187,12 +192,12 @@ is a complete lattice epimorphism. % of $\Con\bA$ onto $\Con\bB$.
   proof of McKenzie, does not reveal any information about
   the permutability of the congruences of $\bA$, unlike the more direct proof
   given by \PAP. }
-\begin{newproof}
+\begin{proof}
   Recall, for $f: X \to Y$ a monotone function on preorders $X$ and $Y$,\\
   if $f$ has a right (left) adjoint, then $f$ preserves all joins (meets)
   that exist in $X$.\\[5pt]
   By the lemma $\resB$ has both a left and right adjoint.
-\end{newproof}
+\end{proof}
 \end{frame}
 
 
