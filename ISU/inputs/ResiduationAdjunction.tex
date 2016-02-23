@@ -1,0 +1,279 @@
+\begin{frame}[fragile,label=P5Lemma]{The $P^5$ Lemma}
+\begin{lemma}[\Palfy-\Pudlak, 1980]
+ Let  $\bA = \<A, F\>$ be  a  unary  algebra  where  $F$  is  a  monoid.\\[5pt]
+ Suppose $e \in F$ satisfies $e\circ e = e$.\\[5pt]
+ Define  $\bB = \<B, G\>$
+ \[
+ B=e(A) \quad \text{ and } \quad  
+ G = \{e\,f\resB \mid f\in F\}.
+ \]
+ Let $\resB :  Con (\bA)\rightarrow Con (\bB)$  be the restriction mapping:
+\[
+\theta \resB = \theta \cap B^2
+\]
+Then  $\resB$  is  a  surjective  homomorphism  
+(even  for  arbitrary meets  and  joins). 
+\end{lemma}
+\vskip1cm
+  \begin{columns}
+    \begin{column}{0.2\textwidth}
+      \begin{flushright}
+        \includegraphics[height=1.5cm]{inputs/qrcodeP5}
+      \end{flushright}
+    \end{column}
+      \begin{column}{0.9\textwidth}
+%        \begin{center}
+{\small P{\'e}ter P{\'a}l \Palfy\ and Pavel Pudl{\'a}k: {\it Congruence lattices of finite algebras\\ and
+  intervals in subgroup lattices of finite groups.}\\[4pt]
+ Algebra Universalis \textbf{11}(1), 22--27 (1980).\\
+\url{http://dx.doi.org/10.1007/BF02483080}}
+%        \end{center}
+      \end{column}
+    \end{columns}
+
+\note{The restriction mapping $\resB$, defined on $\Con\bA$ by 
+$\alpha\resB = \alpha \cap B^2$, is a lattice epimorphism of $\Con\bA$ onto $\Con\bB$.}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,label=P5Lemma]{Star map and hat map}
+
+  \begin{itemize}
+  \item[star map] 
+$^*: \Con\bB \rightarrow \Con\bA$ is
+the congruence generation operator restricted to the set $\Con\bB$:
+\[
+\beta^* = \Cg^\bA(\beta)
+\qquad (\forall \, \beta \in \Con\bB)
+\]
+
+\vskip3mm
+\item[hat map]<2->
+$\hatmap : \Con\bB \rightarrow \Con\bA$ is
+  \[
+  %% \widehat{\beta} = \{(x,y) \in A^2 \mid (ef(x), ef(y))\in \beta\, \text{ for all }\, f\in F \},
+ \widehat{\beta} = \{(x,y) \in A^2 \mid (ef(x), ef(y))\in \beta\, \text{ for all }\, f\in  \Pol_1(\bA) \}.
+  \]
+  {\small (Used by McKenzie (1982) % defined on $\Con\bB$ by 
+  in an alternative proof of the $P^5$ Lemma.)}
+  \note{
+    It is not hard to see that $\hatmap$ maps $\Con\bB$ into $\Con\bA$.  For
+    example, if $(x,y) \in \widehat{\beta}$ and $g\in \Pol_1(\bA)$, then for all $f\in \Pol_1(\bA)$ we
+    have $(efg(x),efg(y)) \in \beta$, so $(g(x),g(y))\in \widehat{\beta}$.}
+  \end{itemize}
+\vskip5mm
+\visible<2->{
+  \begin{columns}
+    \begin{column}{0.2\textwidth}
+      \begin{flushright}
+        \includegraphics[height=1.5cm]{inputs/qrcodeMcKenzie1983}
+      \end{flushright}
+    \end{column}
+    \begin{column}{0.9\textwidth}
+{\small       Ralph McKenzie: {\it Finite forbidden lattices.}\\[4pt]
+     In: Universal algebra and lattice theory ({P}uebla, 1982),\\
+      \emph{Lecture Notes in Math.}, vol. 1004, pp. 176--205. Springer, Berlin (1983).\\
+  \url{http://dx.doi.org/10.1007/BFb0063438}}
+    \end{column}
+  \end{columns}
+}
+  \note{In~\cite{McKenzie:1983}, McKenzie, taking Lemma 1 as a starting point,
+    develops the foundations of what would become tame congruence theory.}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,label=P5Lemma]{Residuation lemma}
+A little lemma relating the three maps $\,^*\,$, $\, \resB\,$ and $\,\hatmap$.
+\vskip2mm
+
+\begin{lemma} %[D, 2011]
+\label{lem:residuation-lemma}
+  \begin{enumerate}[(i)]
+  \item $^*: \Con\bB \rightarrow \Con\bA$ is a \defn{residuated mapping} with
+    \defn{residual} $\resB$.
+  \item $\resB : \Con\bA \rightarrow \Con\bB$ is a \defn{residuated mapping} with
+    \defn{residual} $\hatmap$.
+  \item For all $\alpha \in \Con\bA, \, \beta \in \Con\bB$,
+    \[\beta = \alpha\resB \quad \Leftrightarrow  \quad 
+    \beta^* \leq \alpha \leq \widehat{\beta}.\]
+    In particular, 
+    $\beta^*\resB = \beta = \widehat{\beta}\resB$.
+  \end{enumerate}
+\end{lemma}
+% \vskip5mm
+% \visible<1->{
+%   \begin{columns}
+%     \begin{column}{0.2\textwidth}
+%       \begin{flushright}
+%         \includegraphics[height=1.2cm]{qrcodeDeMeoExpansions}
+%       \end{flushright}
+%     \end{column}
+%     \begin{column}{0.9\textwidth}
+% {\small   {\it Expansions of finite algebras and their congruence lattices} (to appear)\\
+%       \urlprefix  \url{http://arXiv.org/abs/1205.1106}}
+%     \end{column}
+%   \end{columns}
+% }
+
+\note{
+{\small If $X$ and $Y$
+  are partially ordered sets, and if 
+  $f: X \rightarrow Y$ and 
+  $g: Y \rightarrow X$ are order preserving maps, then TFAE:
+  \begin{enumerate}[(a)]
+  \item $f: X \rightarrow Y$ is a {\it residuated mapping} with {\it residual}
+    $g: Y \rightarrow X$;
+  \item for all $x\in X,\, y\in Y$,  $f(x) \leq y$ iff $x \leq g(y)$;
+  \item $g\circ f \geq \id_X$ and $f\circ g \leq \id_Y$.
+  \end{enumerate}
+  So, for each $y\in Y$,  $\exists !$ maximum $x\in X$ such that $f(x) \leq y$, and the
+  max is given by $g(y)$.
+  Thus, {\it (i)} is equivalent to 
+  \begin{equation}
+    \label{eq:OAi}
+    \beta^* \leq \alpha \quad \Leftrightarrow \quad \beta \leq \alpha\resB
+    \quad (\forall \, \alpha \in \Con\bA,\; \forall \, \beta \in \Con\bB).
+  \end{equation}
+  This is easily verified, as follows:  If 
+  $\beta^* \leq \alpha$ then
+  $\beta = (\beta^*)\resB \leq \alpha\resB$ 
+  If $\beta \leq \alpha\resB$ then 
+  $\beta^* \leq (\alpha\resB)^* \leq \Cg^\bA(\alpha) = \alpha$.
+
+Statement {\it (ii)} is equivalent to 
+  \begin{equation}
+    \label{eq:OAii}
+    \alpha\resB\leq \beta 
+    \quad \Leftrightarrow \quad 
+    \alpha \leq \widehat{\beta}
+    \quad (\forall \, \alpha \in \Con\bA,\; \forall \, \beta \in \Con\bB).
+  \end{equation}
+  This is also easy to check.  For, suppose
+  $\alpha\resB\leq \beta$ and $(x,y)\in \alpha$. Then $(ef(x), ef(y)) \in \alpha$
+  for all $f \in \Pol_1(\bA)$ and $(ef(x), ef(y)) \in B^2$, therefore, 
+  $(ef(x), ef(y)) \in \alpha\resB \leq \beta$, so $(x,y) \in \widehat{\beta}$.
+  Suppose $\alpha \leq \widehat{\beta}$ and $(x,y) \in \alpha\resB$. 
+  Then $(x,y) \in \alpha \leq  \widehat{\beta}$, so 
+  $(ef(x), ef(y)) \in \beta$ for all $f\in \Pol_1(\bA)$, including $f=\id_A$, so 
+  $(e(x), e(y)) \in \beta$. But $(x, y) \in B^2$, so $(x, y) = (e(x), e(y)) \in
+  \beta$.
+
+  Combining~(\ref{eq:OAi}) and~(\ref{eq:OAii}), we obtain statement {\it (iii)} of the lemma.}
+}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,label=P5Lemma]{Adjunction lemma}
+New version (of the little lemma):
+\vskip2mm
+{\Large 
+\[^* \quad \dashv \quad \resB \quad \dashv \quad \hatmap\]
+}
+
+\begin{lemma} %[D, 2011]
+\label{lem:residuation-lemma}
+  \begin{enumerate}[(i)]
+  \item $^*: \Con\bB \rightarrow \Con\bA$ is \defn{left adjoint} to $\resB$.
+  \item $\resB : \Con\bA \rightarrow \Con\bB$ is \defn{left adjoint} to $\hatmap$.
+  \item For all $\alpha \in \Con\bA, \, \beta \in \Con\bB$,
+    \[\beta = \alpha\resB \quad \Leftrightarrow  \quad 
+    \beta^* \leq \alpha \leq \widehat{\beta}.\]
+    In particular, 
+    $\beta^*\resB = \beta = \widehat{\beta}\resB$.
+  \end{enumerate}
+\end{lemma}
+% \vskip5mm
+% \visible<1->{
+%   \begin{columns}
+%     \begin{column}{0.2\textwidth}
+%       \begin{flushright}
+%         \includegraphics[height=1.2cm]{qrcodeDeMeoExpansions}
+%       \end{flushright}
+%     \end{column}
+%     \begin{column}{0.9\textwidth}
+% {\small   {\it Expansions of finite algebras and their congruence lattices} (to appear)\\
+%       \urlprefix  \url{http://arXiv.org/abs/1205.1106}}
+%     \end{column}
+%   \end{columns}
+% }
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,label=P5Lemma]{Proof of the $P^5$ Lemma}
+  \begin{lemma}[\Palfy-\Pudlak, 1980]
+The restriction mapping 
+\[
+\Con\bA \ni \alpha \mapsto \alpha\resB = \alpha \cap B^2 \in \Con \bB
+\]
+is a complete lattice epimorphism. % of $\Con\bA$ onto $\Con\bB$.
+  \end{lemma}
+\note{
+  Our approach to proving Lemma 1, which is similar to the
+  proof of McKenzie, does not reveal any information about
+  the permutability of the congruences of $\bA$, unlike the more direct proof
+  given by \PAP. }
+\begin{proof}
+  Recall, for $f: X \to Y$ a monotone function on preorders $X, Y$,
+  if $f$ has a right (left) adjoint, then $f$ preserves all joins (meets)
+  existing in $X$.\\[5pt]
+  By the little lemma $\resB$ has both a left and right adjoint.
+\end{proof}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
