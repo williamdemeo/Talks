@@ -1,4 +1,30 @@
+%\documentclass[xcolor=dvipsnames,9pt]{beamer} 
+%% 1. DUAL-DISPLAY NOTES:
+%\documentclass[hyperref={bookmarks=false}]{beamer}
+%\usepackage{pgfpages}
+%\setbeameroption{show notes on second screen=left}
+
+% 2. NOTES ON SEPARATE SLIDES:
+%\documentclass[xcolor=dvipsnames,9pt,show notes]{beamer}
+
+% 3. NOTES ONLY:
+%\documentclass[xcolor=dvipsnames,9pt,show only notes]{beamer}
+
+% 4. HANDOUTS:
+%\documentclass[xcolor=dvipsnames,9pt,handout,show notes]{beamer}
+
+% 5. NO NOTES: ONLY ONE THAT BUILDS WITHOUT WARNINGS
+\documentclass[xcolor=dvipsnames,9pt,hide notes]{beamer}
+
+%\setbeameroption{show only notes}
+%\setbeameroption{show notes}
+
 \input{inputs/Header.tex}
+
+\usepackage{multicol} %\columnseprule 0.4pt\raggedcolumns
+
+
+
 \title[FLRP]{OVERALGEBRAS:\\{\large expansions and extensions of finite algebras}}
 \author[William DeMeo]{William DeMeo\\
   {\small \url{williamdemeo@gmail.com}}}
@@ -20,6 +46,7 @@
 
 %% As of 20120415 using this line:
 %% \includeonlyframes{decompositions,titlepage,problem,classes,milestones,methods,knownresults,filteridealShort,MO,freese,OA,OAcong,OAEx2,PAP1,OAresults,OAextension,Limitations,OAextension2,conclusion,MO,Conclusion,SubgroupLattice,L7,L7second,IdeaOfL7Proof,OSTheorem,FinalConclusions}
+%\includeonlyframes{DWP1,DWP2,OA-abridged-slide1,OA-abridged-slide2}
 \newcommand{\defn}[1]{\alert{#1}}
 \setbeamercovered{transparent}
 
@@ -36,9 +63,9 @@
   \end{columns}
 }
 
-\input{inputs/OveralgebraSlides.tex}
+\input{inputs/OveralgebrasAbridged.tex}
 \input{inputs/ResiduationAdjunction.tex}
-\input{inputs/IntervalStructure.tex}
+%\input{inputs/IntervalStructure.tex}
 
     \end{document}
 

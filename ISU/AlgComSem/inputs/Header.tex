@@ -1,23 +1,3 @@
-%\documentclass[xcolor=dvipsnames,9pt]{beamer} 
-%% 1. DUAL-DISPLAY NOTES:
-%\documentclass[hyperref={bookmarks=false}]{beamer}
-%\usepackage{pgfpages}
-%\setbeameroption{show notes on second screen=left}
-
-% 2. NOTES ON SEPARATE SLIDES:
-%\documentclass[xcolor=dvipsnames,9pt,show notes]{beamer}
-
-% 3. NOTES ONLY:
-%\documentclass[xcolor=dvipsnames,9pt,show only notes]{beamer}
-
-% 4. HANDOUTS:
-%\documentclass[xcolor=dvipsnames,9pt,handout,show notes]{beamer}
-
-% 5. NO NOTES: ONLY ONE THAT BUILDS WITHOUT WARNINGS
-\documentclass[xcolor=dvipsnames,9pt,hide notes]{beamer}
-
-%\setbeameroption{show only notes}
-%\setbeameroption{show notes}
 
 \usepackage{enumerate,amsmath,amssymb,fancyhdr,mathrsfs,amsthm,url,stmaryrd}
 \usepackage{pgfpages}
@@ -58,8 +38,25 @@
 \setbeamertemplate{blocks}[rounded][shadow=true] 
 
 %%%% INSERT MACROS %%%%
-
 \input{inputs/wjddefense.def}
+
+%%% conditionals: change behavior for handouts
+\usepackage{ifthen}
+%% \newboolean{answers}
+%% \setboolean{answers}{true}  % set to true to include TODO statements
+%\setboolean{answers}{false}  % set to false to use input statements
+
+\makeatletter
+\newif\ifhandout
+\@ifclasswith{beamer}{handout}{\handouttrue}{\handoutfalse}
+\makeatother
+
+%% \newcommand{\scratchpage}{%
+%%   \ifanswers % do nothing
+%%   \else \thispagestyle{empty} \begin{center} -- scratch -- \end{center} \newpage \fi}
+
+\newcommand{\foo}{\ifanswers fooone\else footwo\fi}
+
 
 \mode<presentation>{\usetheme{boxes}}
 %boxes,Pittsburgh JuanLesPins, PaloAlto, Singapore, Szeged, Warsaw, Boadilla
@@ -72,3 +69,16 @@
 \usepackage[T1]{fontenc}
 % Or whatever. Note that the encoding and the font should match. If T1
 % does not look nice, try deleting the line with the fontenc.
+
+
+\theoremstyle{remark}
+\newtheorem*{newproof}{New Proof}
+
+%% \newcommand\Wider[2][3em]{%
+%% \makebox[\linewidth][c]{%
+%%   \begin{minipage}{\dimexpr\textwidth+#1\relax}
+%%   \raggedright#2
+%%   \end{minipage}%
+%%   }%
+%% }
+\usepackage[normalem]{ulem}

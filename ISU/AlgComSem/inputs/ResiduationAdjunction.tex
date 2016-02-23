@@ -14,77 +14,79 @@
 Then  $\resB$  is  a  surjective  homomorphism  
 (even  for  arbitrary meets  and  joins). 
 \end{lemma}
+
 \vskip1cm
-  \begin{columns}
-    \begin{column}{0.2\textwidth}
-      \begin{flushright}
-        \includegraphics[height=1.5cm]{inputs/qrcodeP5}
-      \end{flushright}
-    \end{column}
-      \begin{column}{0.9\textwidth}
-%        \begin{center}
-{\small P{\'e}ter P{\'a}l \Palfy\ and Pavel Pudl{\'a}k: {\it Congruence lattices of finite algebras\\ and
-  intervals in subgroup lattices of finite groups.}\\[4pt]
- Algebra Universalis \textbf{11}(1), 22--27 (1980).\\
-\url{http://dx.doi.org/10.1007/BF02483080}}
-%        \end{center}
-      \end{column}
-    \end{columns}
+
+{\small P{\'e}ter P{\'a}l \Palfy\ and Pavel Pudl{\'a}k: {\it Congruence lattices of finite algebras} AU (1980).}
+%% {\small P{\'e}ter P{\'a}l \Palfy\ and Pavel Pudl{\'a}k: {\it Congruence lattices of finite algebras\\ and
+%%   intervals in subgroup lattices of finite groups.}\\[4pt]
+%%  Algebra Universalis \textbf{11}(1), 22--27 (1980).}
 
 \note{The restriction mapping $\resB$, defined on $\Con\bA$ by 
 $\alpha\resB = \alpha \cap B^2$, is a lattice epimorphism of $\Con\bA$ onto $\Con\bB$.}
-
 \end{frame}
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile,label=P5Lemma]{Star map and hat map}
-
-  \begin{itemize}
-  \item[star map] 
-$^*: \Con\bB \rightarrow \Con\bA$ is
-the congruence generation operator restricted to the set $\Con\bB$:
-\[
-\beta^* = \Cg^\bA(\beta)
-\qquad (\forall \, \beta \in \Con\bB)
-\]
-
-\vskip3mm
-\item[hat map]<2->
-$\hatmap : \Con\bB \rightarrow \Con\bA$ is
-  \[
-  %% \widehat{\beta} = \{(x,y) \in A^2 \mid (ef(x), ef(y))\in \beta\, \text{ for all }\, f\in F \},
- \widehat{\beta} = \{(x,y) \in A^2 \mid (ef(x), ef(y))\in \beta\, \text{ for all }\, f\in  \Pol_1(\bA) \}.
-  \]
-  {\small (Used by McKenzie (1982) % defined on $\Con\bB$ by 
-  in an alternative proof of the $P^5$ Lemma.)}
-  \note{
-    It is not hard to see that $\hatmap$ maps $\Con\bB$ into $\Con\bA$.  For
-    example, if $(x,y) \in \widehat{\beta}$ and $g\in \Pol_1(\bA)$, then for all $f\in \Pol_1(\bA)$ we
-    have $(efg(x),efg(y)) \in \beta$, so $(g(x),g(y))\in \widehat{\beta}$.}
-  \end{itemize}
-\vskip5mm
-\visible<2->{
+\begin{frame}[fragile,label=P5Lemma]{The Star Map and Hat Map}
   \begin{columns}
-    \begin{column}{0.2\textwidth}
-      \begin{flushright}
-        \includegraphics[height=1.5cm]{inputs/qrcodeMcKenzie1983}
-      \end{flushright}
+    \begin{column}{0.3\textwidth}
+      \hskip1cm \includegraphics[height=3cm]{inputs/amconfus.png}
     \end{column}
-    \begin{column}{0.9\textwidth}
-{\small       Ralph McKenzie: {\it Finite forbidden lattices.}\\[4pt]
-     In: Universal algebra and lattice theory ({P}uebla, 1982),\\
-      \emph{Lecture Notes in Math.}, vol. 1004, pp. 176--205. Springer, Berlin (1983).\\
-  \url{http://dx.doi.org/10.1007/BFb0063438}}
+    \begin{column}{0.3\textwidth}
+      \includegraphics[height=2cm]{inputs/starchart}
+      \begin{center} \only<1>{star map}\only<2>{\sout{star map} star chart}\end{center}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      \includegraphics[height=2cm]{inputs/maphat.jpg}
+      \begin{center}\only<1>{hat map}\only<2>{\sout{hat map} map hat}\end{center}
     \end{column}
   \end{columns}
-}
-  \note{In~\cite{McKenzie:1983}, McKenzie, taking Lemma 1 as a starting point,
-    develops the foundations of what would become tame congruence theory.}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,label=P5Lemma]{The Star Map and Hat Map}
+
+  %% \begin{exampleblock}{}
+    
+  \begin{columns}
+    \begin{column}{0.25\textwidth}
+      \includegraphics[height=3cm]{inputs/amnotconfus.jpg}
+    \end{column}
+    \begin{column}{.8\textwidth}
+      \begin{itemize}
+      \item[star map] 
+        $^*:\Con\bB \rightarrow \Con\bA$ is
+        congruence generation: %restricted to the set $\Con\bB$:
+        \[\beta^* = \Cg^\bA(\beta)\qquad (\forall \, \beta \in \Con\bB)\]
+        \vskip3mm
+      \item[hat map]
+        $\hatmap: \Con\bB \rightarrow \Con\bA$ is
+      \[\widehat{\beta} =
+        \{(x,y) \in A^2 \mid (ef(x), ef(y))\in \beta,
+        \;\forall\, f\in  \Pol_1(\bA) \}.\]
+             \note{
+               It is not hard to see that $\hatmap$ maps $\Con\bB$ into $\Con\bA$.
+               For example, if $(x,y) \in \widehat{\beta}$ and $g\in \Pol_1(\bA)$,
+               then for all $f\in \Pol_1(\bA)$ we have $(efg(x),efg(y)) \in \beta$,
+               so $(g(x),g(y))\in \widehat{\beta}$.}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  %% \end{exampleblock}
+  \vskip1cm
+  \visible<2>{{\small The hat map appears in McKenzie's ``Finite Forbidden Lattices''
+      paper (Puebla, 1982) where he gives an alternative proof of the $P^5$ Lemma.}}
+
+    %% \end{exampleblock}
+  %% \vskip5mm{\small       Ralph McKenzie: {\it Finite forbidden lattices.} Puebla (1982).}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile,label=P5Lemma]{Residuation lemma}
-A little lemma relating the three maps $\,^*\,$, $\, \resB\,$ and $\,\hatmap$.
+A lemma relating the three maps $\,^*\,$, $\, \resB\,$ and $\,\hatmap$.
 \vskip2mm
 
 \begin{lemma} %[D, 2011]
@@ -101,20 +103,6 @@ A little lemma relating the three maps $\,^*\,$, $\, \resB\,$ and $\,\hatmap$.
     $\beta^*\resB = \beta = \widehat{\beta}\resB$.
   \end{enumerate}
 \end{lemma}
-% \vskip5mm
-% \visible<1->{
-%   \begin{columns}
-%     \begin{column}{0.2\textwidth}
-%       \begin{flushright}
-%         \includegraphics[height=1.2cm]{qrcodeDeMeoExpansions}
-%       \end{flushright}
-%     \end{column}
-%     \begin{column}{0.9\textwidth}
-% {\small   {\it Expansions of finite algebras and their congruence lattices} (to appear)\\
-%       \urlprefix  \url{http://arXiv.org/abs/1205.1106}}
-%     \end{column}
-%   \end{columns}
-% }
 
 \note{
 {\small If $X$ and $Y$
@@ -165,12 +153,12 @@ Statement {\it (ii)} is equivalent to
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile,label=P5Lemma]{Adjunction lemma}
-New version (of the little lemma):
+New version of the lemma:
 \vskip2mm
 {\Large 
 \[^* \quad \dashv \quad \resB \quad \dashv \quad \hatmap\]
 }
-
+That is,
 \begin{lemma} %[D, 2011]
 \label{lem:residuation-lemma}
   \begin{enumerate}[(i)]
@@ -183,20 +171,6 @@ New version (of the little lemma):
     $\beta^*\resB = \beta = \widehat{\beta}\resB$.
   \end{enumerate}
 \end{lemma}
-% \vskip5mm
-% \visible<1->{
-%   \begin{columns}
-%     \begin{column}{0.2\textwidth}
-%       \begin{flushright}
-%         \includegraphics[height=1.2cm]{qrcodeDeMeoExpansions}
-%       \end{flushright}
-%     \end{column}
-%     \begin{column}{0.9\textwidth}
-% {\small   {\it Expansions of finite algebras and their congruence lattices} (to appear)\\
-%       \urlprefix  \url{http://arXiv.org/abs/1205.1106}}
-%     \end{column}
-%   \end{columns}
-% }
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -213,12 +187,12 @@ is a complete lattice epimorphism. % of $\Con\bA$ onto $\Con\bB$.
   proof of McKenzie, does not reveal any information about
   the permutability of the congruences of $\bA$, unlike the more direct proof
   given by \PAP. }
-\begin{proof}
-  Recall, for $f: X \to Y$ a monotone function on preorders $X, Y$,
+\begin{newproof}
+  Recall, for $f: X \to Y$ a monotone function on preorders $X$ and $Y$,\\
   if $f$ has a right (left) adjoint, then $f$ preserves all joins (meets)
-  existing in $X$.\\[5pt]
-  By the little lemma $\resB$ has both a left and right adjoint.
-\end{proof}
+  that exist in $X$.\\[5pt]
+  By the lemma $\resB$ has both a left and right adjoint.
+\end{newproof}
 \end{frame}
 
 
@@ -255,6 +229,47 @@ is a complete lattice epimorphism. % of $\Con\bA$ onto $\Con\bB$.
 
 
 
+% \vskip5mm
+% \visible<1->{
+%   \begin{columns}
+%     \begin{column}{0.2\textwidth}
+%       \begin{flushright}
+%         \includegraphics[height=1.2cm]{qrcodeDeMeoExpansions}
+%       \end{flushright}
+%     \end{column}
+%     \begin{column}{0.9\textwidth}
+% {\small   {\it Expansions of finite algebras and their congruence lattices} (to appear)\\
+%       \urlprefix  \url{http://arXiv.org/abs/1205.1106}}
+%     \end{column}
+%   \end{columns}
+% }
+
+
+
+
+
+
+
+
+
+
+%% \visible<2->{
+%%   \begin{columns}
+%%     \begin{column}{0.2\textwidth}
+%%       \begin{flushright}
+%%         \includegraphics[height=1.5cm]{inputs/qrcodeMcKenzie1983}
+%%       \end{flushright}
+%%     \end{column}
+%%     \begin{column}{0.9\textwidth}
+%% {\small       Ralph McKenzie: {\it Finite forbidden lattices.}\\[4pt]
+%%      In: Universal algebra and lattice theory ({P}uebla, 1982),\\
+%%       \emph{Lecture Notes in Math.}, vol. 1004, pp. 176--205. Springer, Berlin (1983).\\
+%%   \url{http://dx.doi.org/10.1007/BFb0063438}}
+%%     \end{column}
+%%   \end{columns}
+%% }
+%%   \note{In~\cite{McKenzie:1983}, McKenzie, taking Lemma 1 as a starting point,
+%%     develops the foundations of what would become tame congruence theory.}
 
 
 
@@ -267,13 +282,12 @@ is a complete lattice epimorphism. % of $\Con\bA$ onto $\Con\bB$.
 
 
 
-
-
-
-
-
-
-
-
-
-
+%% \begin{columns}\begin{column}{0.2\textwidth}
+%%       \begin{flushright}\includegraphics[height=1.5cm]{inputs/qrcodeP5}\end{flushright}
+%%     \end{column}\begin{column}{0.9\textwidth}
+%%     {\small P{\'e}ter P{\'a}l \Palfy\ and Pavel Pudl{\'a}k: {\it Congruence lattices of finite algebras\\ and
+%%         intervals in subgroup lattices of finite groups.}\\[4pt]
+%%       Algebra Universalis \textbf{11}(1), 22--27 (1980).\\
+%%       \url{http://dx.doi.org/10.1007/BF02483080}}
+%%   \end{column}
+%% \end{columns}

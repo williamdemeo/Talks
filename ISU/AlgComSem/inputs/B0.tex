@@ -1,0 +1,6 @@
+          % B_0
+          \foreach \j in {0,1,2} {
+            \draw (\j -1, 0.5) node {$\j$};
+            \pgfmathtruncatemacro{\x}{\j+3}
+            \draw (\j -1, -0.5) node {$\x$};
+          }
