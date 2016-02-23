@@ -1,0 +1,74 @@
+%\documentclass[xcolor=dvipsnames,9pt]{beamer} 
+%% 1. DUAL-DISPLAY NOTES:
+%\documentclass[hyperref={bookmarks=false}]{beamer}
+%\usepackage{pgfpages}
+%\setbeameroption{show notes on second screen=left}
+
+% 2. NOTES ON SEPARATE SLIDES:
+%\documentclass[xcolor=dvipsnames,9pt,show notes]{beamer}
+
+% 3. NOTES ONLY:
+%\documentclass[xcolor=dvipsnames,9pt,show only notes]{beamer}
+
+% 4. HANDOUTS:
+%\documentclass[xcolor=dvipsnames,9pt,handout,show notes]{beamer}
+
+% 5. NO NOTES: ONLY ONE THAT BUILDS WITHOUT WARNINGS
+\documentclass[xcolor=dvipsnames,9pt,hide notes]{beamer}
+
+%\setbeameroption{show only notes}
+%\setbeameroption{show notes}
+
+\usepackage{enumerate,amsmath,amssymb,fancyhdr,mathrsfs,amsthm,url,stmaryrd}
+\usepackage{pgfpages}
+\usepackage{listings}
+%\usepackage{enumitem}
+
+%% For creating a handout:
+%\pgfpagesuselayout{4 on 1}[border shrink=5mm]
+%\mode<handout>{\setbeamercolor{background canvas}{bg=black!5}}
+
+
+\setbeamerfont{structure}{family=\rmfamily,shape=\scshape} 
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{scalefnt}
+\usetikzlibrary{matrix,arrows}
+
+\usepackage{mathrsfs,textcomp}
+\setbeamertemplate{navigation symbols}{}
+\usepackage{verbatim}
+\usepackage[mathcal]{euscript}
+
+% This changes the color of alerted text to blue:
+\definecolor{MyDarkBlue}{rgb}{0.2,0.2,0.7}
+\definecolor{Crimson}{rgb}{0.800,0.000,0.200}
+\definecolor{darkred}{rgb}{0.5,0,0}
+\definecolor{olivegreen}{cmyk}{0.64,0,0.95,0.40} % PANTONE 582
+\setbeamercolor{alerted text}{fg=blue}
+\newcommand{\emphcyan}[1]{\textcolor{MyDarkBlue}{\textbf{#1}}}
+\renewcommand{\alert}[1]{\textcolor{MyDarkBlue}{\emph{#1}}}
+\renewcommand{\alert}[1]{\textbf{{\emph{#1}}}}
+% (default is red, but my slides are green and I don't like red and green together)
+
+%\usecolortheme[named=OliveGreen]{structure} 
+%\usecolortheme[named=olivegreen]{structure} 
+\usecolortheme[named=darkred]{structure} 
+\setbeamertemplate{items}[ball] 
+\setbeamertemplate{blocks}[rounded][shadow=true] 
+
+%%%% INSERT MACROS %%%%
+
+\input{inputs/wjddefense.def}
+
+\mode<presentation>{\usetheme{boxes}}
+%boxes,Pittsburgh JuanLesPins, PaloAlto, Singapore, Szeged, Warsaw, Boadilla
+%\usetheme{Madrid}}
+%\usetheme{boxes}  %boxes,Pittsburgh JuanLesPins, PaloAlto, Singapore, Szeged, Warsaw, Boadilla
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
