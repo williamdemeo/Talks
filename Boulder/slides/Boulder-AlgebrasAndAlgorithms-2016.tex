@@ -622,9 +622,10 @@ and $\etaR_0 \neq \etaR_1$, then $\bR$ is linked.
   \framesubtitle{A Generalization of the Absorption Theorem}
 
   Barto and Kozik generalized the Absorption Theorem
-  to multiple simple nonabelian factors.
+  to multiple simple nonabelian factors. This is...
   \bigskip
-  
+  \onslide<2->{
+    
   {\bf The Rectangularity Theorem.}
 
   \medskip
@@ -634,10 +635,12 @@ and $\etaR_0 \neq \etaR_1$, then $\bR$ is linked.
   \item at most one $\bA_i$ is abelian,
   \item all nonabelian factors are simple, 
   \item $\bR \sdp \bA_0 \times \bA_1 \times \cdots \times \bA_{n-1}$,
-  \item $\etaR_i \neq \etaR_j$ for all $i\neq j$, %where $\etaR_i = \ker(\bR \onto \bA_i)$,
+  \item $\etaR_i \neq \etaR_j$ for all $i\neq j$. %where $\etaR_i = \ker(\bR %\onto \bA_i)$,
+  \item $\bR'= \bR \cap (\bB_0 \times \bB_1 \times \cdots \times \bB_{n-1})$ is nonempty.
   \end{itemize}
-  If $\bR'= \bR \cap (\bB_0 \times \bB_1 \times \cdots \times \bB_{n-1})$ is
-  nonempty, then \[\bR' = \bB_0 \times \bB_1 \times \cdots \times \bB_{n-1}.\] % \leq \bR$.
+  
+  \[\text{Then } \; \bR' = \bB_0 \times \bB_1 \times \cdots \times \bB_{n-1}.\] % \leq \bR$.
+  }
 \end{frame}
 
 
@@ -691,12 +694,10 @@ and $\etaR_0 \neq \etaR_1$, then $\bR$ is linked.
 
 \begin{frame} \frametitle{Rectangularity Theorem}
   \framesubtitle{Proof Sketch}
-  %% From now on we assume:
-  %% \begin{quote}    \emph{all algebras are finite and belong to the same Taylor variety}  \end{quote}
   From now on,
     \emph{all algebras are finite and belong to the same Taylor variety}.
 
-    {\bf Lemma 1.}
+    \onslide<2->{    {\bf Lemma 1.}
       
     Let $\bB_i\minabsorbing \bA_i$ for each $i\in \nn $, 
     and let $\nn  = \sigma \cup {\sigma'}$ be a disjoint union.
@@ -705,24 +706,29 @@ and $\etaR_0 \neq \etaR_1$, then $\bR$ is linked.
     $\myprod_{\sigma} \bA_i$ and $\myprod_{\sigma'}\bA_i$.
     
     Suppose $R' = R \cap \myprod_i B_i \neq \emptyset$.    Then $\bR' = \myprod_i \bB_i$.
+    }
 
     \bigskip
 
-    {\bf Lemma 2.} [Kearnes-Kiss, Th.~3.27]
+    \onslide<3->{
+    {\bf Lemma 2.} [Kearnes-Kiss, Thm~3.27]
     
     Suppose $\alpha$ and $\beta$ are congruences of a Taylor algebra. Then
-    $\sansC(\alpha, \alpha; \alpha \meet \beta)$ if and only if
-    $\sansC(\alpha \join \beta, \alpha \join \beta; \beta)$.
-
-    \medskip
-    The Kearnes and Kiss theorem can be used to prove
-    \medskip
-
+    %% $\sansC(\alpha, \alpha; \alpha \meet \beta)$ if and only if
+    %% $\sansC(\alpha \join \beta, \alpha \join \beta; \beta)$.
+    \[\sansC(\alpha, \alpha; \alpha \meet \beta) \quad \Longleftrightarrow \quad
+    \sansC(\alpha \join \beta, \alpha \join \beta; \beta).\]
+    }
+    \onslide<4->{
+    %% \medskip
+    %% The Kearnes and Kiss theorem can be used to prove
+    %% \medskip
 
     {\bf Lemma 3.} [Linking Lemma]
     
-    Let $n\geq 2$, let $\bA_0, \bA_1, \dots, \bA_{n-1}$ be finite algebras in a
-    Taylor variety, and let $\bB_i \minabsorbing \bA_i$. Suppose
+    Let $n\geq 2$ %% let $\bA_0, \bA_1, \dots, \bA_{n-1}$ be finite algebras in a
+    %% Taylor variety, and let 
+    and $\bB_i \minabsorbing \bA_i$ for all $i\in \nn$. Suppose
     \begin{itemize}
     \item at most one $\bA_i$ is abelian
     \item all nonabelian factors are simple
@@ -730,7 +736,7 @@ and $\etaR_0 \neq \etaR_1$, then $\bR$ is linked.
     \item $\etaR_i \neq \etaR_j$ for all $i\neq j$.
     \end{itemize}
     Then there exists $k$ such that $\bR\sdp \bA_k \times \bR_{k'}$ is linked.
-
+}
   %% \begin{proof}
 %% We have $\bR' \sdp \myprod_\sigma \bB_i \times \myprod_{\sigma'} \bB_i$, and
 %% $\bR' \absorbing \bR$, so LSD 3 implies $\bR'$ is linked. 
@@ -740,11 +746,34 @@ and $\etaR_0 \neq \etaR_1$, then $\bR$ is linked.
 
 \end{frame}
 
-\begin{frame} \frametitle{Theorem of Kearnes and Kiss}
+\begin{frame} \frametitle{Rectangularity Theorem}
+  \framesubtitle{Proof Sketch}
+
+    
+  {\bf The Rectangularity Theorem.}
+
+  \medskip
+  Let $\bA_0, \bA_1, \dots, \bA_{n-1}$ be finite algebras in a 
+  Taylor variety, $\bB_i \minabsorbing \bA_i$, and suppose
+  \begin{itemize}
+  \item at most one $\bA_i$ is abelian,
+  \item all nonabelian factors are simple, 
+  \item $\bR \sdp \bA_0 \times \bA_1 \times \cdots \times \bA_{n-1}$,
+  \item $\etaR_i \neq \etaR_j$ for all $i\neq j$. %where $\etaR_i = \ker(\bR %\onto \bA_i)$,
+  \item $\bR'= \bR \cap (\bB_0 \times \bB_1 \times \cdots \times \bB_{n-1})$ is nonempty.
+  \end{itemize}
+  
+  \[\text{Then } \; \bR' = \bB_0 \times \bB_1 \times \cdots \times \bB_{n-1}.\] % \leq \bR$.
+
+  {\bf Proof.} Induct on the number of factors in the product
+  $\bA_0 \times \bA_1 \times \cdots \times \bA_{n-1}$.
+
+  \bigskip
+  For $n=2$ the result holds by earlier Lemma (slide 16).
+
+  \bigskip
 
 \end{frame}
-
-
 \begin{frame} \frametitle{Rectangularity Theorem}
   \framesubtitle{Obstacles to Applications}
 
@@ -772,6 +801,78 @@ and $\etaR_0 \neq \etaR_1$, then $\bR$ is linked.
 \end{document}
 
 
+  Fix $n>2$ and assume that for all $2 \leq k < n$ 
+  the result holds for subdirect products of 
+  $k$ factors. We will prove the result holds for subdirect products of 
+  $n$ factors.
+
+  Let $\sigma$ be a nonempty proper subset of $\nn$ %:=\{0, 1, \dots, n-1\}$ 
+  (so $1\leq |\sigma| < n$) and let
+  $\sigma'$ denote the complement of $\sigma$ in $\nn$.
+  Denote by $\bR_\sigma$ the projection of $\bR$ onto the $\sigma$-factors. 
+  That is, $\bR_\sigma := \Proj_\sigma \bR$ and  $\bR_{\sigma'}:=\Proj_{\sigma'} \bR$.
+  Each of these projections satisfies the assumptions
+  of the theorem,
+  since $\bR_{\sigma} \sdp \myprod_{\sigma}\bA_i$ and since
+  for all $i\neq j$ in $\sigma$, we have
+  %\etaR_i \neq \etaR_j\; \iff \; 
+  $\ker(R_{\sigma} \onto A_i) \neq \ker(R_{\sigma}\onto A_j)$.
+  Similarly for $\bR_{\sigma'}$.
+  %% \begin{equation}
+  %%   \label{eq:4}
+  %% %\etaR_i \neq \etaR_j\; \iff \; 
+  %% \ker(R_{\sigma} \onto A_i) \neq \ker(R_{\sigma}\onto A_j).
+  %% \end{equation}
+  %% Similarly for $\bR_{\sigma'}$.
+  %% (Let's make sure Equation (\ref{eq:4}) is as obvious as it seems:
+  %% since $\etaR_i\neq \etaR_j$, either there is a pair 
+  %% $(\br, \br')\in R^2\cap \etaR_i$ 
+  %% that does not belong to $\etaR_j$,
+  %% or there is a pair 
+  %% $(\br, \br')\in R^2\cap \etaR_j$ 
+  %% that does not belong to $\etaR_i$.  Without loss of generality, 
+  %% assume the former, so that $r_i=r_i'$ and $r_j\neq r_j'$.  
+  %% Since $i, j \in \sigma$, the projection
+  %% of $\br$ and $\br'$ onto $\sigma$ will also satisfy
+  %% $r_i=r_i'$ and $r_j\neq r_j'$.)
+  %%
+  %% Since $\bR_\sigma$ and  $\bR_{\sigma'}$ satisfy the assumptions of the theorem,
+  Therefore, the induction hypothesis implies that %% \bB_{\sigma} :=
+  $\myprod_{\sigma}\bB_i \leq \bR_{\sigma}$ and
+  %% $\bB_{\sigma'} :=
+  $\myprod_{\sigma'}\bB_i \leq \bR_{\sigma'}$.
+  By Corollary~\ref{cor:min-abs-prod},
+  $\myprod_{\sigma}\bB_i  \minabsorbing \myprod_{\sigma} \bA_i$, and
+  since $\myprod_{\sigma}\bB_i \leq \bR_{\sigma}\leq \myprod_{\sigma} \bA_i$ 
+  it's clear that  $\myprod_{\sigma}\bB_i \absorbing \bR_{\sigma}$.
+  In fact, $\myprod_{\sigma}\bB_i \minabsorbing \bR_{\sigma}$ as well, 
+  %% To see this,
+  %%   suppose $\bS\leq \myprod_{\sigma}\bB_i$ and $\bS\absorbing \bR_{\sigma}$. Then
+  %%   $\bS\absorbing \myprod_{\sigma}\bB_i$, so $\bS\absorbing \myprod_{\sigma}\bA_i$, by
+  %%   transitivity of absorption. Thus, by minimality of
+  %%   $\myprod_{\sigma}\bB_i \minabsorbing \myprod_{\sigma}\bA_{i}$,
+  %%   we have $\bS = \myprod_{\sigma}\bB_i$, as desired.
+  by minimality of
+  $\myprod_{\sigma}\bB_i \minabsorbing \myprod_{\sigma}\bA_{i}$,
+  and transitivity of absorption.
+  To summarize, for every $\emptyset \subsetneq \sigma\subsetneq \nn$,
+  \begin{equation}
+    \label{eq:20}
+  \bR \sdp \bR_{\sigma} \times \bR_{\sigma'}, \quad
+  \myprod_\sigma \bB_i \minabsorbing \bR_{\sigma}, \quad
+  \myprod_{\sigma'} \bB_i \minabsorbing \bR_{\sigma'}.
+  %% \bB_{\nn } \minabsorbing \bR_{\nn } \quad \text{ and } \quad
+  %% \bB_n \minabsorbing \bA_n.
+  %% \bB_{\nn } \minabsorbing \bR_{\nn } \quad \text{ and } \quad
+  %% \bB_n \minabsorbing \bA_n.
+  \end{equation}
+
+  Finally, by the Linking Lemma (Lem.~\ref{lem:Link-2}) there
+  is a $k$ such that 
+  $\bR \sdp \bR_{k} \times \bR_{k'}$ is linked.  Therefore,
+  by Lemma~\ref{lem:general-linked} the
+  the proof is complete.
+\end{proof}
 
 \begin{frame} \frametitle{Proof of Rectangularity Theorem I}
 
