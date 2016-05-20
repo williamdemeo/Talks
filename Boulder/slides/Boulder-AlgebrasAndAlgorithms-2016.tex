@@ -39,6 +39,8 @@
 \usepackage[mathcal]{euscript}
 \usepackage[smaller]{acronym}
 \acrodef{lics}[LICS]{Logic in Computer Science}
+\acrodef{CSP}[CSP]{constraint satisfaction problem}
+\newcommand{\csp}{\acs{CSP}\xspace}
 
 %% \usepackage{euler} 
 \usepackage[T1]{fontenc}
@@ -630,7 +632,7 @@ and $\etaR_0 \neq \etaR_1$, then $\bR$ is linked.
 
   \medskip
   Let $\bA_0, \bA_1, \dots, \bA_{n-1}$ be finite algebras in a 
-  Taylor variety, $\bB_i \minabsorbing \bA_i$, and suppose
+  Taylor variety, $\bB_i \minabsorbing \bA_i$, and
   \begin{itemize}
   \item at most one $\bA_i$ is abelian,
   \item all nonabelian factors are simple, 
@@ -645,11 +647,7 @@ and $\etaR_0 \neq \etaR_1$, then $\bR$ is linked.
 
 
 \begin{frame} \frametitle{Rectangularity Theorem}
-  \framesubtitle{Proof Sketch}
-
-  {\bf Notation:}
-
-  \bigskip
+  \framesubtitle{NOTATION}
 
   Let $\nn =\{0, 1, 2, \dots, n-1\}$.
 
@@ -693,7 +691,7 @@ and $\etaR_0 \neq \etaR_1$, then $\bR$ is linked.
 \end{frame}
 
 \begin{frame} \frametitle{Rectangularity Theorem}
-  \framesubtitle{Proof Sketch}
+  \framesubtitle{Lemmas needed for the proof}
   From now on,
     \emph{all algebras are finite and belong to the same Taylor variety}.
 
@@ -750,49 +748,164 @@ and $\etaR_0 \neq \etaR_1$, then $\bR$ is linked.
   \framesubtitle{Proof Sketch}
 
     
-  {\bf The Rectangularity Theorem.}
-
-  \medskip
-  Let $\bA_0, \bA_1, \dots, \bA_{n-1}$ be finite algebras in a 
-  Taylor variety, $\bB_i \minabsorbing \bA_i$, and suppose
+  {\bf The Theorem.} Assume $\bA_i$ are finite Taylor algebras with $\bB_i \minabsorbing \bA_i$, and
   \begin{itemize}
-  \item at most one $\bA_i$ is abelian,
-  \item all nonabelian factors are simple, 
-  \item $\bR \sdp \bA_0 \times \bA_1 \times \cdots \times \bA_{n-1}$,
-  \item $\etaR_i \neq \etaR_j$ for all $i\neq j$. %where $\etaR_i = \ker(\bR %\onto \bA_i)$,
-  \item $\bR'= \bR \cap (\bB_0 \times \bB_1 \times \cdots \times \bB_{n-1})$ is nonempty.
+  \item at most one $\bA_i$ abelian, all nonabelian factors simple, 
+  \item $\bR \sdp \bA_0 \times \bA_1 \times \cdots \times \bA_{n-1}$, with
+    $\etaR_i \neq \etaR_j$  for $i\neq j$,
+  \item $\bR'= \bR \cap (\bB_0 \times \bB_1 \times \cdots \times \bB_{n-1})$ nonempty.
   \end{itemize}
-  
-  \[\text{Then } \; \bR' = \bB_0 \times \bB_1 \times \cdots \times \bB_{n-1}.\] % \leq \bR$.
+    \[\text{Then } \; \bR' = \bB_0 \times \bB_1 \times \cdots \times \bB_{n-1}.\] % \leq \bR$.
 
-  {\bf Proof.} Induct on the number of factors in the product
+    {\bf Proof sketch.}
+
+    Induct on the number of factors in the product
   $\bA_0 \times \bA_1 \times \cdots \times \bA_{n-1}$.
 
-  \bigskip
-  For $n=2$ the result holds by earlier Lemma (slide 16).
+  \medskip
+  For $n=2$ the result holds by an earlier Lemma (slide 16).
+  
+  \medskip
+  Fix $n>2$ and assume for all $2 \leq k < n$ the 
+  result holds for $k$ factors. We prove it for subdirect products
+  of $n$ factors.
 
-  \bigskip
+  \medskip
+  Fix $\emptyset \subsetneq \sigma\subsetneq \nn$.
+
+  \medskip
+  Then $\bR_\sigma = \Proj_\sigma \bR$ and  $\bR_{\sigma'}=\Proj_{\sigma'} \bR$
+  satisfy assumptions of RT.
+
+  \medskip
+  Induction hypothesis implies
+  $\myprod_{\sigma}\bB_i \leq \bR_{\sigma}$ and
+  $\myprod_{\sigma'}\bB_i \leq \bR_{\sigma'}$.
+
+  \medskip
+  A few more easy steps gives, for all $\emptyset \subsetneq \sigma\subsetneq \nn$,
+  \[
+  \bR \sdp \bR_{\sigma} \times \bR_{\sigma'}, \quad
+  \myprod_\sigma \bB_i \minabsorbing \bR_{\sigma}, \quad
+  \myprod_{\sigma'} \bB_i \minabsorbing \bR_{\sigma'}.
+  \]
+  \medskip
+  By Linking Lemma and Absorption Theorem, the proof is complete.
 
 \end{frame}
+
 \begin{frame} \frametitle{Rectangularity Theorem}
-  \framesubtitle{Obstacles to Applications}
+  \framesubtitle{Extensions and Application to CSP}
+  What if there is more than one abelian factor? 
+
+  \bigskip
+  {\bf Cor. 1} Let $\bA_i$ be finite Taylor algebras with
+  $\bB_i \minabsorbing \bA_i$ ($i\in \nn$).
+  
+  Let $\bB_i \minabsorbing \bA_i$ ($i\in \nn$) and $\alpha \subseteq \nn$.  Suppose
+  \begin{itemize}
+  \item $\bA_i$ is abelian for each $i \in \alpha$,
+  \item $\bA_i$ is nonabelian and simple for each $i \in \alpha'$,
+  \item $\bR \sdp \bA_0 \times \bA_1 \times \cdots \times \bA_{n-1}$,
+  \item $\etaR_i \neq \etaR_j$ for all $i\neq j$, %where $\etaR_i = \ker(\bR \onto \bA_i)$,
+  \item $R':= R \cap (B_0 \times B_1 \times \cdots \times B_{n-1}) \neq \emptyset$.
+  \end{itemize}
+  Then $\bR'= \bR_\alpha  \times \myprod_{\alpha'}\bB_i$.
+
+  \bigskip
+  {\bf Proof.}
+  
+    Suppose $\alpha' = \{i_0, i_1, \dots, i_{m-1}\}$.
+    Clearly, 
+    $\bR \sdp \bR_\alpha \times \bA_{i_0} \times \bA_{i_1} \times \cdots \times \bA_{i_{m-1}}$. 
+    If $\alpha\neq \emptyset$, then the product 
+    has a single abelian factor
+    $\bR_\alpha \leq \myprod_{\alpha} \bA_i$.
+    If $\alpha= \emptyset$, then the product has no abelian factors.
+    In either case, the result follows from the RT Theorem.
+
+\end{frame}
+
+\begin{frame} \frametitle{Rectangularity Theorem}
+  \framesubtitle{Extensions and Application to CSP}
+
+  Two more observations facilitate application to \csp problems. 
+
+  \bigskip
+  {\bf Cor. 2} Let $\bA_i$ be finite Taylor algebras with
+  $\bB_i \minabsorbing \bA_i$ ($i\in \nn$).
+  
+  Let $\bB_i \minabsorbing \bA_i$ for each $i\in \nn$ and suppose
+  $\bR$ and $\bS$ are subdirect products of $\myprod_{\nn} \bA_i$.
+  Let $\alpha \subseteq \nn$ and assume
+  \begin{itemize}
+  \item $\bA_i$ is abelian for each $i \in \alpha$,
+  \item $\bA_i$ is nonabelian and simple for each $i \notin \alpha$,
+  \item $\etaR_i \neq \etaR_j$ for all $i\neq j$,
+  \item $R$ and $S$ both intersect $\myprod_{\nn} B_i$ nontrivially, 
+  \item there exists $\bx \in R_\alpha \cap S_\alpha$.
+  \end{itemize}
+  Then $R \cap S \neq \emptyset$.
+
+  {\bf Proof.}
+  
+    By Cor 1, $\bR'= \bR_\alpha   \times \myprod_{\alpha'}\bB_i$ and
+    $\bS'= \bS_\alpha   \times \myprod_{\alpha'}\bB_i$. 
+    Therefore, since $\bx \in R_\alpha \cap S_\alpha$, we have
+    $\{\bx\} \times \myprod_{\alpha'}\bB_i \subseteq R \cap S$.
+
+\end{frame}
+
+\begin{frame} \frametitle{Rectangularity Theorem}
+  \framesubtitle{Extensions and Application to CSP}
+
+  Generalizing to more than two relations is easy...
+
+  \bigskip
+  {\bf Cor. 3} Let $\bA_i$ be finite Taylor algebras with
+  $\bB_i \minabsorbing \bA_i$ ($i\in \nn$).
+  
+  Suppose $\{\bR_\ell : 0\leq \ell < m\}$ are subdirect products of 
+  $\myprod_{\nn} \bA_i$.
+
+  Let $\alpha \subseteq \nn$, and assume
+      \begin{itemize}
+      \item $\bA_i$ is abelian for $i \in \alpha$ and nonabelian simple for $i \notin \alpha$,
+      \item $\forall \ell \in \mm$, $\forall i\neq j$, 
+        $\etaR^\ell_i \neq \etaR^\ell_j$  {\small (where $\etaR^\ell_i := \ker(\bR_\ell \onto \bA_i)$)},
+      \item each $R_\ell$ intersects $\myprod B_i$ nontrivially, 
+      \item there exists $\bx \in \bigcap \Proj_\alpha R_\ell$.
+      \end{itemize}
+      Then $\bigcap R_\ell \neq \emptyset$.
+
+\end{frame}
+
+\begin{frame} \frametitle{Rectangularity Theorem}
+  \framesubtitle{Obstacles to Application}
 
   \begin{enumerate}
   \item<1-> {\bf Nonabelian factors must be simple.}
-    This is the most obvious limitation of the theorem and in general
-    we don't yet have a way to overcoming it.  However, we have ideas...
+    This is the most obvious limitation of the theorem and
+    we don't yet have a way to overcome it that works in general.
+    However, we have some ideas and tools for special cases.
 
   \item<2-> {\bf Abelian factors must have easy partial solutions.}
-    Cor~\ref{cor:RT-cor} and \ref{cor:RT-cor-gen} assume that
+    The last two corollaries assume that
     when the given constraint relations are projected onto the abelian factors,
-    we already know a partial solution---that is, an element that satisfies all
+    we can solve the ``partial instance''---that is, an element that satisfies all
     constraint relations after projecting these relations onto the abelian
     factors of the full product. 
 
   \item<3-> {\bf Intersecting mass products.}
     RT and corollaries assume that the universe $R$ of the subdirect
     product in question intersects nontrivially
-    with a product $\myprod B_i$ of minimal absorbing subuniverses.
+    with a product $\myprod B_i$ of minimal absorbing subuniverses
+    (or ``mass product'').
+
+    \bigskip
+    In a CSP instance, there are typically many constraint relations.
+    To apply Rectangularity, we have to be sure they all instersect
+    a single mass product.
   \end{enumerate}
 
 \end{frame}
@@ -800,67 +913,6 @@ and $\etaR_0 \neq \etaR_1$, then $\bR$ is linked.
 
 \end{document}
 
-
-  Fix $n>2$ and assume that for all $2 \leq k < n$ 
-  the result holds for subdirect products of 
-  $k$ factors. We will prove the result holds for subdirect products of 
-  $n$ factors.
-
-  Let $\sigma$ be a nonempty proper subset of $\nn$ %:=\{0, 1, \dots, n-1\}$ 
-  (so $1\leq |\sigma| < n$) and let
-  $\sigma'$ denote the complement of $\sigma$ in $\nn$.
-  Denote by $\bR_\sigma$ the projection of $\bR$ onto the $\sigma$-factors. 
-  That is, $\bR_\sigma := \Proj_\sigma \bR$ and  $\bR_{\sigma'}:=\Proj_{\sigma'} \bR$.
-  Each of these projections satisfies the assumptions
-  of the theorem,
-  since $\bR_{\sigma} \sdp \myprod_{\sigma}\bA_i$ and since
-  for all $i\neq j$ in $\sigma$, we have
-  %\etaR_i \neq \etaR_j\; \iff \; 
-  $\ker(R_{\sigma} \onto A_i) \neq \ker(R_{\sigma}\onto A_j)$.
-  Similarly for $\bR_{\sigma'}$.
-  %% \begin{equation}
-  %%   \label{eq:4}
-  %% %\etaR_i \neq \etaR_j\; \iff \; 
-  %% \ker(R_{\sigma} \onto A_i) \neq \ker(R_{\sigma}\onto A_j).
-  %% \end{equation}
-  %% Similarly for $\bR_{\sigma'}$.
-  %% (Let's make sure Equation (\ref{eq:4}) is as obvious as it seems:
-  %% since $\etaR_i\neq \etaR_j$, either there is a pair 
-  %% $(\br, \br')\in R^2\cap \etaR_i$ 
-  %% that does not belong to $\etaR_j$,
-  %% or there is a pair 
-  %% $(\br, \br')\in R^2\cap \etaR_j$ 
-  %% that does not belong to $\etaR_i$.  Without loss of generality, 
-  %% assume the former, so that $r_i=r_i'$ and $r_j\neq r_j'$.  
-  %% Since $i, j \in \sigma$, the projection
-  %% of $\br$ and $\br'$ onto $\sigma$ will also satisfy
-  %% $r_i=r_i'$ and $r_j\neq r_j'$.)
-  %%
-  %% Since $\bR_\sigma$ and  $\bR_{\sigma'}$ satisfy the assumptions of the theorem,
-  Therefore, the induction hypothesis implies that %% \bB_{\sigma} :=
-  $\myprod_{\sigma}\bB_i \leq \bR_{\sigma}$ and
-  %% $\bB_{\sigma'} :=
-  $\myprod_{\sigma'}\bB_i \leq \bR_{\sigma'}$.
-  By Corollary~\ref{cor:min-abs-prod},
-  $\myprod_{\sigma}\bB_i  \minabsorbing \myprod_{\sigma} \bA_i$, and
-  since $\myprod_{\sigma}\bB_i \leq \bR_{\sigma}\leq \myprod_{\sigma} \bA_i$ 
-  it's clear that  $\myprod_{\sigma}\bB_i \absorbing \bR_{\sigma}$.
-  In fact, $\myprod_{\sigma}\bB_i \minabsorbing \bR_{\sigma}$ as well, 
-  %% To see this,
-  %%   suppose $\bS\leq \myprod_{\sigma}\bB_i$ and $\bS\absorbing \bR_{\sigma}$. Then
-  %%   $\bS\absorbing \myprod_{\sigma}\bB_i$, so $\bS\absorbing \myprod_{\sigma}\bA_i$, by
-  %%   transitivity of absorption. Thus, by minimality of
-  %%   $\myprod_{\sigma}\bB_i \minabsorbing \myprod_{\sigma}\bA_{i}$,
-  %%   we have $\bS = \myprod_{\sigma}\bB_i$, as desired.
-  by minimality of
-  $\myprod_{\sigma}\bB_i \minabsorbing \myprod_{\sigma}\bA_{i}$,
-  and transitivity of absorption.
-  To summarize, for every $\emptyset \subsetneq \sigma\subsetneq \nn$,
-  \begin{equation}
-    \label{eq:20}
-  \bR \sdp \bR_{\sigma} \times \bR_{\sigma'}, \quad
-  \myprod_\sigma \bB_i \minabsorbing \bR_{\sigma}, \quad
-  \myprod_{\sigma'} \bB_i \minabsorbing \bR_{\sigma'}.
   %% \bB_{\nn } \minabsorbing \bR_{\nn } \quad \text{ and } \quad
   %% \bB_n \minabsorbing \bA_n.
   %% \bB_{\nn } \minabsorbing \bR_{\nn } \quad \text{ and } \quad
