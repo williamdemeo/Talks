@@ -1,6 +1,10 @@
-%\documentclass[xcolor=dvipsnames,9pt]{beamer} 
-\documentclass[xcolor=dvipsnames,9pt,hide notes,mathserif]{beamer}
-%\documentclass[xcolor=dvipsnames,9pt,handout,hide notes,mathserif]{beamer}
+%% recently used: 
+% \documentclass[xcolor=dvipsnames,9pt,hide notes,mathserif]{beamer}
+\documentclass[9pt,xcolor=dvipsnames%,mathserif%,handout
+   ]{beamer}
+\PassOptionsToClass{beamer}{handout}
+\usepackage{pgfpages} 
+\pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=3mm]
 
 \usepackage{pgfpages}
 \usepackage{listings}

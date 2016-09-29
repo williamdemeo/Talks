@@ -1,14 +1,11 @@
-%\documentclass[11pt]{article}
-%\usepackage{beamerarticle}
-%\usepackage{graphicx}
-\documentclass[12pt,xcolor=dvipsnames,mathserif%,handout
+\documentclass[12pt,xcolor=dvipsnames%,mathserif%,handout
    ]{beamer}
-%\PassOptionsToClass{beamer}{handout}
-% \usepackage{pgfpages} 
-% \pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=3mm]
+\PassOptionsToClass{beamer}{handout}
+\usepackage{pgfpages} 
+\pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=3mm]
 \usepackage{amsmath}
 \usepackage{helvet}
-\usepackage{inputs/mymacros}
+\usepackage{../inputs/mymacros}
 \usepackage{comment}
 \usepackage{xspace}
 \usepackage{pifont}
@@ -122,22 +119,23 @@ A system of linear equations is a CSP
 \begin{frame}
   For a fixed $k$, determining whether a graph is $k$-colorable is a CSP
   \begin{center}
-    \includegraphics{inputs/k-col}
+    \includegraphics{../inputs/k-col}
 %    \fbox{picture suggesting 3-colorability}
   \end{center}
 \end{frame}
 
 
 \begin{frame}
-Given a propositional formula $\phi(x_1,\dots,x_n)$, determine whether $\phi$ is satisfiable
+Determining whether a given formula $\phi(x_1,\dots,x_n)$ is satisfiable is a CSP
 \bigskip
+For example,
 \begin{equation*}
-\phi(x,y,z) = (x\join y \join z') \meet (x'\join y \join z')
+\phi(x,y,z) = (x\join y \join \neg z) \meet (\neg x\join y \join \neg z)
 \end{equation*}
-then 
-\begin{equation*}
-\phi(0,0,1) = 1
-\end{equation*}
+
+\bigskip
+
+is satisfiable (by $(x,y,z) = (0,0,1)$)
 \end{frame}
 
 \begin{frame}
@@ -268,7 +266,7 @@ then
 \end{frame}
 
 \begin{frame}
-  \includegraphics[scale=1.25]{inputs/complexity}
+  \includegraphics[scale=1.25]{../inputs/complexity}
   \qquad
   \parbox[b][2in][c]{1.5in}{If $\P\neq \NP$ then the pink area is nonempty.}
 \end{frame}
@@ -339,7 +337,7 @@ Here, $\mathbf a= \<a_1,a_2,\dots,a_n\>\in D^n$, $b\in D$.
 
     \begin{columns}
       \begin{column}{1.5in}
-        \includegraphics{inputs/col_csp}
+        \includegraphics{../inputs/col_csp}
       \end{column}
       \begin{column}{2in}
         $V=\{v_1,\dots,v_6\}$\\
@@ -674,9 +672,9 @@ Here $\delta_1\dots,\delta_t \in \Delta$ and every $z_{i_j} \in \{x_1,\dots,x_n,
 
   \bigskip
   \begin{overprint}
-    \onslide<2|handout:0> \centering{\includegraphics{inputs/dichotomy1}}
-    \onslide<3|handout:0> \centering{\includegraphics{inputs/dichotomy2}}
-    \onslide<4|handout:0> \centering{\includegraphics{inputs/dichotomy3}}
+    \onslide<2|handout:0> \centering{\includegraphics{../inputs/dichotomy1}}
+    \onslide<3|handout:0> \centering{\includegraphics{../inputs/dichotomy2}}
+    \onslide<4|handout:0> \centering{\includegraphics{../inputs/dichotomy3}}
     \onslide<5-|handout:1>
     \begin{exampleblock}{Supporting Examples}
       \begin{itemize}
