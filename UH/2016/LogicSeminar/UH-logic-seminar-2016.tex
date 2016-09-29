@@ -1,11 +1,12 @@
 \documentclass[12pt,xcolor=dvipsnames%,mathserif%,handout
    ]{beamer}
-\PassOptionsToClass{beamer}{handout}
-\usepackage{pgfpages} 
-\pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=3mm]
+% \PassOptionsToClass{beamer}{handout}
+% \usepackage{pgfpages} 
+% \pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=3mm]
 \usepackage{amsmath}
 \usepackage{helvet}
 \usepackage{../inputs/mymacros}
+% \usepackage{../inputs/macros}
 \usepackage{comment}
 \usepackage{xspace}
 \usepackage{pifont}
@@ -31,6 +32,17 @@
 \DeclareMathOperator{\Inv}{Inv}
 \renewcommand{\.}{\cdot}
 \DeclareMathOperator{\core}{core}
+\newcommand{\sA}{\ensuremath{\mathcal{A}}}
+\newcommand{\sV}{\ensuremath{\mathcal{V}}}
+\newcommand{\sS}{\ensuremath{\mathcal{S}}}
+\newcommand{\sR}{\ensuremath{\mathcal{R}}}
+\newcommand{\sD}{\ensuremath{\mathcal{D}}}
+\newcommand{\bA}{\ensuremath{\mathbf{A}}}
+\newcommand{\sF}{\ensuremath{\mathcal{F}}}
+\newcommand{\defn}[1]{\textit{#1}}
+\renewcommand{\ar}{\ensuremath{\operatorname{ar}}}
+ \newcommand{\bR}{\ensuremath{\mathbf{R}}}
+
 \newcommand{\reduc}{\leq_{\text{\textnormal{p}}}}
 \newcommand{\equivp}{\equiv_{\text{\textnormal{p}}}}
 \newcommand{\NP}{\ensuremath{\mathbb{NP}}\xspace}
@@ -44,7 +56,7 @@
 %%
 \parskip=10pt
 %% Beamer Setup
-\mode<handout>{\beamertemplatesolidbackgroundcolor{black!5}}
+% \mode<handout>{\beamertemplatesolidbackgroundcolor{black!5}}
 \mode<presentation>{
   % \usetheme{Singapore}
    % \usetheme{Frankfurt}
@@ -52,7 +64,7 @@
    \usetheme{Boadilla}
    % \usetheme{lankton-keynote}
    \usecolortheme{beaver}
-  \useinnertheme[shadow]{rounded}
+  % \useinnertheme[shadow]{rounded}
   \setbeamertemplate{navigation symbols}[only frame symbol]{}
 }
 % \mode<beamer>
@@ -68,7 +80,7 @@
 
 \renewcommand{\phi}{\ensuremath{\varphi}}
 \begin{document}
-\title[Algebraic CSP]{Algebraic Methods for Deciding Complexity of Constraint Satisfaction Problems}
+\title[Algebraic CSP]{Algebraic Approach to Complexity of Constraint Satisfaction Problems}
 \author[\url{williamdemeo@gmail.com}]{William DeMeo\\
 {\small \url{williamdemeo@gmail.com}}}
 %\\[5pt]{\small University of Hawaii}
@@ -78,6 +90,8 @@
 
 \frame[plain]{\titlepage}
 
+\setbeamercolor{block body example}%
+{parent=normal text,use=block title example,bg=block title example.bg!25!bg}
 
 \begin{frame}
 \frametitle{What is a CSP?}
@@ -132,27 +146,26 @@ For example,
 \begin{equation*}
 \phi(x,y,z) = (x\join y \join \neg z) \meet (\neg x\join y \join \neg z)
 \end{equation*}
+\pause
 
-\bigskip
-
-is satisfiable (by $(x,y,z) = (0,0,1)$)
+is satisfiable. e.g., $(x,y,z) = (0,0,1)$
 \end{frame}
 
 \begin{frame}
   \frametitle{Algorithms}
-  There is an efficient algorithm (Gaussian elimination) for solving any
+  There is an \emph{efficient} algorithm (Gaussian elimination) for solving any
   linear system.
   That is
 
-\setbeamercolor{block body example}%
-{parent=normal text,use=block title example,bg=block title example.bg!25!bg}
+% \setbeamercolor{block body example}%
+% {parent=normal text,use=block title example,bg=block title example.bg!25!bg}
   \begin{exampleblock}{}
     There is an algorithm that accepts as input a linear system
     and decides whether that system has a solution.
 
     \smallskip
-    The running time of the algorithm is bounded above by $f(s)$ where
-    $f$ is a \emph{polynomial} and $s$ is the size of the system.
+    The running time of the algorithm is bounded by $f(s)$,
+    a \emph{polynomial} in the size $s$ of the system.
   \end{exampleblock}
   \pause
 
@@ -164,15 +177,15 @@ is satisfiable (by $(x,y,z) = (0,0,1)$)
 \begin{frame}
   Similarly
 
-  \setbeamercolor{block body example}%
-  {parent=normal text,use=block title example,bg=block title example.bg!25!bg}
+  % \setbeamercolor{block body example}%
+  % {parent=normal text,use=block title example,bg=block title example.bg!25!bg}
   \begin{exampleblock}{}
     There is an algorithm that accepts as input a graph and decides
     whether the graph is 2-colorable.
 
     \smallskip
     Running time bounded by $f(s)$, a \emph{polynomial} in 
-    size $s$.
+    the size $s$ of the graph.
   \end{exampleblock}
 
   The \alert{input}, a particular graph, is an \alert{instance} of the \alert{problem} 
@@ -181,13 +194,14 @@ is satisfiable (by $(x,y,z) = (0,0,1)$)
 
 
 \begin{frame}
-  \setbeamercolor{block body example}%
-  {parent=normal text,use=block title example,bg=block title example.bg!25!bg}
+  % \setbeamercolor{block body example}%
+  % {parent=normal text,use=block title example,bg=block title example.bg!25!bg}
   \begin{exampleblock}{}
   There is an algorithm that accepts as input a formula, $\phi = \phi_1 \meet \phi_2 \meet \cdots \meet \phi_k$ (each $\phi_i$ bijunctive) and decides whether $\phi$ is satisfiable.
   
   \smallskip
-  Running time bounded by $f(k)$, a \emph{polynomial} in size $k$.
+  Running time bounded by $f(s)$, a \emph{polynomial} in the length $s$ of a string
+  describing $\phi$.
   \end{exampleblock}
   
   The \alert{intput} formula $\phi$ is an \alert{instance} of the \alert{problem} 2-SAT.
@@ -248,21 +262,29 @@ is satisfiable (by $(x,y,z) = (0,0,1)$)
 
 \begin{frame}
   \frametitle{\$$2^{20}$ question: $\P \overset{?}{=} \NP$.}
+  \includegraphics[scale=.25]{../inputs/cash.png}
+  \pause
+  \parbox[b][2in][c]{2in}{
+      If $\P=\NP$ then all of the above distinctions go away. 
+    
+     \bigskip
+
+      Most problems we care about can be solved
+      efficiently. Just build bigger computers.
+    }
+      \bigskip
+      \pause
+      In particular, this talk becomes pointless. So assume $\P\neq \NP$.
 
   \pause
-  If $\P=\NP$ then all of the above distinctions go away. Almost every
-  problem that mathematicians actually care about can be solved
-  efficiently. Just build bigger computers.
-
-  \pause
-  In particular, this talk becomes pointless. So assume $\P\neq \NP$.
-
-  \pause
-  \begin{theorem}[Ladner, 1975 \cite{Ladner1975}]
-    If $\P \neq \NP$ then there are problems in $\NP-
+  \setbeamercolor{block body theorem}%
+  {parent=normal text,use=block title theorem,bg=block title theorem.bg!25!bg}
+  \begin{exampleblock}{Ladner, 1975 \cite{Ladner1975}} % [Ladner, 1975 \cite{Ladner1975}]
+  % \begin{theorem}[Ladner, 1975 \cite{Ladner1975}]
+    If $\P \neq \NP$, then there are problems in $\NP\setminus
     \P$ that are not \NP-complete.
-  \end{theorem}
-
+  % \end{theorem}
+  \end{exampleblock}
 \end{frame}
 
 \begin{frame}
@@ -271,67 +293,90 @@ is satisfiable (by $(x,y,z) = (0,0,1)$)
   \parbox[b][2in][c]{1.5in}{If $\P\neq \NP$ then the pink area is nonempty.}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Formal Definition of CSP}
 
-  Let $D$ be a set, $n$ a positive integer\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 1: CSP Intro 1
+\begin{frame}
+  \frametitle{Oversimplified Definition of CSP}
+  
+  {\bf Input}
+  \begin{itemize}
+  \item \emph{variables:} $\sV = \{v_1, v_2, \dots\}$
+  \item \emph{domain:}  $\sD$
+  \item \emph{constraints:} $C_1, C_2, \dots$
+  \end{itemize}
+\pause
+  \vskip.5cm
+  % \underline{Output}
+  {\bf Output}
+  \begin{itemize}
+  \item ``yes'' if there is a \emph{solution}   $f : \sV \rightarrow \sD$ 
+
+    {\small (assigning values to variables and satisfying all $C_i$)}
+
+  \item ``no'' otherwise
+  \end{itemize}
+
+\end{frame}
+
+
+
+
+
+\begin{frame}
+  \frametitle{Slightly more formally...}
+
+  Let $D$ be a set, $n$ a positive integer
+
   An \emph{$n$-ary relation on $D$} is a subset of $D^n$
 
   \pause
   $\Rel_n(D)$ denotes the set of all $n$-ary relations on $D$
 
-  $\Rel(D) = \bigcup\limits_{n>0} \Rel_n(D)$
+  $\Rel(D) = \bigcup\limits_{n< \omega} \Rel_n(D)$ is the set of all finitary
+  relations on $D$
 \end{frame}
 
-\begin{frame}
-  Let $D$ be a finite set and $\Delta\sseq \Rel(D)$
+\begin{frame}  
+  \frametitle{Slightly more formal defintion of CSP}
 
-  $\CSP(\<D,\Delta\>)$ is the following decision problem:
+  Let $D$ be a finite set and $\sR \sseq \Rel(D)$
 
-  \textbf{Instance.} A finite set $V=\setof{v_1,\dots,v_n}$ of
-    \alert{variables}
-    and\\
-    a finite set $\setof{C_1,\dots,C_m}$ of \alert{constraints};
+  $\CSP(D,\sR)$ is the following decision problem:
 
-    each constraint $C_i$ is a pair $(\seqof{x_{i1},\dots,x_{i\,p_i}},\,
-    \delta_i)$ in which $x_{i1},\dots,x_{i\,p_i} \in V$ and $\delta_i\in
-    \Delta$
+  \textbf{Instance:}
+\vskip-3mm
+  \begin{itemize}
+  \item 
+  \alert{variables}: $V=\setof{v_1,\dots,v_n}$ (a finite set) 
 
-    \pause
-    \textbf{Question.} Does there exist a \alert{solution}, that is,
-    a ``context''  $\rho \colon V\to D$, such
-    that for all $i\leq m$, $\<\rho(x_{i1}),\dots,\rho(x_{i\,p})\>\in \delta_i$?
+\item  \alert{constraints}: $(C_1,\dots,C_m)$ (a finite list) 
+  \end{itemize}
+  Each $C_i$ is a pair $(\bs_i,\, R_i)$, 
+  where \[\bs_i(j) \in V\quad \text{ and } \quad R_i\in \sR\]
 
-    \pause
-    $\CSP(\<D,\Delta\>)$ always lies in \NP.
+  \pause
+  \textbf{Question:} Does there exist a \alert{solution}? 
 
-%    $\CSP\<D,\Delta\>$ is \emph{finitary} if $\Delta$ is finite. 
+  an assignment $f \colon V\to D$ such that, for all $i\leq m$,
+\[(f(\bs_i(1)),\dots,f(\bs_i(p)))\in R_i \]
+
+    % \pause
+    % $\CSP(D,\sR)$ always lies in \NP.
+
+%    $\CSP\<D,\sR\>$ is \emph{finitary} if $\sR$ is finite. 
 \end{frame}
 
-\begin{comment}
-\begin{frame}
-  \frametitle{Example: Linear Equations over $\FF_2$}
-
-  $D=\{0,1\}$ \\
-  $\Delta$ consists of all relations
-  \begin{equation*}
-    \delta_{n,\mathbf a}^b = \bigl\{\,\<x_1,\dots,x_n\>\in D^n :
-      a_1x_1+\cdots a_nx_n = b\bigr\}
-  \end{equation*}
-Here, $\mathbf a= \<a_1,a_2,\dots,a_n\>\in D^n$, $b\in D$.
-
-\bigskip
-  Then $\CSP(\<D,\Delta\>)$ is LINEAR SYSTEM
-\end{frame}
-\end{comment}
 
 \begin{frame}
   \frametitle{Example: 3-colorability}
 
-  $D=\{\Red{r},\Green{g},\Blue{b}\}$, \quad $\Delta=\{\kappa_3\}$\\
-  $\kappa_3=\setof{(x,y)\in D : x\neq y}$
+  $D=\{\Red{r},\Green{g},\Blue{b}\}$, \quad $\sR=\{R\}$
 
-  Then $\CSP(\<D,\Delta\>)$ is the 3-colorability problem
+  $R =\setof{(x,y)\in D\times D : x\neq y}$
+
+  Then $\CSP(D,\sR)$ is the 3-colorability problem
 
   \bigskip
 
@@ -341,23 +386,25 @@ Here, $\mathbf a= \<a_1,a_2,\dots,a_n\>\in D^n$, $b\in D$.
       \end{column}
       \begin{column}{2in}
         $V=\{v_1,\dots,v_6\}$\\
-        $\<v_1,v_2\>\in \kappa$\\
-        $\<v_1,v_3\>\in \kappa$\\
-        $\<v_1,v_4\>\in \kappa$\\
-        $\<v_2,v_4\>\in \kappa$\\
+        $\bs_1 = (v_1,v_2)$\\
+        $\bs_2 = (v_2,v_4)$\\
+        % $\bs_3 = (v_1,v_4)$\\
+        % $\bs_4=(v_2,v_4)$\\
         \qquad$\vdots$\\
-        $\<v_5,v_6\>\in \kappa$
+        $\bs_m = (v_5,v_6)$\\[4pt]
+        $R_i = R$ for every $i$.
       \end{column}
     \end{columns}
   \end{frame}
-\begin{comment}
+
+% \begin{comment}
   
 \begin{frame}
 \frametitle{Example: 2-SAT}
 $D=\{0,1\}$\\
 For a bijunctive clause $\phi(x,y)$, 
 \begin{equation*}
-\delta_\phi= \setof{\<a,b\>\in D^2: \phi(a,b)=1}
+R_\phi= \setof{\<a,b\>\in D^2: \phi(a,b)=1}
 \end{equation*}
 
 \pause
@@ -369,13 +416,18 @@ For a bijunctive clause $\phi(x,y)$,
 1 & 0 & 1\\
 1 & 1 & 1
 \end{tabular}
-\uncover<3->{\qquad \parbox{2.5in}{So $\delta_{x\join y'} = \{\<00\>,\,\<10\>,\,\<11\>\}%=\\ \{0,1\}^2-\{\<01\>\}
+\uncover<3->{\qquad \parbox{2.5in}{So $R_{x\join y'} = \{\<00\>,\,\<10\>,\,\<11\>\}%=\\ \{0,1\}^2-\{\<01\>\}
 $}}
 
-\bigskip
-\uncover<4->{$\displaystyle\Delta=\{\delta_{x\join y},\, \delta_{x\join y'},\,\delta_{x'\join y},\, \delta_{x'\join y'}\}$}
+
+\uncover<4->{$\displaystyle\sR=\{R_{x\join y},\, R_{x\join y'},\,R_{x'\join y},\, R_{x'\join y'}\}$}
+
+\uncover<5->{
+2-SAT is $\CSP(D,\sR)$}
 \end{frame}
 
+\begin{comment}
+  
 \begin{frame}
 \frametitle{Example: Horn-SAT}
 \alert{Horn formula:}\\
@@ -387,39 +439,42 @@ $}}
 Corresponding relation $\gamma^n_i = \{0,1\}^n-\{\<111\dots0\dots111\>\}$
 
 \bigpause
-Horn-SAT is $\CSP\<D,\Gamma\>$\\
+Horn-SAT is $\CSP(D,\Gamma)$\\
 $D=\{0,1\}$,\quad $\Gamma=\setof{\gamma^n_i : 0\leq i <n}$
 \end{frame}
+
+\end{comment}
 
 \begin{frame}
   \frametitle{Schaefer's Dichotomy}
 
-  \begin{theorem}[Schaefer, 1978 \cite{Schaefer1978}]
-    Let $D=\{0,1\}$. There are six families $\Delta_0,
-  \dots, \Delta_5$ such that
+  \begin{exampleblock}{Schaefer, 1978 \cite{Schaefer1978}}
+    Let $D=\{0,1\}$. There are six families $\sR_0,
+  \dots, \sR_5$ such that
   \begin{equation*}
-    \CSP(\<D,\Delta\>) \in \P \iff \Delta \sseq \Delta_i, \text{some $i< 6$}
+    \CSP(D,\sR) \in \P \iff \sR \sseq \sR_i, \text{some $i< 6$}
   \end{equation*}
-  Otherwise $\CSP(\<D,\Delta\>)$ is $\NP$-complete.
-\end{theorem}
+  Otherwise $\CSP(D,\sR)$ is $\NP$-complete.
+\end{exampleblock}
+% \end{theorem}
 \end{frame}
 
 \begin{frame}
 {\large The six families}
-$\Delta_0 = \setof{\delta : \<0,0,\dots,0\>\in \delta}$ (``All False'')\\[2pt]
-$\Delta_1 = \setof{\delta : \<1,1,\dots,1\>\in \delta}$ (``All True'')\\[2pt]
-$\Delta_2 = \{\delta_{x\join y},\, \delta_{x\join y'},\,\delta_{x'\join y},\, \delta_{x'\join y'}\}$ (bijunctive)\\[2pt]
-$\Delta_3 = \Gamma$ (Horn)\\[2pt]
-$\Delta_4 = \Gamma^\partial$ (dual-Horn)\\[2pt]
-$\Delta_5$ (affine, i.e., linear system over $\FF_2$)
+$\sR_0 = \setof{R : \<0,0,\dots,0\>\in R}$ (``All False'')\\[2pt]
+$\sR_1 = \setof{R : \<1,1,\dots,1\>\in R}$ (``All True'')\\[2pt]
+$\sR_2 = \{R_{x\join y},\, R_{x\join y'},\,R_{x'\join y},\, R_{x'\join y'}\}$ (bijunctive)\\[2pt]
+$\sR_3 = \Gamma$ (Horn)\\[2pt]
+$\sR_4 = \Gamma^\partial$ (dual-Horn)\\[2pt]
+$\sR_5$ (affine, i.e., linear system over $\FF_2$)
 \end{frame}
-\end{comment}
+
 
 \begin{frame}
   \frametitle{Two Motivating Questions}
 
   \begin{enumerate}
-  \item \alert{Dichotomy Conjecture}\\ Every $\CSP(\<D,\Delta\>)$ either
+  \item \alert{Dichotomy Conjecture}\\ Every $\CSP(D,\sR)$ either
     lies in \P\ or is $\NP$-complete.
 
     \pause
@@ -430,12 +485,12 @@ $\Delta_5$ (affine, i.e., linear system over $\FF_2$)
   \pause
   What would a characterization look like? What language could we use?
 \end{frame}
-\begin{comment}
+% \begin{comment}
   
 \begin{frame}
 \frametitle{Why is 2-SAT tractable, but 3-SAT is not?}
 
-2-SAT: $\Delta_2=\{\delta_{x\join y},\,\delta_{x\join y'},\, \delta_{x'\join y},\, \delta_{x'\join y'}\} $
+2-SAT: $\sR_2=\{R_{x\join y},\,R_{x\join y'},\, R_{x'\join y},\, R_{x'\join y'}\} $
 
 \smallskip
 3-SAT: $\Lambda=\{\lambda_0,\lambda_1,\dots, \lambda_7\}$
@@ -450,13 +505,13 @@ M(x,y,z) = \begin{cases}
 ``Majority Operation''
 
 \pause
-$M$ preserves each $\delta\in \Delta_2$:
+$M$ preserves each $R\in \sR_2$:
 \begin{equation*}
 \begin{matrix}
-\<a_1, &b_1\> &\in \delta\\
-\<a_2, &b_2\> &\in \delta\\
-\<a_3, &b_3\> &\in \delta \text{ implies}\\
-\<M(a_1,a_2,a_3), &M(b_1,b_2,b_3)\> &\in \delta
+\<a_1, &b_1\> &\in R\\
+\<a_2, &b_2\> &\in R\\
+\<a_3, &b_3\> &\in R \text{ implies}\\
+\<M(a_1,a_2,a_3), &M(b_1,b_2,b_3)\> &\in R
 \end{matrix}
 \end{equation*}
 
@@ -476,24 +531,24 @@ For example, with $\lambda=\lambda_{x\join y\join z'}=\{0,1\}^3-\{\<001\>\}$
 \end{align*}
 
 \end{frame}
-\end{comment}
+% \end{comment}
 
 \begin{frame}
   \frametitle{Polymorphisms}
 
-  \begin{definition}
-    Let $\delta \in \Rel_k(D)$ and $f\: D^n \to D$. We say 
-    \emph{$f$ preserves $\delta$} if
+  \begin{exampleblock}{Definition}
+    Let $R \in \Rel_k(D)$ and $f\: D^n \to D$. We say 
+    \emph{$f$ preserves $R$} if
     \begin{equation*}
       \begin{split}
         (a_{11}, \dots, a_{1k}),&\dots, (a_{n1},\dots, a_{nk}) \in
-        \delta \implies\\ 
+        R \implies\\ 
         &\bigl( f(a_{11},\dots, a_{n1}), \dots, f(a_{1k},\dots,a_{nk})
-        \bigr) \in \delta
+        \bigr) \in R
     \end{split}
     \end{equation*}
-
-  \end{definition}
+  \end{exampleblock}
+% \end{definition}
 
   \begin{overprint}
   \onslide<2|handout:0>
@@ -502,48 +557,57 @@ For example, with $\lambda=\lambda_{x\join y\join z'}=\{0,1\}^3-\{\<001\>\}$
   \onslide<3|handout:1>
     \begin{equation*}
       \newcommand\flab{\scriptstyle{f}}
-      \begin{matrix} a_{11} & a_{12} & \dots & a_{1k} & \in & \delta \\
-        a_{21} & a_{22} & \dots & a_{2k} & \in & \delta \\
+      \begin{matrix} a_{11} & a_{12} & \dots & a_{1k} & \in & R \\
+        a_{21} & a_{22} & \dots & a_{2k} & \in & R \\
         \vdots  & \vdots &       &\vdots  &     & \vdots \\
-        a_{n1} & a_{n2} & \dots & a_{nk} & \in & \delta \\
+        a_{n1} & a_{n2} & \dots & a_{nk} & \in & R \\
         \downarrow\flab &\downarrow\flab &  & \downarrow\flab \\
-        \star  & \star  & \dots & \star  & \in & \delta
+        \star  & \star  & \dots & \star  & \in & R
       \end{matrix}
     \end{equation*}
   \end{overprint}
 \end{frame}
 
 \begin{frame}
-  \begin{definition}
-    Let $\Delta$ be a set of relations on $D$. Then
-    \emph{$\Pol(\Delta)$} denotes the set of all operations preserving
-    all members of $\Delta$. These are the \emph{polymorphisms} of
-    $\Delta$. 
+  % \begin{definition}
+  \begin{exampleblock}{Definition}
+    Let $\sR$ be a set of relations on $D$.
+
+    \bigskip
+    \emph{$\Pol(\sR)$} is the set of operations preserving
+    all members of $\sR$. 
+
+    \bigskip
+    These are the \alert{polymorphisms} of  $\sR$. 
 
     \bigpause
 
-    Let $F$ be a set of operations on $D$. Then \emph{$\Inv(F)$} denotes
-    the set of all relations preserved by all operations in $F$.
-  \end{definition}
+    Let $F$ be a set of operations on $D$. 
+
+    \bigskip
+    \emph{$\Inv(F)$} is the set of relations preserved by all operations in $F$.
+  \end{exampleblock}
+% \end{definition}
   
   \bigpause
-Important point: $\<D,\Pol(\Delta)\>$ is an algebraic structure
+Important point: \emph{$(D,\Pol(\sR))$ is an algebraic structure}
 
 \end{frame}
 
 \begin{frame}
-  \begin{theorem}
-    Let $\Gamma, \Delta \sseq \Rel(D)$. Then
+  \begin{exampleblock}{Theorem}
+  % \begin{theorem}
+    Let $\sS, \sR \sseq \Rel(D)$. Then
     \begin{equation*}
-      \Pol(\Gamma) \sseq \Pol(\Delta) \implies \CSP(\Delta) \reduc
-      \CSP(\Gamma). 
+      \Pol(\sS) \sseq \Pol(\sR) \implies \CSP(\sR) \reduc
+      \CSP(\sS). 
     \end{equation*}
-  \end{theorem}
+  \end{exampleblock}
 
 \pause
 Thus, the richer the algebraic structure, the easier the corresponding CSP
 \end{frame}
-\begin{comment}
+% \begin{comment}
   
 \begin{frame}
 Schaefer proved that on $D=\{0,1\}$, there are 4 key polymorphisms:
@@ -556,48 +620,63 @@ $P(x,y,z) =x\oplus y \oplus z = x-y+z$
 \end{center}
 
 \bigskip
-$\<\{0,1\},\Delta\>$ is tractable iff one of these four is a polymorphism of $\Delta$
+$(\{0,1\},\sR)$ is tractable iff one of these is a polymorphism of $\sR$
 
 \bigpause
-Unfortunately, things become much more complicated when $\card{D}>2$.
+(Un)fortunately, things are more complicated when $\card{D}>2$.
 \end{frame}
 
-\end{comment}
+% \end{comment}
 
 \begin{frame}
+\frametitle{Galois Connection}
   One can go back and forth between relational and algebraic structures
 
   \begin{center}
     \begin{tabular}{ccc}
       \origtextbf{Relational} & &\origtextbf{Algebraic}  \\
-      $\<D,\Delta\>$ & $\longrightarrow$ & $\<D,\Pol(\Delta)\>$ \\[2pt]
-      $\<D, \Inv(F)\>$ & $\longleftarrow$ &$\<D,F\>$
+      % \origtextbf{Structures} & &\origtextbf{Structures}  \\
+      $(D,\sR)$ & $\longrightarrow$ & $(D,\Pol(\sR))$ \\[2pt]
+      $(D, \Inv(F))$ & $\longleftarrow$ &$(D,F)$
     \end{tabular}
   \end{center}
 
-  $\CSP\<D,\Delta\> \equivp \CSP\<D,\Inv(\Pol(\Delta))\>$
+  $\CSP(D,\sR) \equivp \CSP(D,\Inv(\Pol(\sR)))$
 
   \bigpause
-  Perhaps the expressive power of algebra can be used to classify CSPs.
+  Perhaps expressive power of algebra can help classify CSPs.
 
   \end{frame}
 
-\begin{comment}
+% \begin{comment}
   
 \begin{frame}
-For a set of relations, $\Delta$, on $D$, $\Inv\bigl(\Pol(\Delta)\bigr)$ coincides with the set of relations definable from $\Delta$ by a \emph{positive primitive formula}.
+\frametitle{The Relational Clone}
+For a set $\sR$ of relations on $D$, let $\<\sR\> =
+\Inv\bigl(\Pol(\sR)\bigr)$.
+
+$\<\sR\>$ is called the \alert{relational clone} generated by $\sR$.
+
+It coincides with the set of relations definable from $\sR$ by\\
+ \emph{primitive positive formulas}.
 
 \pause
-$\phi(x_1,\dots,x_n)=(\exists y_1)(\exists y_2)\cdots(\exists y_m)\bigl(\delta_1(z_{1_1},\dots,z_{1_k}) \meet \dots \meet \delta_t(z_{t_1},\dots,z_{t_j})\bigr)$
+$\phi(x_1,\dots,x_n)=(\exists y_1)(\exists y_2)\cdots(\exists y_m)\bigl(R_1(z_{1_1},\dots,z_{1_k}) \meet \dots \meet R_t(z_{t_1},\dots,z_{t_j})\bigr)$
 
-Here $\delta_1\dots,\delta_t \in \Delta$ and every $z_{i_j} \in \{x_1,\dots,x_n,y_1,\dots,y_m\}$
+Here $R_1\dots,R_t \in \sR$ and every $z_{i_j} \in \{x_1,\dots,x_n,y_1,\dots,y_m\}$
 \end{frame}
-\end{comment}
+% \end{comment}
 
 
 
 \begin{frame}
   \frametitle{Algebraic Facts}
+
+  For an algebra $\bA = \<A, F\>$ define 
+
+  \[\CSP(\A) = \CSP(A, \Inv(F))\]
+
+  \pause
 
   Let \A\ and \B\ be algebras
 
@@ -612,21 +691,26 @@ Here $\delta_1\dots,\delta_t \in \Delta$ and every $z_{i_j} \in \{x_1,\dots,x_n,
 
 
 \begin{frame}
-  \begin{theorem}[Bulatov, Jeavons, Krokhin, 2000
-    \cite{BulatovKrokhinJeavons2000}]
-    If $\<D,\Delta\>$ is a core and every polymorphism is essentially unary,
-    then $\CSP(\Delta)$ is \NP-complete.
-  \end{theorem}
+  \begin{exampleblock}{Bulatov, Jeavons, Krokhin, 2000
+    \cite{BulatovKrokhinJeavons2000}}
+  % \begin{theorem}[Bulatov, Jeavons, Krokhin, 2000
+    % \cite{BulatovKrokhinJeavons2000}]
+    If $(D,\sR)$ is a ``core'' and every polymorphism is essentially unary,
+    then $\CSP(\sR)$ is \NP-complete.
+  % \end{theorem}
+  \end{exampleblock}
 
   $f$ is \emph{essentially unary} if $f(x_1,\dots,x_n) = g(x_j)$ for
   some unary $g$ and some $j\leq n$.
 
  \pause
- \begin{corollary}
+  \begin{exampleblock}{Corollary}
+ % \begin{corollary}
     3-COLORABILITY, NONLINEAR SYSTEM, and 3-SAT are \NP-complete.
-  \end{corollary}
-\end{frame}
+  % \end{corollary}
+  \end{exampleblock}
 
+\end{frame}
 
 
 \begin{frame}
@@ -637,9 +721,9 @@ Here $\delta_1\dots,\delta_t \in \Delta$ and every $z_{i_j} \in \{x_1,\dots,x_n,
   $\CSP(\A)$ is \NP-complete.
 \end{frame}
 
-\end{document}
 \begin{frame}
-  \begin{definition}
+  % \begin{definition}
+  \begin{exampleblock}{Definition}
     Let $n>1$. An $n$-ary operation $f$ is called a \emph{weak
       near-unanimity operation} if 
        \begin{equation*}
@@ -649,25 +733,27 @@ Here $\delta_1\dots,\delta_t \in \Delta$ and every $z_{i_j} \in \{x_1,\dots,x_n,
     = f(x,x,\dots,x,y)
   \end{gathered}
   \end{equation*}
-  \end{definition}
-  
-  Note: no essentially unary operation is WNU
+  % \end{definition}
+\end{exampleblock}  
+Note: no essentially unary operation is WNU
 \end{frame}
 
 \begin{frame}
-  \begin{theorem}[Bulatov, Larose, Z\'adori, McKenzie, Mar\'oti
-    \cite{BulatovJeavonsKrokhin2005,LaroseZadori2003,%
-    MarotiMcKenzie2008}]
-    If $\Delta$ is a core and $\Pol(\Delta)$ has no WNU operation
-    then $\CSP(\Delta)$ is \NP-complete.    
-  \end{theorem}
+  \begin{exampleblock}{Bulatov, Larose, Z\'adori, McKenzie, Mar\'oti}
+  % \begin{theorem}[Bulatov, Larose, Z\'adori, McKenzie, Mar\'oti
+  %   \cite{BulatovJeavonsKrokhin2005,LaroseZadori2003,%
+  %   MarotiMcKenzie2008}]
+    If $\sR$ is a core and $\Pol(\sR)$ has no WNU operation
+    then $\CSP(\sR)$ is \NP-complete.    
+  % \end{theorem}
+  \end{exampleblock}
 \end{frame}
 
 
 \begin{frame}
   \frametitle{Reformuated Dichotomy Conjecture}
 
-  Let $\Delta$ be a core. Then $\CSP(\Delta)$ is tractable if and only
+  Let $\sR$ be a core. Then $\CSP(\sR)$ is tractable if and only
   if it has a WNU polymorphism. Otherwise, it is \NP-complete. 
 
   \bigskip
@@ -695,7 +781,7 @@ Here $\delta_1\dots,\delta_t \in \Delta$ and every $z_{i_j} \in \{x_1,\dots,x_n,
 \frametitle{Two General Techniques for Tractable Algorithms}
 %\begin{enumerate}
 \begin{exampleblock}{Method 1}
-If $\Pol(\Delta)$ contains a ``cube operation'' then $\CSP(\Delta)\in \P$
+If $\Pol(\sR)$ contains a ``cube operation'' then $\CSP(\sR)\in \P$
 %\end{enumerate}
 \end{exampleblock}
 
@@ -713,7 +799,7 @@ Algebras with a cube operation possess ``few subpowers''. This algebraic propert
 
 \begin{frame}
 \begin{exampleblock}{Method 2}
-If $\Pol(\Delta)$ contains WNU operations $v(x,y,z)$ and $w(x,y,z,u)$ satisfying $v(y,x,x)= w(y,x,x,x)$, then $\CSP(\Delta)\in \P$.
+If $\Pol(\sR)$ contains WNU operations $v(x,y,z)$ and $w(x,y,z,u)$ satisfying $v(y,x,x)= w(y,x,x,x)$, then $\CSP(\sR)\in \P$.
 \end{exampleblock}
 
 \pause
@@ -734,11 +820,46 @@ Two possible directions:
 \item Combine the two existing algorithms.
 \end{enumerate}
 
-I am exploring the second approach.
+I am exploring both  approaches.
 \end{frame}
 
 
 \end{document}
+
+
+
+\begin{frame}
+  \frametitle{Overcomplicated Definition of CSP}
+
+  $\bA = (A, \sF)$ is a finite idempotent algebra,
+  $\Sub(\bA)$ is all subuniverses of $\bA$.
+
+  {\it In this talk} $\CSP(\bA)$ denotes the following decision problem:
+
+   An \alert{instance of degree} $n$ of $\CSP(\bA)$ is the tuple $\<\sV, \sA, \sS, \sR\>$ 
+   \begin{itemize}
+   \item \emph{variables} $\sV = \{0, 1, \dots, n-1\}$;
+   \item \emph{domains} $\sA = \{\bA_0, \bA_1, \dots, \bA_{n-1}\} \subset \Sub(\bA)$  (one for each variable)
+   \item \emph{scope functions} $\sS = (\bs_0, \bs_1, \dots, \bs_{p-1})$ 
+     with \emph{constraint arities} $\ar(\sS) = (m_0, m_1, \dots, m_{p-1})$
+   \item \emph{constraint relations} $\sR = (\bR_0, \bR_1, \dots, \bR_{p-1})$, where
+     \[\bR_i \leq \bA_{\bs_i(0)} \times \bA_{\bs_i(1)}\times \cdots \times \bA_{\bs_i(m_i-1)}.\]
+   \end{itemize}
+ \end{frame}  
+ % \bigskip
+  
+%   A \alert{solution} to $\<\sV, \sA, \sS, \sR\>$ is an assignment
+%   $f: \sV \to A$ of values to variables that satisfies all constraints. That is,
+%   \[f\in \myprod_{\sV}A_j
+%     \quad  \text{and} \quad 
+%     \Proj_{\bs_i} f \in \bR_i, \;\text{ for each $0\leq i < p$.}
+%   \]
+
+%   \pause
+%   {\bf Notation:} $\nn = \{0,1,\dots, n-1\}$, so the $i$-th scope
+%   has type $\bs_i : \mm_i \to \nn$ and
+%   \[ \Proj_{\bs_i} f  = f \circ \bs_i \]
+% \end{frame}
 
 
 
