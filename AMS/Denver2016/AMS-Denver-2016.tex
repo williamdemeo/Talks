@@ -1,8 +1,8 @@
 \documentclass[10pt,xcolor=dvipsnames%,mathserif%,handout
    ]{beamer}
-\PassOptionsToClass{beamer}{handout}
-\usepackage{pgfpages} 
-\pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=3mm]
+%% \PassOptionsToClass{beamer}{handout}
+%% \usepackage{pgfpages} 
+%% \pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=3mm]
 \usepackage{amsmath}
 \usepackage{helvet}
 \usepackage{inputs/mymacros}
@@ -90,7 +90,7 @@
 
 \renewcommand{\phi}{\ensuremath{\varphi}}
 \begin{document}
-\title[Algebraic CSP]{Universal Algebraic Methods for \\Constraint Satisfaction Problems}
+\title[Algebraic CSP]{Some Universal Algebra Methods for \\Constraint Satisfaction Problems}
 \author[\url{williamdemeo@gmail.com}]{William DeMeo\\
   {\small \url{williamdemeo@gmail.com}}\\[5pt]
   {\small University of Hawaii}\\[10pt]
@@ -116,7 +116,8 @@ University of Denver\\[10pt]
   \item a set of constraints on those variables.
   \end{itemize}
 
-  \textbf{Problem:} can we assign values to all the variables so that
+  \textbf{Question:}
+  Can we assign values to all of the variables so that
   all of the constraints are satisfied?
 
 \end{frame}
@@ -137,7 +138,7 @@ University of Denver\\[10pt]
 %% \end{frame}
 
 \begin{frame}  
-  \frametitle{More specifically...}
+  \frametitle{More formally...}
 
   Let $D$ be a finite set and $\sR \sseq \Rel(D)= \bigcup\limits_{n< \omega} \sP(D^n)$
 
@@ -147,12 +148,15 @@ University of Denver\\[10pt]
 \vskip-3mm
   \begin{itemize}
   \item 
-  \alert{variables}: $V=\setof{v_1,\dots,v_n}$ (a finite set) 
+  \alert{variables}: $V=\setof{v_1,\dots,v_n}$, a finite set 
 
-\item  \alert{constraints}: $(C_1,\dots,C_m)$ (a finite list) 
+\item  \alert{constraints}: $(C_1,\dots,C_m)$, a finite list 
+
+  \medskip
+
+  each constraint $C_i$ is a pair $(\bs_i,\, R_i)$,
+  \[\bs_i(j) \in V\quad \text{ and } \quad R_i\in \sR\]
   \end{itemize}
-  Each $C_i$ is a pair $(\bs_i,\, R_i)$, 
-  where \[\bs_i(j) \in V\quad \text{ and } \quad R_i\in \sR\]
 
   \textbf{Question:} Does there exist a \alert{solution}? 
 
@@ -246,14 +250,15 @@ University of Denver\\[10pt]
 \end{frame}
 
 \begin{frame}
-  \frametitle{Galois Connection}
+  %% \frametitle{Galois Connection}
+   \frametitle{Notation}
 
   % \begin{definition}
   %% \begin{exampleblock}{Definition}
     Let $\sR$ be a set of relations on $D$.
 
     \bigskip
-    \emph{$\Poly(\sR)$}  = set of all operations preserving
+    \emph{$\Poly(\sR)$}  = set of all operations that preserve
     all relations in $\sR$. 
 
     \bigskip
@@ -322,11 +327,11 @@ Thus, the richer the algebraic structure, the easier the corresponding CSP
   \begin{exampleblock}{Informal algebraic CSP dichotomy conjecture}
 
     \bigskip
-    If $\Poly(\bA)$ is rich, then $\CSP(\A)$ is tractable.
+    If $\Poly(\bA)$ is rich, then $\CSP(\A)$ is in $\P$ \hskip3mm ``tractable''
     
     \bigskip
 
-    If $\Poly(\bA)$ is poor, then $\CSP(\A)$ is \NP-complete.
+    If $\Poly(\bA)$ is poor, then $\CSP(\A)$ is \NP-complete \hskip3mm ``intractable''
   \end{exampleblock}
 
   \pause
@@ -343,6 +348,37 @@ Thus, the richer the algebraic structure, the easier the corresponding CSP
 
 \end{frame}
 
+\begin{frame}
+  \frametitle{Definitions}
+  \begin{exampleblock}{Weak NU term}
+    An $n$-ary term $f$ is called a \emph{weak
+      near-unanimity term} if 
+       \begin{equation*}
+       \begin{gathered}
+       f(x,x,\dots,x) \approx x \text{ and}\\
+    f(y,x,x,x,\dots,x) \approx f(x,y,x,x,\dots,x) \approx \cdots \approx
+    f(x,x,\dots,x,y)
+       \end{gathered}
+  \end{equation*}
+  % \end{definition}
+  \end{exampleblock}  
+  Note: no essentially unary term is WNU
+  \pause
+  \begin{exampleblock}{Cube term}
+    An $n$-ary term $f$ is called a \emph{cube term} if
+    it satisfies $f(x,x,\dots,x) \approx x$ and for every $i \leq k$
+    there exists $(z_1,\dots, z_k) \in \{x, y\}^{k-1}$ such that
+    \[
+    f(z_1, \dots, z_{i-1},x,z_{i+1}, \dots, z_k) \approx y
+    \]
+  \end{exampleblock}
+%% A $k$-ary operation $f$ on a set $A$ is called
+%% \emph{transitive in the $i$-th coordinate} if for every $u, v \in A$,
+%% there exist $a_1,\dots, a_k \in A$ such that $a_i = u$
+%% and $f(a_1 ,\dots, a_n) = v$. Operations
+%% that are transitive in every coordinate are called \emph{transitive}. 
+
+\end{frame}
 
 \begin{comment}
   
@@ -400,7 +436,7 @@ Note: no essentially unary operation is WNU
 
 
 \begin{frame}
-  \frametitle{Reformuated Dichotomy Conjecture}
+  \frametitle{Reformulated Dichotomy Conjecture}
 
   Let $\sR$ be a ``core.''
 
@@ -423,31 +459,36 @@ Note: no essentially unary operation is WNU
 \begin{frame}
 \frametitle{Two General Techniques/Algorithms}
 %\begin{enumerate}
-\begin{exampleblock}{Method 1}
+\begin{exampleblock}{Method 1 {\small Berman, Idziak, Markovi{\'c},
+      McKenzie, Valeriote, Willard}}
 If $\Poly(\sR)$ contains a ``cube term'' then $\CSP(\sR)\in \P$
 %\end{enumerate}
 \end{exampleblock}
 
-\pause
-Examples of cube terms:
+%% \pause
+%% Examples of cube terms:
 
-$P(x,y,z) = x-y+z$\\
-$M(x,y,z) = \text{majority}$
+%% $P(x,y,z) = x-y+z$\\
+%% $M(x,y,z) = \text{majority}$
 
 Algebras with a cube term operation possess ``few subpowers.''
 
 This is used to prove the algorithm is poly-time.
 
-\end{frame}
+%% \end{frame}
 
-\begin{frame}
-  \frametitle{Two General Techniques for Tractable Algorithms}
-\begin{exampleblock}{Method 2}
+%% \begin{frame}
+%%   \frametitle{Two General Techniques for Tractable Algorithms}
+
+\pause
+
+\begin{exampleblock}{Method 2 {\small Kozik, Krokhin, Valeriote, Willard (improving
+    Barto, Kozik; Bulatov)}}
   If $\Poly(\sR)$ contains WNU terms $v(x,y,z)$ and $w(x,y,z,u)$
   satisfying $v(y,x,x)= w(y,x,x,x)$, then $\CSP(\sR)\in \P$.
 \end{exampleblock}
 
-\pause
+
 Examples: majority, semilattice 
 
 Algebras with these operations are congruence $\SD$-$\wedge$
@@ -489,7 +530,7 @@ Let $\bA = \<\{0,1,2,3\}, \cdot \>$, have the following Cayley table:
 
 What is an instance of $\CSP(\sansS(\bA))$?
 
-Contraint relations are subdirect products of subalgebras of $\bA$.
+Constraint relations are subdirect products of subalgebras of $\bA$.
 
 The proper nontrivial subuniverses of $\bA$ are $\{0,1\}$ and $\{1,2,3\}$.
 
@@ -527,7 +568,7 @@ The proper nontrivial subuniverses of $\bA$ are $\{0,1\}$ and $\{1,2,3\}$.
 
 \tikzstyle{lat} = [circle,draw,inner sep=0.8pt]
 \tikzstyle{nodot} = [circle]
-  \frametitle{Subuniverse of Product = Constraint Relation}
+  \frametitle{Constraint = Subuniverse of Product}
   \begin{center}
     \begin{tikzpicture}[scale=.8]
       \input{inputs/new-potatoes-02.tex}
@@ -550,7 +591,7 @@ The proper nontrivial subuniverses of $\bA$ are $\{0,1\}$ and $\{1,2,3\}$.
   $R \subseteq A \times A \times Sq_3 \times Sq_3 \times S_2 \times S_2$
 
   \pause
-      {\bf Question:} Does this $R$ form a subuniverse?
+      {\bf Question:} Why isn't the $R$ shown above a subuniverse?
 
 \end{frame}
 
@@ -669,11 +710,15 @@ operation}.
 
   For some problems, we have the following converse:
 
-  ({\large $\star$}) a solution to $I/\Theta$ can
-  \emph{always} be extended to a solution to $I$. 
+  ({\large $\star$}) a solution to $I/\Theta$
+  always extends to a solution to $I$. 
 
   {\bf Problem:} For what algebras does the {\large $\star$}-converse hold?
+  \pause
+
+\hfill  Thank you!
 \end{frame}
+
 \end{document}
 
 
@@ -705,9 +750,8 @@ Then we can determine in polynomial time whether a solution exists.
 
   \end{tikzpicture}
 \end{center}
-  
-\end{frame}
 
+\end{frame}
 
 
 
