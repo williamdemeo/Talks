@@ -1,0 +1,129 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%Some Macros that I use frequently
+%
+%
+%
+%  AMS-LaTeX version
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath,amsthm,amssymb}
+%
+%Macro to create control sequences generating modified characters.  The
+%syntax has been changed as of Jan  3, 1995.
+%Example: \makecs{\bold}{AB} expands to: 
+%\def\A{{\bold A}}
+%\def\B{{\bold B}}
+%
+\def\makecs#1#2{\makecsX {#1}#2,.}
+\def\makecsX#1#2#3.{\onecs{#1}{#2} \ifx#3,\let\next\eatit
+   \else\let\next\makecsX\fi 
+   \next{#1}#3.}
+\def\onecs#1#2{\expandafter\gdef\csname #2\endcsname{#1{#2}}}
+\def\eatit#1#2.{\relax}
+%
+%
+%Frequently used Greek letters and Boldfaced letters
+%
+\renewcommand\a{\ensuremath{\alpha}}
+\renewcommand\b{\ensuremath{\beta}}
+\newcommand\g{\ensuremath{\gamma}}
+\renewcommand\t{\ensuremath{\theta}}
+\newcommand\e{\ensuremath{\eta}}        %fortunately, I don't use many epsilons
+\newcommand\om{\ensuremath{\omega}}
+\newcommand\Ato[1]{\ensuremath{\mathbf A^{\!#1}}}  %account for the slant on an A
+\newcommand\ZZ{\ensuremath{\mathbb Z}}
+\newcommand\QQ{\ensuremath{\mathbb Q}}
+\newcommand\RR{\ensuremath{\mathbb R}}
+\newcommand\CC{\ensuremath{\mathbb C}}
+\newcommand\NN{\ensuremath{\mathbb N}}
+\newcommand\bs{\ensuremath{\mathbf s}}
+%
+\let\:\colon
+\def\comm #1,#2.{\left[\,#1 ,\, #2\, \right]}
+\newcommand\<{\langle}
+\renewcommand\>{\rangle}
+\newcommand\join{\vee}
+\newcommand\meet{\wedge}
+\newcommand\iso{\cong}
+\newcommand\nml{\vartriangleleft}
+\def\map#1,#2,#3.{#1\colon #2 \rightarrow #3}
+\renewcommand\restriction[1]{\mathbin{\upharpoonright_{#1}}} 
+%make restriction a binary operation instead of relation
+\newcommand \jonsson{J\'onsson}
+\newcommand{\MMT}{McKenzieMcNultyTaylor1987}
+\newcommand{\BS}{BurrisSankappanavar1981}
+\newcommand \si{{\text{si}}}
+\newcommand\inv{^{-1}}
+\newcommand\setof[1]{\left\{\,#1\,\right\}}
+\newcommand\seqof[1]{\left\<\,#1\,\right\>}
+\newcommand\sseqom{\subseteq_\omega\!}
+\let\sseq\subseteq
+\let\varempty\varnothing
+\let\0\varnothing
+\newcommand\card[1]{\left|#1\right|}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%      Disjoint union symbol
+%
+%  This will probably cause Real Trouble.  If you don't use computer
+%  modern, or if you don't have cmr17 at the right size, just eliminate
+%  everything up to the line reading %%%%end of bigudot%%%
+%
+\font\xxroman=cmr17 scaled \magstep1
+\font\xviiroman=cmr17
+\def\udot{\mathbin{\ooalign{$\cup$\crcr
+   \hfil\raise2pt\hbox{\xviiroman.}\hfil\crcr}}}
+%
+%% In bigudotx, #1 is displaystyle, etc, #2 is symbol to use for a dot
+\def\bigudotx#1#2{\mathop{\smash{\ooalign{$#1\bigcup$\crcr
+  \hfil\raise 2pt\hbox{#2}\hfil\crcr}}\vphantom{\bigcup}}}
+\def\bigudot{\mathop{\mathchoice%
+ {\bigudotx\displaystyle{$\scriptscriptstyle\bullet$}}
+ {\bigudotx\textstyle{\xxroman.}}
+ {\relax}{\relax}}}
+\let\uplus\udot
+\let\biguplus\bigudot
+%%%%%%%%%%%%%%End of bigudot%%%%%%%%%%%%%
+%%
+%% Theorems, etc.
+%%
+%
+\newcommand{\declarethms}[1][section]{%
+\ifx #10 \newtheorem{thm}{Theorem} \else
+  \newtheorem{thm}{Theorem}[#1] \fi
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem*{claim}{Claim}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{example}[thm]{Example}
+\newtheorem*{prob}{Problem}}
+%%
+%% Related environments
+%% like \roster from old amstex
+\newenvironment{roster}{%
+\begin{enumerate}
+\renewcommand{\labelenumi}{(\arabic{enumi})}}%
+{\end{enumerate}}
+%%
+%% Math operators
+\DeclareMathOperator{\Sg}{Sg}
+\DeclareMathOperator{\Clo}{Clo}
+%%
+%%Fonts for classes of algebras
+%
+%\let\class\mathsf
+%or do we want to include \ensuremath?
+\newcommand\class[1]{\mathsf{#1}}
+%%Fonts for operators on classes
+%\newcommand\clsop[1]{\textbf{\textsf #1}}
+\DeclareMathAlphabet{\clsop}{OT1}{cmss}{bx}{n}
+%
+\newcommand\opV{{\clsop V}}
+\newcommand\opQ{{\clsop Q}}
+\newcommand\opS{{\clsop S}}
+\newcommand\opP{{\clsop P}}
+\newcommand\opH{{\clsop H}}
+\newcommand\opHSP{{\clsop {HSP}}}
+\newcommand\opSP{{\clsop {SP}}}
+
