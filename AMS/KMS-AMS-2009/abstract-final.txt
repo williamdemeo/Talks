@@ -1,0 +1,23 @@
+Title: Some Remarks on the Finite Lattice Representation Problem
+
+Abstract:
+
+A well-known result of universal algebra states: every algebraic lattice is isomorphic
+to the congruence lattice of an algebra.  It is natural to ask whether every finite 
+lattice occurs as the congruence lattice of a \emph{finite} algebra. This fundamental
+question, asked over 40 years ago, is among the most elusive problems of universal
+algebra. 
+
+Call a finite lattice L ``representable'' if it is the congruence lattice of a finite
+algebra.  By Pudlak and Tuma (1980), one assumes the finite lattice is ``concretely
+represented'' as a sublattice of Eq(X), the equivalences of a finite set X. We define
+a closure operator on Eq(X) with the useful property that a sublattice of Eq(X) is
+a congruence lattice of an algebra on X if and only if it is closed. Certain closed
+lattices are ``hereditary,'' meaning all sublattices are also closed, while others
+have the property that their closure is all of Eq(X).  J.B. Nation calls the latter
+``superbad.''  
+
+This concrete approach yields new insights.  In particular, we prove: (1) All $M_n$
+lattices have superbad representations; (2) A union of a proper ideal and proper
+filter is never superbad; (3) All hexagons are hereditary.  These and other results,
+including some examples of concrete representations, will be presented.

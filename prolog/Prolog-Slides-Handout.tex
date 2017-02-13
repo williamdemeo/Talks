@@ -1,0 +1,328 @@
+%\documentclass[xcolor=dvipsnames,9pt]{beamer} 
+%% 1. DUAL-DISPLAY NOTES:
+%\documentclass[hyperref={bookmarks=false}]{beamer}
+%\usepackage{pgfpages}
+%\setbeameroption{show notes on second screen=left}
+
+% 2. NOTES ON SEPARATE SLIDES:
+%\documentclass[xcolor=dvipsnames,9pt,show notes]{beamer}
+
+% 3. NOTES ONLY:
+%\documentclass[xcolor=dvipsnames,9pt,show only notes]{beamer}
+
+% 4. HANDOUTS:
+\documentclass[xcolor=dvipsnames,9pt,handout,show notes]{beamer}
+
+% 5. NO NOTES: ONLY ONE THAT BUILDS WITHOUT WARNINGS
+%\documentclass[xcolor=dvipsnames,9pt,hide notes]{beamer}
+
+%\setbeameroption{show only notes}
+%\setbeameroption{show notes}
+
+\usepackage{enumerate,amsmath,amssymb,fancyhdr,mathrsfs,amsthm,url,stmaryrd}
+\usepackage{pgfpages}
+\usepackage{listings}
+%\usepackage{enumitem}
+
+%% For creating a handout:
+ \pgfpagesuselayout{4 on 1}[border shrink=5mm]
+ \mode<handout>{\setbeamercolor{background canvas}{bg=black!5}}
+
+
+\setbeamerfont{structure}{family=\rmfamily,shape=\scshape} 
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{color}
+\usepackage{scalefnt}
+\usetikzlibrary{matrix,arrows}
+
+\usepackage{mathrsfs,textcomp}
+\setbeamertemplate{navigation symbols}{}
+\usepackage{verbatim}
+\usepackage[mathcal]{euscript}
+
+% \definecolor{MyDarkBlue}{rgb}{0.2,0.2,0.7}
+% \definecolor{Crimson}{rgb}{0.800,0.000,0.200}
+ \definecolor{darkred}{rgb}{0.5,0,0}
+\definecolor{olivegreen}{cmyk}{0.64,0,0.95,0.40} % PANTONE 582
+\setbeamercolor{alerted text}{fg=Plum}
+
+\usecolortheme[named=Plum]{structure} 
+\setbeamertemplate{items}[ball] 
+\setbeamertemplate{blocks}[rounded][shadow=true] 
+
+%%%% INSERT MACROS %%%%
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+
+%%%%%%%%%%%%% \input{wjddefense.def}  %%%%%%%%%%%%%%%%%%
+
+\DeclareMathOperator{\dom}{dom}
+
+\newcommand{\todo}[1]{
+\ifthenelse{\boolean{todos}}{~\\{\bf TODO(wjd):} \emph{#1}\\}{}
+}
+
+\newcommand{\meet}{\ensuremath{\wedge}}
+\newcommand{\join}{\ensuremath{\vee}}
+\newcommand{\Meet}{\ensuremath{\bigwedge}}
+\renewcommand{\Join}{\ensuremath{\bigvee}}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{definition}
+\newtheorem{question}[theorem]{Question}
+\newcounter{claim}
+\newtheorem{claim}[claim]{Claim}
+\newcounter{conjecture}
+\newtheorem{conjecture}[conjecture]{Conjecture}
+\newtheorem{case}{Case}
+\theoremstyle{remark}
+\newtheorem*{computations}{Computations}
+\newtheorem*{remark}{Remark}
+\newtheorem*{remarks}{Remarks}
+\newtheorem*{notation}{Notation}
+\newtheorem*{exs}{Examples}
+\newtheorem*{ex}{Example}
+\numberwithin{theorem}{section}
+\numberwithin{claim}{section}
+\numberwithin{equation}{section}
+\numberwithin{conjecture}{section}
+
+% \newcommand{\defn}[1]{\textcolor{darkred}{\textit{\textbf{#1}}}}
+ \newcommand{\defn}[1]{\textcolor{Plum}{\textit{\textbf{#1}}}}
+ \newcommand{\IE}{{\small IE}}
+\title[Sec. 1.5: Logic Programming]{Section 1.5: Logic Programming}
+
+\author[William DeMeo]{William DeMeo\\
+{\small \url{williamdemeo@gmail.com}}}
+\institute[\url{williamdemeo@gmail}]{
+  \vskip-1cm
+  {\small {\color{darkred}  University of South Carolina}}
+}
+
+
+\begin{document}
+\thicklines
+\setcounter{section}{+1}
+\setcounter{secnumdepth}{2}
+
+\setbeamercovered{opaque}
+%\setbeamercovered{transparent}
+
+\frame[label=titlepage]{
+
+  \titlepage
+}
+
+\begin{frame}[shrink=5]{Specifying Facts and Rules}
+  \begin{itemize}
+  \item We populate our Prolog database with \defn{facts} using predicates, e.g.,
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{center}
+    \begin{itemize}
+    \item $E(b, fi)$
+    \item $E(b, fo)$
+    \item $E(d, g)$
+    \item $A(b)$
+    \item $A( fi)$
+    \item $A( fo)$
+    \item $A(d)$
+    \item $P(g)$
+    \end{itemize}
+      \end{center}
+    \end{column}
+  \begin{column}{0.4\textwidth}
+\uncover<2->{
+  \vskip3mm
+    where 
+    \begin{center}
+      \begin{itemize}
+        % $b$ = bear, $fi$ = fish, $fo$ = fox, $d$ = deer, $g$ = grass, $E(x,y)$
+        % means ``$x$ eats $y$,'' $A(x)$ means ``$x$ is an animal.''
+      \item $b$ = bear 
+      \item $fi$ = fish 
+      \item $fo$ = fox 
+      \item $d$ = deer
+      \item $g$ = grass
+      \item $E(x,y)$ means ``$x$ eats $y$'' 
+      \item $A(x)$ means ``$x$ is an animal''
+      \item $P(x)$ means ``$x$ is a plant''
+      \end{itemize}
+    \end{center}
+}
+  \end{column}
+\end{columns}
+
+\item<3-> We can specify \defn{rules} using wffs, e.g.,  
+      \[E(y, x) \meet A(x) \rightarrow Pr(x). \]
+      This determines the elements of our domain that are prey\\ (those $x$ for which
+      $Pr(x)$ holds).
+    \item<4-> Prolog treats rules
+      as universally quantified and uses universal instantiation to strip off
+      universal quantifiers.  The rule above is interpreted as
+      \[
+      (\forall y)(\forall x)[E(y, x) \meet A(x) \rightarrow Pr(x)]
+      \]
+
+  \end{itemize}
+\end{frame}
+\begin{frame}{Horn Clauses}
+  \begin{itemize}
+      \item A \defn{Horn Clause} is a wff consisting of
+        predicates connected by disjunction, $\join$, where all but at most one
+        predicate is negated.
+        \begin{equation}
+          \label{eq:1}
+\hskip-6mm \text{{\it Example:}} \qquad       P_1' \join P_2' \join \cdots \join P_n' \join Q
+        \end{equation}
+\item<2-> \emph{A Horn Clause specifies an implication.}\\[5pt]
+ Indeed, by DeMorgan's Law, (\ref{eq:1})
+  is equivalent to
+        \[
+        (P_1 \meet P_2 \meet \cdots \meet P_n)' \join Q,
+        \]
+which is equivalent to
+        \[
+        (P_1 \meet P_2 \meet \cdots \meet P_n) \longrightarrow Q.
+        \]
+        % \begin{overprint}
+        %  \onslide<3>
+        %  (Recall $A'\join B \quad \Longleftrightarrow \quad A
+        %  \longrightarrow B$.)
+        %  \onslide<4>
+        %  \emph{Example:} The rule above,
+        %  \[E(y, x) \meet A(x) \rightarrow Pr(x), \]
+        %  is specified as the Horn Clause
+        %  \[ [E(y, x)]' \join [A(x)]' \join Pr(x).\]
+        % \end{overprint}
+         \onslide<3>{
+         (Recall $A'\join B \quad \Longleftrightarrow \quad A
+         \longrightarrow B$.)}
+         \onslide<4>{
+         \emph{Example:} The rule above,
+         \[E(y, x) \meet A(x) \rightarrow Pr(x), \]
+         is specified as the Horn Clause
+         \[ [E(y, x)]' \join [A(x)]' \join Pr(x).\]}
+      \end{itemize}
+    \end{frame}
+
+\begin{frame}{Resolution}
+  \begin{itemize}
+\item The rule of inference used by Prolog is called \defn{resolution}.\\[10pt]
+\item<2->Two Horn clauses in a Prolog database are \defn{resolved} to a new
+  Horn clause if one clause contains an unnegated predicate matching a negated
+  predicate in the other.\\[10pt]
+  \begin{ex} The pair of Horn clauses
+  \begin{itemize}
+  \item $A(a)$\\[5pt]
+  \item $[A(a)]' \join B(b)$\\[5pt]
+  \end{itemize}
+  is resolved by Prolog to $B(b)$.\\[10pt]
+  \end{ex}
+\item <3->This is just \emph{modus ponens}, so Prolog's rule of inference
+  includes \emph{modus ponens} as a special case.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[shrink=5]{Resolution}
+  % \begin{itemize}
+%\item{\bf Example 2:} 
+  \begin{ex} The pair of Horn clauses
+  \begin{itemize}
+  \item $[E(y,x)]'\join [A(x)]' \join Pr(x)$\\[5pt]
+  \item $[E(b,fi)]$\\[5pt]
+\uncover<2->{ resolves to  $[A(fi)]' \join P(fi)$.\\[3pt]}
+%\item<2-> then
+\uncover<3->{
+\hskip2cm  \begin{itemize}
+  \item $[A(fi)]' \join P(fi)$\\[5pt]
+  \item $A(fi)$\\[5pt]
+\uncover<4->{resolves to  $P(fi)$.}
+  \end{itemize}
+\uncover<4->{\hskip3cm Conclusion: \emph{fish are prey}.}
+}
+  \end{itemize}
+  \end{ex}
+%\vskip1cm
+\uncover<5->{
+  \begin{ex}
+    The pair of Horn clauses
+%\item<3->{\bf Example 3:} 
+  \begin{itemize} 
+  \item $[E(y,x)]'\join [A(x)]' \join Pr(x)$\\[5pt]
+  \item $[A(b)]$\\[5pt]
+  \end{itemize}
+ \uncover<6->{ resolves to  $[E(y,b)]' \join Pr(b)$.}\\[5pt]
+%\item<4-> 
+ \uncover<7->{...but this time, when we search the database for $E(a,b)$, for some $a$, we don't
+   find it, so can't conclude that bears are prey.}
+%\end{itemize}
+  \end{ex}
+}
+\end{frame}
+\begin{frame}{Recursion}
+  \begin{itemize}
+  \item 
+  \emph{Prolog rules are implications.}\\[5pt]
+The antecedents may depend on facts or other rules.
+\item<2->
+The antecedent of a rule may also depend on that rule itself, in which case the
+rule is defined in terms of itself. This is a \defn{recursive} definition.
+  \end{itemize}
+\uncover<3->{
+\begin{ex}
+Consider the binary relation 
+\[
+\text{{\it in-food-chain}}(x, y),
+\]
+meaning ``$y$ is in $x$'s food chain.'' This means
+\begin{enumerate}
+\item $x$ eats $y$, or
+\item $x$ eats something that eats something that eats something... that eats $y$;
+i.e., $x$ eats $z$ and $y$ is in $z$'s food chain:
+\[
+eats(x,z) \meet \text{{\it in-food-chain}}(z,y)
+\]
+\end{enumerate}
+\end{ex}
+}
+\end{frame}
+\begin{frame}{Recursion}
+  \begin{itemize}
+  \item<1-> Case (1), $x$ eats $y$, is simple to test, but without Case (2), {\it
+      in-food-chain}$(x,y)$ is no different from $eat(x,y)$.\\[5pt]
+\item<2-> OTOH, without (1) we have a rule describing an infinitely descending
+  food chain, which never terminates, and never resolves to True.\\[5pt]
+\item<3->{\it Recursive definitions always need a stopping point.}\\[5pt]
+\item<4->The Prolog rule for {\it in-food-chain}:
+  \begin{align*}
+\text{{\it in-food-chain}}(x, y)\quad &\mathbf{if} \\
+eat(x, y) \quad \mathbf{or} &\quad
+\bigl(eat(x, z) \quad \mathbf{and}\quad \text{{\it in-food-chain}}(z, y)\bigr)
+  \end{align*}
+This is a \defn{recursive rule} because it defines the predicate {\it
+  in-food-chain} in terms of itself.
+  \end{itemize}
+\end{frame}
+\begin{frame}{Expert Systems}
+  \begin{itemize}
+  \item
+Many interesting applications programs have been developed, in Prolog and
+similar logic programming languages, that gather a database of facts and rules
+about some domain and use this database to draw conclusions. 
+\item<2->Such programs are known as \defn{expert systems}, \defn{knowledge-based
+    systems}, or \defn{rule-based systems}. 
+\item<3->  The database in an expert system attempts to capture the knowledge, or ``elicit
+  the expertise,'' of a human expert in a particular field. 
+This includes both the facts known to the expert and the expert's reasoning path
+in reaching conclusions from those facts. 
+  \end{itemize}
+\end{frame}
+\end{document}
