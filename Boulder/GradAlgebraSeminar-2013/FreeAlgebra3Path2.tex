@@ -1,0 +1,130 @@
+% Main triangle
+
+%  \node[main node] (012) at (20,20) {012};
+  \node (012) at (20,20) [circle,fill=gray!20,draw,font=\sffamily\small]{012};
+  \node[main node] (120) [above right of=012] {120};
+  \node[main node] (201) [above left of=012] {201};
+
+  \path[every node/.style={font=\sffamily\small}]
+%    (012) edge  (120)
+    (012) edge  (120)
+    (120) edge  (201)
+    (201) edge  (012);
+
+% first middle triangle
+  \node[main node] (112) at (18,15) [fill=green!20] {112};
+  \node[main node] (001) [below left of=112] {001};
+%  \node[main node] (220) [below of=112] {220};
+  \node[main node] (220) [below of=112,fill=green!20] {220};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (001) edge  (112)
+    % (112) edge  (220)  % replace with green path
+    (220) edge  (001);
+
+   % PATH for shortest reset word
+  \path[every node/.style={font=\sffamily\small}]
+    (012) edge [green] node [black,right] {$a$} (112)
+    (112) edge [green] node [black,right] {$b$} (220);
+
+
+% second middle triangle
+  \node[main node] (002) at (22,15) {002};
+  \node[main node] (221) [below of=002] {221};
+  \node[main node] (110) [below right of=002] {110};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (221) edge  (002)
+    (002) edge  (110)
+    (110) edge  (221)
+
+    (220) edge [red]  (221)
+    (002) edge [red]  (112);
+
+
+% first right hand triangle
+  \node[main node] (121) at (33,20) {121};
+  \node[main node] (010) [below left of=121] {010};
+  \node[main node] (202) [below of=121] {202};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (010) edge  (121)
+    (121) edge  (202)
+    (202) edge  (010);
+
+% second right hand triangle
+  \node[main node] (020) at (37,20) {020};
+  \node[main node] (212) [below of=020] {212};
+  \node[main node] (101) [below right of=020] {101};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (212) edge  (020)
+    (020) edge  (101)
+    (101) edge  (212)
+
+    (202) edge [red]  (212)
+    (020) edge [red]  (121)
+
+    %(012) edge [red]  (112)  % replace with green path
+    (120) edge [red]  (121);
+
+% first left hand triangle
+  \node[main node] (211) at (7,20) {211};
+  \node[main node] (022) [below of=211] {022};
+  \node[main node] (100) [below right of=211] {100};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (211) edge  (022)
+    (022) edge  (100)
+    (100) edge  (211);
+
+% second left hand triangle
+  \node[main node] (200) at (3,20) {200};
+  \node[main node] (122) [below of=200] {122};
+  \node[main node] (011) [below left of=200] {011};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (200) edge  (011)
+    (011) edge  (122)
+    (122) edge  (200)
+
+    (022) edge [red]  (122)
+    (200) edge [red]  (211)
+
+    (201) edge [red]  (211);
+
+
+% Bottom triangle
+  \node[main node] (111) at (20,0) {111};
+  \node[main node] (000) [below right of=111] {000};
+  \node[main node] (222) [below left of=111] {222};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (000) edge  (111)
+    (111) edge  (222)
+    (222) edge  (000)
+
+    (000) edge [red,bend right]  (111)
+
+    (011) edge [red,bend right]  (111)
+    (100) edge [red,bend right]  (111)
+    (001) edge [red]  (111)
+    (110) edge [red]  (111)
+    (010) edge [red,bend left]  (111)
+    (101) edge [red,bend left]  (111);
+
+% LOOPS
+  \path[every node/.style={font=\sffamily\small}]
+    (211) edge [red,loop above]  (211)
+    (122) edge [red,loop below]  (122)
+    (212) edge [red,loop below]  (212)
+    (221) edge [red,loop below]  (221)
+    (121) edge [red,loop above]  (121)
+    (111) edge [red,loop below]  (111)
+    (222) edge [red,loop left]  (222)
+    (112) edge [red,loop left]  (112);
+
+\input{FreeAlgebraExampleSetup}
+
+% WORD CONSTRUCTION
+\draw[draw=none,font=\large] (32,-1) node {$ba(012) = 220$};

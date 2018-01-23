@@ -1,0 +1,15 @@
+  \node[main node] (0) {0};
+  \node[main node] (1) [right of=0] {1};
+  \node[main node] (3) [above of=0] {3};
+  \node[main node] (2) [right of=3] {2};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (0) edge node [above] {$a,b$} (1)
+    (1) edge node [right] {$b$} (2)
+        edge [loop right] node {$a$} (1)
+    (2) edge node [above] {$b$} (3)
+        edge [loop above] node {$a$} (2)
+    (3) edge node [right] {$b$} (0)
+        edge [loop above] node {$a$} (3);
+
+%\draw[draw=none,font=\Large] (-3,5) node {$\mathscr{C}_4$};

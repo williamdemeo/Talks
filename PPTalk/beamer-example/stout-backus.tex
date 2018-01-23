@@ -1,0 +1,816 @@
+% $Header: /cvsroot/latex-beamer/latex-beamer/solutions/conference-talks/conference-ornate-20min.en.tex,v 1.6 2004/10/07 20:53:08 tantau Exp $
+
+\documentclass{beamer}
+%%\documentclass[handout]{beamer}
+
+% This file is a solution template for:
+% - Talk at a conference/colloquium.
+% - Talk length is about 20min.
+% - Style is ornate.
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+
+\mode<presentation>
+{
+  \usetheme{Warsaw}
+  % or ...
+  %\setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage[mathscr]{euscript}
+\newcommand{\mbb}{\mathbb}
+\newcommand{\mbf}{\mathbf}                    
+\newcommand{\msc}{\mathscr}
+
+\newcommand{\Hawaii}{Hawai\kern.05em`\kern.05em\relax i}
+\newcommand{\Manoa}{M\=anoa}
+\definecolor{MyDarkBlue}{rgb}{0.2,0.2,0.7}
+\newcommand{\emphcyan}[1]{\textcolor{MyDarkBlue}{\textbf{#1}}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\op}{\operatorname}
+\newcommand{\join}{\vee}
+\newcommand{\meet}{\wedge}
+\renewcommand{\Join}{\bigvee}
+\newcommand{\Meet}{\bigwedge}
+\newcommand{\vare}{\varepsilon}
+
+\title[Lattices of Theories]{Lattices of Theories}  
+
+\author[Adaricheva and Nation]{Kira Adaricheva and J.B. Nation}
+\institute[Stern College and U. \Hawaii] 
+{Stern College for Women\\
+ University of \Hawaii\ at \Manoa}
+
+\date[New York 2009] 
+{New York, October 2009}
+
+\subject{Lattices of theories}
+
+\begin{document}
+
+\thicklines
+
+%%000
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%%010101
+
+\begin{frame}
+  \frametitle{Lattices of theories}
+
+\uncover<1->{%
+\begin{block}{What is a lattice?}
+   {}
+}
+
+\uncover<2->{%
+A \emph{lattice} is an ordered set in which every pair of elements has
+a g.l.b. and a l.u.b.
+}
+\end{block}
+
+\uncover<3->{%
+\begin{block}{Examples}
+   {}
+}
+
+\begin{itemize}
+\uncover<4->{%
+   \item Subsets of a set
+}
+
+\uncover<5->{%
+   \item Closed subsets of a topology.
+}
+
+\uncover<6->{%
+   \item Subgroups of a group.
+}
+
+\end{itemize}
+\end{block}
+\end{frame}
+
+%%020202
+
+\begin{frame}
+  \frametitle{Picture}
+
+\uncover<1->{%
+
+\begin{center}
+\hspace{2cm}
+\setlength{\unitlength}{2.0cm}
+\begin{picture}(2,2)
+
+\put(0,0){\circle*{0.15}}
+\put(-1,1){\circle*{0.15}}
+\put(1,1){\circle*{0.15}}
+\put(0,2){\circle*{0.15}}
+%%%%%
+\put(0,0){\line(1,1){1}}
+\put(0,0){\line(-1,1){1}}
+\put(-1,1){\line(1,1){1}}
+\put(1,1){\line(-1,1){1}}
+%%%%%
+\put(0.2,-0.3){\textbf{\llap{$a \meet b$}}}
+\put(0.2,2.2){\textbf{\llap{$a \join b$}}}
+\put(-1.3,1){\textbf{$a$}}
+\put(1.2,1){\textbf{$b$}}
+
+\end{picture}
+\end{center}
+}
+\end{frame}
+
+%%030303
+
+\begin{frame}
+  \frametitle{Lattices of theories}
+
+\uncover<1->{%
+\begin{block}{What is a theory?}
+   {}
+}
+
+\uncover<2->{%
+A \emph{theory} is a set of (first-order) sentences closed under deduction.
+}
+\end{block}
+
+\uncover<3->{%
+\begin{block}{Examples}
+   {}
+}
+
+\begin{itemize}
+\uncover<4->{%
+   \item Equational theory of semigroups
+}
+
+\uncover<5->{%
+   \item Equational theory of groups
+}
+
+\uncover<6->{%
+   \item Equational theory of abelian groups
+}
+
+\uncover<7->{%
+   \item Equational theory of one-element groups
+}
+
+\end{itemize}
+\end{block}
+\end{frame}
+
+%%040404
+
+\begin{frame}
+  \frametitle{Equational theories of groups}
+
+\uncover<1->{%
+\begin{block}{}
+   {}
+}
+
+\begin{itemize}
+\uncover<2->{%
+\item Lattice of theories is dual to the lattice of models (varieties).
+}
+
+\uncover<3->{%
+   \item Groups of exponent $k$: \  $x^k \approx 1$
+}
+
+\uncover<4->{%
+   \item Abelian groups: \  $[x,y] \approx 1$
+}
+
+\uncover<5->{%
+   \item Nil-2 groups: \  $[[x,y],z] \approx 1$
+}
+
+\uncover<6->{%
+   \item Nilpotent and solvable group varieties
+}
+
+\uncover<7->{%
+   \item Theorem (H-N-N):  Every group variety is determined by its exponent
+and a set of commutator identities.
+}
+
+\uncover<8->{%
+   \item There are uncountably many equational theories of groups.
+}
+
+\end{itemize}
+\end{block}
+\end{frame}
+
+%%qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+%%050505
+
+\begin{frame}
+  \frametitle{Lattice of equational theories of groups}
+
+\uncover<1->{%
+
+\begin{center}
+\hspace{2cm}
+\setlength{\unitlength}{1.0cm}
+\begin{picture}(6,6)
+
+\put(0,0){\circle*{0.15}}
+\put(-.25,.25){\circle*{0.05}}
+\put(-.5,.5){\circle*{0.05}}
+\put(-.75,.75){\circle*{0.05}}
+\put(3.75,4){\circle*{0.05}}
+\put(4,4){\circle*{0.05}}
+\put(4.25,4){\circle*{0.05}}
+\put(-1,1){\circle*{0.15}}
+\put(-2,2){\circle*{0.15}}
+\put(-3,3){\circle*{0.15}}
+\put(-2,3){\circle*{0.15}}
+\put(-1,3){\circle*{0.15}}
+\put(0,3){\circle*{0.15}}
+\put(2,3){\circle*{0.15}}
+\put(-2,4){\circle*{0.15}}
+\put(0,4){\circle*{0.15}}
+\put(2,4){\circle*{0.15}}
+\put(-1,5){\circle*{0.15}}
+\put(0,5){\circle*{0.15}}
+\put(0,6){\circle*{0.15}}
+%%%%%
+\put(-1,1){\line(-1,1){1}}
+\put(-2,2){\line(0,1){1}}
+\put(-2,3){\line(0,1){1}}
+\put(-3,3){\line(1,1){1}}
+\put(-2,4){\line(1,1){1}}
+\put(-1,5){\line(1,1){1}}
+\put(0,4){\line(0,1){1}}
+\put(0,5){\line(0,1){1}}
+\put(2,3){\line(0,1){1}}
+\put(-1,3){\line(0,2){2}}
+\put(-1,3){\line(1,1){1}}
+\put(0,3){\line(2,1){2}}
+\put(0,3){\line(-1,2){1}}
+%\put(2,4){\line(-2,2){2}}
+\put(2,4){\line(-1,1){1}}
+\put(1,5){\line(-1,1){1}}
+\put(2,3){\line(-2,1){2}}
+%\put(-2,3){\line(2,2){2}}
+\put(-2,3){\line(1,1){1}}
+\put(-1,4){\line(1,1){1}}
+%%%%%
+\put(-3.2,3.1){\textbf{\llap{$x^4 \approx 1$}}}
+\put(-1.2,5.1){\textbf{\llap{$x^2 \approx 1$}}}
+\put(2.2,4.1){\textbf{\rlap{$x^5 \approx 1$}}}
+\put(-0.2,6.1){\textbf{\llap{$x \approx 1$}}}
+\put(-2.1,1){Nil-2}
+\put(-3,2){Abel}
+\put(0.2,0){All groups}
+
+\end{picture}
+\end{center}
+}
+\end{frame}
+
+%%060606
+
+\begin{frame}
+  \frametitle{Lattice of group theories}
+
+\uncover<1->{%
+\begin{block}{}
+   {}
+The lattice of equational theories of groups is isomorphic to the lattice
+of fully invariant subgroups of the free group $\operatorname{FG}(\omega)$ ...
+}
+\end{block}
+
+\uncover<2->{%
+\begin{block}{}
+   {}
+... so it is modular.
+}
+\end{block}
+
+\end{frame}
+
+%%qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+
+%%090909
+
+\begin{frame}
+  \frametitle{}
+
+\begin{block}{Types of structures}
+\uncover<1->{%
+   {}
+}
+
+\begin{itemize}
+
+\uncover<2->{%
+   \item Algebras $\mbf A = \la A, \mathscr F  \ra$
+}
+
+\uncover<3->{%
+   \item Pure relational structures $\mbf A = \la A,  \mathscr R \ra$
+}
+
+\uncover<4->{%
+   \item Relational Structures $\mbf A = \la A, \mathscr F, \mathscr R \ra$
+}
+
+\end{itemize}
+
+\end{block}
+
+\uncover<5->{%
+\begin{block}{Types of classes}
+   {}
+}
+
+\begin{itemize}
+
+\uncover<6->{%
+   \item Equational classes: $s \approx t$
+}
+
+\uncover<7->{%
+   \item Atomic classes (varieties):  $s \approx t$ and $R(s_1, \dots, s_n)$
+}
+
+\uncover<8->{%
+   \item Horn classes (quasivarieties):  $\& \alpha_i \implies \beta$
+}
+
+\end{itemize}
+
+\end{block}
+\end{frame}
+
+%%171717
+
+\begin{frame}
+  \frametitle{Varieties (Atomic classes)}
+
+\uncover<1->{%
+\begin{block}{}
+\begin{itemize}
+   {}
+}
+
+\uncover<2->{%
+   \item Characterized by atomic formulae 
+   $s \approx t$ and $R(s_1, \dots, s_n)$
+}
+
+\uncover<3->{%
+   \item Closed under $\op{HSP}$
+}
+
+\uncover<4->{%
+   \item Lattice $\op{ATh}(\mbf V)$ of atomic theories extending the
+   theory of $\mbf V$ is algebraic.
+}
+
+\uncover<5->{%
+   \item Example:  group laws $x^4 \approx 1$, $[[x,y],z] \approx 1$
+}
+
+\uncover<6->{%
+   \item Example:  distributive lattices $x \meet (y \join z) \approx 
+   (x \meet y) \join (x \meet z)$
+}
+
+\end{itemize}
+\end{block}
+\end{frame}
+
+%%111
+
+\begin{frame}
+  \frametitle{Motivation: Varieties of algebras}
+
+\uncover<1->{%
+\begin{block}{Birkhoff}
+	If $\mbf V$ is a variety of algebras, then
+     \[  \mbf L_v(\mbf V) \cong^d \op{EqTh}(\mbf V) \cong 
+     \op{Ficon}(\mbf F_{\mbf V}(\omega)) .\]
+\end{block}
+}
+
+\uncover<2->{%
+\begin{block}{McKenzie et. al.}
+    If $\mbf V$ is a variety of algebras, then $\op{EqTh}(\mbf V) \cong 
+    \op{Con}(A,\msc F)$ where $\msc F$ includes a binary operation with
+    left $0$ and left $1$.
+\end{block}
+}
+
+\uncover<3->{%
+\begin{block}{Lampe et. al.}
+    $\op{EqTh}(\mbf V)$ satisfies the Zipper Condition: if $\Join a_i = 1$
+    and $a_i \meet c = z$ for all $i$, then $c=z$.
+\end{block}
+}
+
+\end{frame}
+
+%%222
+
+\begin{frame}
+  \frametitle{}
+
+\uncover<1->{%
+\begin{block}{Nurakunov}
+    $\mbf L \cong \op{EqTh}(\mbf V)$ for some variety $\mbf V$ of algebras 
+    iff $\mbf L \cong \op{Con}(A,\msc F)$ for a monoid with a right $0$
+    and two unary operations satisfying certain properties.
+\end{block}
+}
+
+\uncover<2->{%
+\begin{block}{Pigozzi}
+    If $\mbf L$ is an algebraic lattice with completely join irreducible
+    $1$, then $\mbf L \cong \op{EqTh}(\mbf V)$ for some variety $\mbf V$.
+\end{block}
+}
+
+\end{frame}
+
+%%333
+
+\begin{frame}
+  \frametitle{Quasivarieties}
+
+\uncover<1->{%
+\begin{block}{}
+\begin{itemize}
+   {}
+}
+
+\uncover<2->{%
+   \item Characterized by Horn sentences
+   $\ \& \alpha_i \implies \beta$
+}
+
+\uncover<3->{%
+   \item Closed under $\op{SPU}$
+}
+
+\uncover<4->{%
+   \item Lattice $\op{QuTh}(\mbf K)$ of quasi-equational theories extending 
+   the theory of $\mbf K$ is algebraic.
+}
+
+\uncover<5->{%
+   \item Example:  group laws $x^4 \approx 1$ and
+   \[ x^2 \approx 1 \implies [x,y] \approx 1 \]
+}
+
+\uncover<6->{%
+   \item Example:  meet semidistributive lattices 
+ \[ 
+x \meet y \approx  x \meet z \implies x \meet y \approx  x \meet (y \join z) 
+ \]
+}
+
+\end{itemize}
+\end{block}
+\end{frame}
+
+%%444
+
+\begin{frame}
+  \frametitle{Quasi-equational theories}
+
+\begin{block}{Setup}
+\uncover<1->{%
+}
+
+\begin{itemize}
+
+\uncover<2->{%
+   \item $\mbf T = \op{Con_c}\, \mbf F_{\mbf V}(\omega)$ with $\mbf V$
+   a quasivariety of relational structures
+}
+
+\uncover<3->{%
+   \item $\widehat{\msc E}=\{ \widehat{\vare}: \vare \in \op{End}\,\mbf F \}$, 
+   the induced action of the endomorphisms on $\mbf T$.
+}
+
+\uncover<4->{%
+   \item $\widehat{\msc E}$ is a monoid of \emph{operators}, i.e.,
+   $(\join,0)$-homomorphisms.
+}
+
+\end{itemize}
+
+\end{block}
+
+\uncover<5->{%
+\begin{block}{Theorem}
+   $\op{QuTh}(\mbf V) \cong \op{Con}\,(\mbf T, \join, 0, \widehat{\msc E})$
+\end{block}
+}
+
+\uncover<6->{%
+\begin{block}{}
+   \emphcyan{Idea:} $\ \& \alpha_i \implies \beta$ \quad corresponds to
+   \quad $\op{con} \beta \leq \Join \op{con} \alpha_i$
+\end{block}
+}
+
+\uncover<7->{%
+\begin{block}{Corollary}
+   If $\mbf K$ is a quasivariety, then $\op{QuTh}(\mbf K) \cong \op{Con}\,
+   ( \mbf S,+,0,\msc F )$ for some semilattice with operators.
+\end{block}
+}
+
+\end{frame}
+
+%%555
+
+\begin{frame}
+  \frametitle{Restrictions}
+
+\uncover<1->{%
+\begin{block}{Gorbunov}
+   $\op{QuTh}(\mbf K)$ is meet semidistributive and coatomic.
+\end{block}
+}
+
+\uncover<2->{%
+\begin{block}{Dziobiak et. al.}
+   $\op{QuTh}(\mbf K)$ supports an equa-interior operator.
+\end{block}
+}
+
+\uncover<3->{%
+\begin{block}{Natural equa-interior operators}
+\begin{itemize}
+   {}
+}
+
+\uncover<4->{%
+   \item On $\op{QuTh}(\mbf K)$, $\eta(\Sigma)$ is the restriction of
+   $\Sigma$ to atomic formulae.
+}
+
+\uncover<5->{%
+   \item On $\op{Con}\, ( \mbf S,+,0,\msc F )$,
+   $\eta(\theta)$ is the smallest congruence collapsing $0/\theta$.
+}
+
+\end{itemize}
+\end{block}
+\end{frame}
+
+%%515151
+
+\begin{frame}
+  \frametitle{Equa-interior operators}
+
+\begin{block}{Definition}
+\uncover<1->{%
+\begin{itemize}
+}
+
+\uncover<2->{%
+\item $\eta(x) \leq x$
+\item $x \geq y$ implies $\eta(x) \geq \eta(y)$
+\item $\eta^2(x)=\eta(x)$
+}
+
+\uncover<3->{%
+\item $\eta(1)=1$
+\item $\eta(x)=u$ for all $x \in X$ implies $\eta(\Join X)=u$
+\item $\eta(x) \join (y \meet z) = (\eta(x) \join y) \meet (\eta(x) \join z)$
+\item Three more technical conditions you don't want to know.
+\end{itemize}
+}
+
+\end{block}
+
+\uncover<4->{%
+\begin{block}{}
+The $\eta$-block of an element $x$ has a least element $\eta(x)$ 
+and a greatest element $\tau(x)$.
+\end{block}
+}
+
+\end{frame}
+
+%%525252
+
+\begin{frame}
+  \frametitle{New restrictions}
+
+\uncover<1->{%
+{}
+}
+
+\uncover<2->{%
+\begin{block}{A-N}
+   $\op{QuTh}(\mbf K)$ satisfies the condition
+	   \[ \tau(x) \leq \tau(c) \ \&\ \eta(z) \leq c \implies
+	   \eta(\eta(z) \join \tau(x \meet z)) \leq c   \]
+\end{block}
+}
+
+\uncover<3->{%
+\begin{block}{Infinite version}
+   $\op{QuTh}(\mbf K)$ satisfies the condition
+   \[ \Meet_{x \in X}\tau(x) \leq \tau(c) \ \&\ \eta(z) \leq c \implies
+   \eta(\eta(z) \join \Meet_{x \in X}\tau(x \meet z)) \leq c   \]
+\end{block}
+}
+
+\end{frame}
+
+%%xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+%%666
+
+\begin{frame}
+  \frametitle{A lattice not representable as $\op{QuTh}(\mbf K)$}
+
+\uncover<1->{%
+
+\begin{center}
+\hspace{2cm}
+\setlength{\unitlength}{1.0cm}
+\begin{picture}(2,4)
+
+\put(0,0){\circle*{0.15}}
+\put(-1,1){\circle*{0.15}}
+\put(1,1){\circle*{0.15}}
+\put(-1,2){\circle*{0.15}}
+\put(1,2){\circle*{0.15}}
+\put(0,2){\circle*{0.15}}
+\put(0,3){\circle*{0.15}}
+\put(1,3){\circle*{0.15}}
+\put(1,4){\circle*{0.15}}
+%%%%%
+\put(0,0){\line(1,1){1}}
+\put(0,0){\line(-1,1){1}}
+\put(-1,1){\line(0,1){1}}
+\put(-1,1){\line(1,1){1}}
+\put(1,1){\line(0,1){1}}
+\put(1,1){\line(-1,1){1}}
+\put(-1,2){\line(1,1){1}}
+\put(1,2){\line(-1,1){1}}
+\put(0,2){\line(0,1){1}}
+\put(0,2){\line(1,1){1}}
+\put(0,3){\line(1,1){1}}
+\put(1,3){\line(0,1){1}}
+%%%%%
+\put(-0.2,2.9){\textbf{\llap{$c$}}}
+\put(1.2,2.9){\textbf{$a = \tau(a)$}}
+\put(-1.2,1.9){\textbf{\llap{$x$}}}
+\put(1.2,1.9){\textbf{$z$}}
+\put(0.2,-0.1){\textbf{$0 = \eta(a)$}}
+
+\end{picture}
+\end{center}
+
+\begin{block}{}
+   \[ \tau(x) \leq \tau(c) \ \&\ \eta(z) \leq c \implies
+   \eta(\eta(z) \join \tau(x \meet z)) \leq c   \]
+\end{block}
+}
+
+\end{frame}
+
+%%777
+
+\begin{frame}
+  \frametitle{Lattice representable as $\op{QuTh}(\mbf K)$}
+
+\uncover<1->{%
+\begin{block}{A-N}
+   If $\mbf S$ has $0$ and $1$, and $\msc G$ is a group of operators 
+   on $\mbf S$, then $\op{Con}\,(\mbf S,+,0,\msc G) \cong \op{QuTh}(\mbf K)$ 
+   for some $\mbf K$.
+\end{block}
+}
+
+\uncover<2->{%
+
+\begin{center}
+\hspace{4cm}
+\setlength{\unitlength}{0.95cm}
+\begin{picture}(6,6)
+
+\put(0,0){\circle*{0.15}}
+\put(-1,1){\circle*{0.15}}
+\put(1,1){\circle*{0.15}}
+\put(-2,2){\circle*{0.15}}
+\put(2,2){\circle*{0.15}}
+\put(0,2){\circle*{0.15}}
+\put(-3,3){\circle*{0.15}}
+\put(-1,3){\circle*{0.15}}
+\put(1,3){\circle*{0.15}}
+\put(3,3){\circle*{0.15}}
+\put(0,4){\circle*{0.15}}
+\put(-1,5){\circle*{0.15}}
+\put(1,5){\circle*{0.15}}
+\put(0,6){\circle*{0.15}}
+%%%%%
+\put(0,0){\line(1,1){1}}
+\put(0,0){\line(-1,1){1}}
+\put(-1,1){\line(-1,1){1}}
+\put(-1,1){\line(1,1){1}}
+\put(1,1){\line(1,1){1}}
+\put(1,1){\line(-1,1){1}}
+\put(-2,2){\line(1,1){1}}
+\put(-2,2){\line(-1,1){1}}
+\put(0,2){\line(1,1){1}}
+\put(0,2){\line(-1,1){1}}
+\put(2,2){\line(1,1){1}}
+\put(2,2){\line(-1,1){1}}
+\put(-3,3){\line(3,1){3}}
+\put(3,3){\line(-3,1){3}}
+\put(-1,3){\line(1,1){1}}
+\put(1,3){\line(-1,1){1}}
+\put(0,4){\line(1,1){1}}
+\put(0,4){\line(-1,1){1}}
+\put(-1,5){\line(1,1){1}}
+\put(1,5){\line(-1,1){1}}
+%%%%%
+
+\end{picture}
+\end{center}
+}
+
+\end{frame}
+
+
+%%888
+
+\begin{frame}
+  \frametitle{Con(SLO) vs. Quasi-equational theories}
+
+\uncover<1->{%
+}
+
+\uncover<2->{%
+\begin{block}{Negative}
+   The lattice $\omega + 1$ is the congruence lattice of an SLO, but not a 
+   lattice of quasi-equational theories.
+\end{block}
+}
+
+\uncover<3->{%
+\begin{block}{Positive}
+   Every $\operatorname{Con}(\mbf T,+,0,\msc F)$ is isomorphic to a lattice
+   of implicational theories%
+}
+\uncover<4->{%
+   in a language that may not contain equality.
+\end{block}
+}
+
+
+\end{frame}
+
+\end{document}
+
+
+%%yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
+
+An equa-interior operator on a lattice $\L$ should satisfy the following 
+properties.
+\begin{enumerate}
+\item[(I1)] $\eta(x) \leq x$
+\item[(I2)] $x \geq y$ implies $\eta(x) \geq \eta(y)$
+\item[(I3)] $\eta^2(x)=\eta(x)$
+\item[(I4)] $\eta(1)=1$
+\item[(I5)] $\eta(x)=u$ for all $x \in X$ implies $\eta(\Join X)=u$
+\item[(I6)] $\eta(x) \join (y \meet z) = (\eta(x) \join y) \meet (\eta(x) 
+\join z)$
+\item[(I7)] If $\L$ is algebraic, then $\eta(\L)$ is an algebraic lattice, and
+$x$ is compact in $\eta(\L)$ iff $x \in \eta(\L)$ and $x$ is compact in $\L$.
+\item[(I8)] If $X$ is up-directed, then $\eta(\Join X) = \Join \eta(X)$.
+\item[(I9)] There is a compact element $w \in \L$ such that $\eta(w)=w$ and
+the interval $[w,1]$ is isomorphic to the congruence lattice of a 
+semilattice.  (Thus the interval $[w,1]$ is coatomistic.)
+%%We could also require that $\eta$ behave like the natural equa-interior
+%%operator on that semilattice $\S$.
+\end{enumerate}
+
+

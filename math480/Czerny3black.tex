@@ -1,0 +1,13 @@
+  \node[main node] (2) {2};
+  \node[main node] (0) [below left of=2] {0};
+  \node[main node] (1) [below right of=2] {1};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (0) edge node [above] {$a, b$} (1)
+%        edge [bend right] node[below] {$a$} (1)
+    (1) edge node [right] {$b$} (2)
+        edge [loop right] node {$a$} (1)
+    (2) edge node [left] {$b$} (0)
+        edge [loop above] node {$a$} (2);
+
+\draw[draw=none,font=\Large] (-3.5,2) node {$\mathscr{C}_3$};

@@ -1,0 +1,124 @@
+% Main triangle
+
+%  \node[main node] (012) at (20,20) {012};
+  \node (012) at (20,20) [circle,fill=gray!20,draw,font=\sffamily\small]{012};
+  \node[main node] (120) [above right of=012] {120};
+  \node[main node] (201) [above left of=012] {201};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (012) edge node [below] {$b$} (120)
+    (120) edge node [above] {$b$} (201)
+    (201) edge node [below] {$b$} (012);
+
+% first middle triangle
+  \node[main node] (112) at (18,15) {112};
+  \node[main node] (001) [below left of=112] {001};
+  \node[main node] (220) [below of=112] {220};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (001) edge node [left] {$b$} (112)
+    (112) edge node [right] {$b$} (220)
+    (220) edge node [below] {$b$} (001);
+
+% second middle triangle
+  \node[main node] (002) at (22,15) {002};
+  \node[main node] (221) [below of=002] {221};
+  \node[main node] (110) [below right of=002] {110};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (221) edge node [left] {$b$} (002)
+    (002) edge node [above] {$b$} (110)
+    (110) edge node [below] {$b$} (221)
+
+    (220) edge [red] node [below,black] {$a$} (221)
+    (002) edge [red] node [above,black] {$a$} (112);
+
+
+% first right hand triangle
+  \node[main node] (121) at (33,20) {121};
+  \node[main node] (010) [below left of=121] {010};
+  \node[main node] (202) [below of=121] {202};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (010) edge node [left] {$b$} (121)
+    (121) edge node [right] {$b$} (202)
+    (202) edge node [below] {$b$} (010);
+
+% second right hand triangle
+  \node[main node] (020) at (37,20) {020};
+  \node[main node] (212) [below of=020] {212};
+  \node[main node] (101) [below right of=020] {101};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (212) edge node [left] {$b$} (020)
+    (020) edge node [above] {$b$} (101)
+    (101) edge node [below] {$b$} (212)
+
+    (202) edge [red] node [below,black] {$a$} (212)
+    (020) edge [red] node [above,black] {$a$} (121)
+
+    (012) edge [red] node [right,black] {$a$} (112)
+    (120) edge [red] node [above,black] {$a$} (121);
+
+% first left hand triangle
+  \node[main node] (211) at (7,20) {211};
+  \node[main node] (022) [below of=211] {022};
+  \node[main node] (100) [below right of=211] {100};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (211) edge node [left] {$b$} (022)
+    (022) edge node [below] {$b$} (100)
+    (100) edge node [below] {$b$} (211);
+
+% second left hand triangle
+  \node[main node] (200) at (3,20) {200};
+  \node[main node] (122) [below of=200] {122};
+  \node[main node] (011) [below left of=200] {011};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (200) edge node [above] {$b$} (011)
+    (011) edge node [above] {$b$} (122)
+    (122) edge node [right] {$b$} (200)
+
+    (022) edge [red] node [below,black] {$a$} (122)
+    (200) edge [red] node [above,black] {$a$} (211)
+
+    (201) edge [red] node [right,black] {$a$} (211);
+
+
+% Bottom triangle
+  \node[main node] (111) at (20,0) {111};
+  \node[main node] (000) [below right of=111] {000};
+  \node[main node] (222) [below left of=111] {222};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (000) edge node [left] {$b$} (111)
+    (111) edge node [above] {$b$} (222)
+    (222) edge node [below] {$b$} (000)
+
+    (000) edge [red,bend right] node [right,black] {$a$} (111)
+
+    (011) edge [red,bend right] node [left,black] {$a$} (111)
+    (100) edge [red,bend right] node [left,black] {$a$} (111)
+    (001) edge [red] node [left,black] {$a$} (111)
+    (110) edge [red] node [right,black] {$a$} (111)
+    (010) edge [red,bend left] node [right,black] {$a$} (111)
+    (101) edge [red,bend left] node [right,black] {$a$} (111);
+
+% LOOPS
+  \path[every node/.style={font=\sffamily\small}]
+    (211) edge [red,loop above]  (211)
+    (122) edge [red,loop below]  (122)
+    (212) edge [red,loop below]  (212)
+    (221) edge [red,loop below]  (221)
+    (121) edge [red,loop above]  (121)
+    (111) edge [red,loop below]  (111)
+    (222) edge [red,loop left]  (222)
+    (112) edge [red,loop left]  (112);
+
+\draw[draw=none,font=\small] (2.5,4) node {$A = \{0, 1, 2\}$};
+\draw[draw=none,font=\small] (2.5,2) node {$a = (1, 1, 2)$};
+\draw[draw=none,font=\small] (2.5,0) node {$b = (1, 2, 0)$};
+\draw[draw=none,font=\small] (2.5,-2) node {$\bA = \<A, \{a, b\}\>$};
+\draw[draw=none,font=\small] (2.5,-4) node {$\bF_{\bA}\{(0,1,2)\} \leq \bA^A$};
+%\input{FreeAlgebraExampleSetup}
