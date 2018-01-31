@@ -2,57 +2,6 @@
 %%% If you need something but cannot find it,
 %%% contact the TA Favonia!
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Basic packages
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{amsmath,amsthm,amssymb}
-\usepackage{mathtools}
-\usepackage{etoolbox}
-\usepackage{fancyhdr}
-\usepackage{mathpartir}
-\usepackage{xcolor}
-\usepackage{hyperref}
-\usepackage{xspace}
-\usepackage{comment}
-\usepackage{url} % for url in bib entries
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Acronyms
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage[acronym, shortcuts]{glossaries}
-
-\newacronym{HoTT}{HoTT}{homotopy type theory}
-\newacronym{IPL}{IPL}{intuitionistic propositional logic}
-\newacronym{TT}{TT}{intuitionistic type theory}
-\newacronym{LEM}{LEM}{law of the excluded middle}
-\newacronym{ITT}{ITT}{intensional type theory}
-\newacronym{ETT}{ETT}{extensional type theory}
-\newacronym{NNO}{NNO}{natural numbers object}
-
-% Make \ac robust.
-\robustify{\ac}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Fancy page style
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\pagestyle{fancy}
-\newcommand{\metadata}[2]{
-  \lhead{Algebra and Logic Seminar}
-  \chead{IPL Notes}
-  \rhead{February 28, 2014}
-  %% \lfoot{#1}
-  %% \cfoot{#2}
-  %% \rfoot{\thepage}
-  \lfoot{}
-  \cfoot{}
-  \rfoot{}
-}
-\renewcommand{\headrulewidth}{0.4pt}
-%\renewcommand{\footrulewidth}{0.4pt}
-
-
-\newrobustcmd*{\vocab}[1]{\emph{#1}}
-\newrobustcmd*{\latin}[1]{\textit{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Customize list enviroonments
@@ -62,6 +11,7 @@
 \setitemize{noitemsep, topsep=0pt, leftmargin=*}
 \setenumerate{noitemsep, topsep=0pt, leftmargin=*}
 \setdescription{noitemsep, topsep=0pt, leftmargin=*}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Some really basic macros.

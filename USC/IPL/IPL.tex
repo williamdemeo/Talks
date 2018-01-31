@@ -1,31 +1,153 @@
-% arara: pdflatex
-% arara: bibtex
-% arara: pdflatex
-% arara: pdflatex
-%\documentclass[11pt]{article}
+% IPL.tex
+% Notes on rules of inference for IPL.
+% Author: William DeMeo <williamdemeo@gmail.com>
+% Date: 28 Feb 2014
+% Updated: 30 Jan 2018
+% Copyright: William DeMeo 2014
+
 \documentclass{article}
+%% If you want bigger font, replace the line above with
+%%     \documentclass[12pt]{article}  
 
-\usepackage{lmodern}
-\usepackage{microtype}
 
-% Package for customizing page layout
-%\usepackage[letterpaper]{geometry}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage{etoolbox}
+\usepackage{mathpartir}
+\usepackage{xcolor}
+\usepackage{xspace}
+\usepackage{url}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Acronyms -- add your own if you want!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[acronym, shortcuts]{glossaries}
+\newacronym{HoTT}{HoTT}{homotopy type theory}
+\newacronym{IPL}{IPL}{intuitionistic propositional logic}
+\newacronym{TT}{TT}{intuitionistic type theory}
+\newacronym{LEM}{LEM}{law of the excluded middle}
+\newacronym{ITT}{ITT}{intensional type theory}
+\newacronym{ETT}{ETT}{extensional type theory}
+\newacronym{NNO}{NNO}{natural numbers object}
+\robustify{\ac}
+%% Use acronyms like this: \ac{IPL}
+%% If the acronym has already been used, then \ac{IPL} just prints IPL; 
+%% However, if it's the first occurrence, then we'll get:
+%%   intuitionistic propositional logic (IPL)
+
+
+\newrobustcmd*{\vocab}[1]{\emph{#1}}
+\newrobustcmd*{\latin}[1]{\textit{#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% `comment` is a package that enables you to omit sections by simplly
+% enclosing the unwanted stuff inside `\begin{comment}  \end{comment}`
+\usepackage{comment}  % This package lets you omit sections of code
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% `hyperref` is a package that gives you hyperlinks in your pdf,
+% which can be very helpful for those reading it on a computer
+% or tablet.  You get the default color options for links with
+%
+%          \usepackage{hyperref}
+%
+% but I think the default colors are VERY ugly and distracting,
+% so I use the following options:
 \usepackage[
-top    = 3cm,
-bottom = 3cm,
-left   = 4cm,
-right  = 4cm]{geometry}
-%\usepackage[letterpaper]{geometry}
-% \usepackage{fullpage}
+  colorlinks=true,
+  urlcolor=black,
+  linkcolor=black,
+  citecolor=black
+]{hyperref}
 
-\input{macros}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% The `geometry.sty` package is for customizing page layout
+%
+\usepackage[  
+  top    = 3cm,  %% <<== adjust top margin by changing this number
+  left   = 4cm,  %% <<== adjust left margin by changing this number
+  bottom = 3cm,  %% <<==  ...etc...
+  right  = 4cm
+]{geometry}
+
+
+%% The next line incorporates some macros employed by Bob's students.
+\usepackage{cmu-macros}  %% see the `cmu-macros.sty` file for details.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% The `proof-dashed.sty` package is for typesetting inference rules
+%
 \usepackage{proof-dashed}
-\usepackage{tikz-cd}
+%
+% Look at the comments in the file `proof-dashed.sty` for more details
+% about how to use it, but looking at this one example may be sufficient.
+% (Notice you start with the base of the tree and work up.)
+%
+% Example: The LaTeX commands
+%
+%		\infer[R2]{ E }
+%                     { A & \infer[R1]{ D }
+%                                   { B & C } }
+%
+%                produce following derivation tree
+%
+%                       B C
+%                      ----- R1
+%                  A     D
+%                 ---------- R2
+%                     E
+%
+% Note: spacing doesn't matter, so you could write the above derivation
+% like this:  \infer[R2]{E}{A & \infer[R1]{D}{B & C}}
 
-\metadata{IPL Notes}{Feb 28, 2014}
-\begin{document}
-This note summarizes the rules of inference for \ac{IPL} as I understand them.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% `tikz` is a package for making diagrams
+% `tikz-cd` has additional support for commutative diagrams
+%  We don't need it for this document, but if you will add diagrams,
+%  be sure you have the `tikz-cd.sty` file in latex search path,
+%  and then uncomment the next line.
+%% \usepackage{tikz-cd}  
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% `fancy` is a package for making ``fancy'' headers and footers.
+%
+% If you want fancy headers and footers, then uncomment the next three lines.
+%
+%%   \pagestyle{fancy}
+%%   \lhead{Democrat}   \chead{Moderate}   \rhead{Republican}
+%%   \lfoot{}  \cfoot{\thepage}   \rfoot{}
+%    \renewcommand{\headrulewidth}{0.4pt}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%=============================================================================%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Notes on Intuitionistic Proposition Logic}
+\author{William DeMeo\\
+  \url{williamdemeo@gmail.com}}
+\date{28 Feb 2014}
+
+
+\begin{document}  %% <<== Here's where the document actually begins!
+
+\maketitle
+
+\section{Introduction}
+These notes summarize the rules of inference for \ac{IPL} as I understand them.
 This is based on the lectures given by Professor Robert Harper in September
 2013 at CMU~\cite{Harper2012}. 
 Notes for Harper's lectures were transcribed by his students and
@@ -61,13 +183,11 @@ used to introduce $A$ (\vocab{local completeness}), but not so strong as to
 deduce information that might not have been used to introduce $A$ (\vocab{local
   soundness}). 
 
-\medskip 
 
-\hrule
+\section{Conjunction}
+We begin with \emph{conjunction}, which is interpreted semantically as ``logical and.''
+The formation, introduction, and elimination rules for conjunction are as follows.
 
-\begin{center}
-CONJUNCTION
-\end{center}
 \begin{itemize}
 \item[(formation)] 
 If $A$ and $B$ are well-formed propositions, then so is
@@ -78,7 +198,6 @@ their \emph{conjunction}, which we write as $A \conj B$.
 \end{equation*}
 
 \item[(introduction)]
-%\paragraph{Introduction.}
 To give meaning to conjunction, we must say how
 to introduce the judgment $A \conj B \true$.
 A verification of $A \conj B$ requires a proof of $A$ and
@@ -89,7 +208,6 @@ a proof of $B$.
 \end{equation*}
 
 \item[(elimination)]
-%\paragraph{Elimination.}
 Because every proof of $A \conj B$ comes from a pair of proofs, one of $A$ and
 one of $B$, we are justified in deducing $A \true$ and $B \true$ from a proof of
 $A \conj B$: 
@@ -102,14 +220,10 @@ $A \conj B$:
 \end{mathpar}
 \end{itemize}
 
-\medskip 
-
-\hrule
 %\newpage
-\begin{center}
-TRUTH
- \end{center}
-%We denote by $\truth$ the \emph{trivially true} proposition. 
+
+\section{Truth}
+
 \begin{itemize}
 \item[(formation)]
 The formation rule serves as immediate evidence for the judgment that $\truth$ is a
@@ -135,14 +249,10 @@ by the principle of conservation of proof, we should get no information out. Thu
 there is no elimination rule for $\truth$.
 \end{itemize}
 
-%% \medskip 
+%% \newpage
 
-%% \hrule
-\newpage
+\section{Entailment}
 
-\begin{center}
-ENTAILMENT
- \end{center}
 \emph{Entailment} is a judgment and is written as 
 \begin{equation*}
   A_1 \true, \dotsc, A_n \true \entails A \true
@@ -198,13 +308,8 @@ aka ``exchange;'' the order of assumptions does not matter.
 \end{itemize}
 
 
-\medskip 
+\section{Implication}
 
-\hrule
-
-\begin{center}
-IMPLICATION
-\end{center}
 \begin{itemize}
 \item[(formation)] 
 \begin{equation*}
@@ -230,13 +335,9 @@ judgments.
 This rule is sometimes referred to as \latin{modus ponens}.
 \end{itemize}
 
-%% \medskip
+%% \newpage
 
-%% \hrule
-\newpage
-\begin{center}
-DISJUNCTION
-\end{center}
+\section{Disjunction}
 \begin{itemize}
 \item[(formation)]
 \begin{equation*}
@@ -259,12 +360,9 @@ DISJUNCTION
 \end{equation*}
 \end{itemize}
 
-\medskip 
 
-\hrule
-\begin{center}
-FALSEHOOD
-\end{center}
+\section{Falsehood}
+
 \begin{itemize}
 \item[(formation)]
 The unit of disjunction is falsehood, the proposition that is trivially never
@@ -281,24 +379,14 @@ Because $\falsehood$ should never be true, it has no introduction rule.
   \infer[{\falsehood}\mathsf{E}]{C \true}{
     \falsehood \true}
 \end{equation*}
-The elimination rule captures \latin{ex falso quodlibet}: from a proof of $\falsehood \true$, we may deduce that \emph{any} proposition $C$ is true because there is ultimately no way to introduce $\falsehood \true$.
-Once again, the rules cohere.
-The elimination rule is very strong, but remains justified due to the absence of any introduction rule for falsehood.
+The elimination rule captures \latin{ex falso quodlibet}:
+from a proof of $\falsehood \true$, we may deduce that \emph{any} proposition $C$
+is true because there is ultimately no way to introduce $\falsehood \true$.
+Once again, the rules cohere. The elimination rule is very strong, but remains
+justified due to the absence of any introduction rule for falsehood.
 \end{itemize}
 
-\medskip 
 
-\hrule
-%% \begin{center}
-%% NEGATION
-%% \end{center}
-%% \begin{itemize}
-%% \item[(formation)]
-%% \item[(introduction)]
-%% \item[(elimination)]
-%% \end{itemize}
-
-%% \nocite{Pfenning2009a, Pfenning2009b}
 \begin{thebibliography}{1}
 
 
@@ -325,7 +413,8 @@ Frank Pfenning.
 
 \end{thebibliography}
 
-%% \bibliographystyle{plain}
-%% \bibliography{hott_references}
-
 \end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%=============================================================================%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
